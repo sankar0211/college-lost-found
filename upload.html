@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Upload Item</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav>
+  <h2>Upload Found Item</h2>
+  <div>
+    <a href="dashboard.html">Dashboard</a>
+    <button onclick="logoutUser()">Logout</button>
+  </div>
+</nav>
+
+<div class="form-box">
+  <h2>Report Found Item</h2>
+
+  <input type="text" id="title" placeholder="Item Name">
+  <textarea id="description" placeholder="Item Description"></textarea>
+
+  <select id="category">
+    <option value="">Select Category</option>
+    <option value="ID Card">ID Card</option>
+    <option value="Electronics">Electronics</option>
+    <option value="Books">Books</option>
+    <option value="Keys">Keys</option>
+    <option value="Others">Others</option>
+  </select>
+
+  <input type="text" id="location" placeholder="Found Location">
+  <input type="text" id="imageUrl" placeholder="Image URL optional">
+
+  <button onclick="uploadItem()">Upload Item</button>
+
+  <p id="message"></p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
