@@ -30,7 +30,6 @@
       <button id="registerTab" type="button">Register</button>
     </div>
 
-    <!-- LOGIN FORM -->
     <form id="loginForm">
       <label>User ID / Register No / Staff ID / Visitor ID</label>
       <input type="text" id="loginUserId" placeholder="Example: 24I355" required />
@@ -46,7 +45,6 @@
       </button>
     </form>
 
-    <!-- REGISTER FORM -->
     <form id="registerForm" class="hidden">
       <label>Full Name</label>
       <input type="text" id="regName" placeholder="Enter your name" required />
@@ -56,6 +54,19 @@
 
       <label>Phone Number</label>
       <input type="tel" id="regPhone" placeholder="Example: 9876543210" required />
+
+      <label>User Type</label>
+      <select id="regUserType" required>
+        <option value="">Select User Type</option>
+        <option value="student">Student</option>
+        <option value="faculty">Faculty</option>
+        <option value="assistant_professor">Assistant Professor</option>
+        <option value="professor">Professor</option>
+        <option value="parent">Parent</option>
+        <option value="visitor">Visitor</option>
+        <option value="staff">Security / Staff</option>
+        <option value="public">General Public</option>
+      </select>
 
       <label>Create Password</label>
       <div class="password-wrapper">
@@ -69,20 +80,6 @@
         <button type="button" onclick="togglePassword('confirmPassword')">👁</button>
       </div>
 
-      <label>Register As</label>
-      <select id="regRole" required>
-        <option value="">Select Role</option>
-        <option value="lost">Lost Item User</option>
-        <option value="found">Found Item Reporter</option>
-        <option value="student">Student</option>
-        <option value="faculty">Faculty</option>
-        <option value="assistant_professor">Assistant Professor</option>
-        <option value="parent">Parent</option>
-        <option value="visitor">Visitor</option>
-        <option value="staff">Security / Staff</option>
-        <option value="public">General Public</option>
-      </select>
-
       <button type="submit" class="btn primary full">
         <span class="btn-text">Create Account</span>
       </button>
@@ -91,7 +88,7 @@
     <p id="authMessage" class="message"></p>
 
     <p class="muted center-text">
-      Admin accounts must be created only from Supabase database.
+      After login, any user can report lost items or found items.
     </p>
 
   </div>
