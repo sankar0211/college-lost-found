@@ -9,31 +9,69 @@
 <body data-page="login">
 
 <div class="auth-page">
-  <div class="auth-card">
+  <div class="auth-card animated-card">
+
     <a href="index.html" class="back-link">← Back to Home</a>
 
     <div class="top-row">
-      <h2 data-i18n="loginRegister">Login / Register</h2>
-      <button onclick="toggleDarkMode()" class="small-btn">🌙</button>
+      <div>
+        <h2 id="authTitle">Login</h2>
+        <p class="muted">Use your User ID and password.</p>
+      </div>
+
+      <label class="theme-switch">
+        <input type="checkbox" id="themeToggle">
+        <span class="theme-slider"></span>
+      </label>
     </div>
 
-    <p class="muted">No email. No OTP. Use User ID and password.</p>
+    <div class="auth-tabs">
+      <button id="loginTab" class="active" type="button">Login</button>
+      <button id="registerTab" type="button">Register</button>
+    </div>
 
+    <!-- LOGIN FORM -->
     <form id="loginForm">
-      <label>Full Name</label>
-      <input type="text" id="name" placeholder="Enter your name" required />
-
       <label>User ID / Register No / Staff ID / Visitor ID</label>
-      <input type="text" id="userId" placeholder="Example: 24I355" required />
-
-      <label>Phone Number</label>
-      <input type="tel" id="phone" placeholder="Example: 9876543210" required />
+      <input type="text" id="loginUserId" placeholder="Example: 24I355" required />
 
       <label>Password</label>
-      <input type="password" id="password" placeholder="Enter password" required />
+      <div class="password-wrapper">
+        <input type="password" id="loginPassword" placeholder="Enter password" required />
+        <button type="button" onclick="togglePassword('loginPassword')">👁</button>
+      </div>
 
-      <label>Login As</label>
-      <select id="role" required>
+      <button type="submit" class="btn primary full">
+        <span class="btn-text">Login</span>
+      </button>
+    </form>
+
+    <!-- REGISTER FORM -->
+    <form id="registerForm" class="hidden">
+      <label>Full Name</label>
+      <input type="text" id="regName" placeholder="Enter your name" required />
+
+      <label>User ID / Register No / Staff ID / Visitor ID</label>
+      <input type="text" id="regUserId" placeholder="Example: 24I355" required />
+
+      <label>Phone Number</label>
+      <input type="tel" id="regPhone" placeholder="Example: 9876543210" required />
+
+      <label>Create Password</label>
+      <div class="password-wrapper">
+        <input type="password" id="regPassword" placeholder="Minimum 8 characters" required />
+        <button type="button" onclick="togglePassword('regPassword')">👁</button>
+      </div>
+
+      <label>Confirm Password</label>
+      <div class="password-wrapper">
+        <input type="password" id="confirmPassword" placeholder="Re-enter password" required />
+        <button type="button" onclick="togglePassword('confirmPassword')">👁</button>
+      </div>
+
+      <label>Register As</label>
+      <select id="regRole" required>
+        <option value="">Select Role</option>
         <option value="lost">Lost Item User</option>
         <option value="found">Found Item Reporter</option>
         <option value="student">Student</option>
@@ -43,13 +81,19 @@
         <option value="visitor">Visitor</option>
         <option value="staff">Security / Staff</option>
         <option value="public">General Public</option>
-        <option value="admin">Admin</option>
       </select>
 
-      <button type="submit" class="btn primary full">Continue</button>
+      <button type="submit" class="btn primary full">
+        <span class="btn-text">Create Account</span>
+      </button>
     </form>
 
-    <p id="loginMessage" class="message"></p>
+    <p id="authMessage" class="message"></p>
+
+    <p class="muted center-text">
+      Admin accounts must be created only from Supabase database.
+    </p>
+
   </div>
 </div>
 

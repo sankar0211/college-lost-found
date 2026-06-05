@@ -20,7 +20,6 @@ const translations = {
     uploadText: "Upload from files or capture directly using mobile camera.",
     claimRequests: "Claim Requests",
     claimText: "Send proof and wait for reporter/admin approval.",
-    loginRegister: "Login / Register",
     lostDashboard: "Lost User Dashboard"
   },
   ta: {
@@ -37,7 +36,6 @@ const translations = {
     uploadText: "கோப்பிலிருந்து அல்லது மொபைல் கேமராவால் பதிவேற்றலாம்.",
     claimRequests: "உரிமை கோரிக்கை",
     claimText: "ஆதாரம் அனுப்பி அனுமதி பெறவும்.",
-    loginRegister: "உள்நுழை / பதிவு",
     lostDashboard: "இழந்த பயனர் பலகை"
   },
   hi: {
@@ -54,7 +52,6 @@ const translations = {
     uploadText: "फाइल से अपलोड करें या मोबाइल कैमरा से कैप्चर करें।",
     claimRequests: "क्लेम अनुरोध",
     claimText: "प्रमाण भेजें और अनुमति की प्रतीक्षा करें।",
-    loginRegister: "लॉगिन / रजिस्टर",
     lostDashboard: "खोई वस्तु डैशबोर्ड"
   },
   te: {
@@ -71,7 +68,6 @@ const translations = {
     uploadText: "ఫైల్ నుండి లేదా మొబైల్ కెమెరాతో అప్లోడ్ చేయండి.",
     claimRequests: "క్లెయిమ్ అభ్యర్థనలు",
     claimText: "ఆధారం పంపి ఆమోదం కోసం వేచి ఉండండి.",
-    loginRegister: "లాగిన్ / నమోదు",
     lostDashboard: "లాస్ట్ యూజర్ డ్యాష్‌బోర్డ్"
   },
   ml: {
@@ -88,7 +84,6 @@ const translations = {
     uploadText: "ഫയലിൽ നിന്നോ മൊബൈൽ ക്യാമറ ഉപയോഗിച്ചോ അപ്ലോഡ് ചെയ്യുക.",
     claimRequests: "ക്ലെയിം അഭ്യർത്ഥനകൾ",
     claimText: "തെളിവ് അയച്ച് അംഗീകാരം കാത്തിരിക്കുക.",
-    loginRegister: "ലോഗിൻ / രജിസ്റ്റർ",
     lostDashboard: "നഷ്ടപ്പെട്ട ഉപയോക്തൃ ഡാഷ്ബോർഡ്"
   },
   kn: {
@@ -105,13 +100,13 @@ const translations = {
     uploadText: "ಫೈಲ್‌ನಿಂದ ಅಥವಾ ಮೊಬೈಲ್ ಕ್ಯಾಮೆರಾ ಮೂಲಕ ಅಪ್ಲೋಡ್ ಮಾಡಿ.",
     claimRequests: "ಹಕ್ಕು ವಿನಂತಿಗಳು",
     claimText: "ಸಾಕ್ಷಿ ಕಳುಹಿಸಿ ಅನುಮೋದನೆಗಾಗಿ ಕಾಯಿರಿ.",
-    loginRegister: "ಲಾಗಿನ್ / ನೋಂದಣಿ",
     lostDashboard: "ಕಳೆದುಹೋದ ಬಳಕೆದಾರ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್"
   }
 };
 
 document.addEventListener("DOMContentLoaded", async () => {
   applyDarkMode();
+  setupThemeToggle();
   applyLanguage();
   setupLogout();
   showUserInfo();
@@ -119,7 +114,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const page = document.body.dataset.page;
 
   if (page === "home") initHome();
-  if (page === "login") initLogin();
+  if (page === "login") initAuthPage();
   if (page === "lostDashboard") await initLostDashboard();
   if (page === "foundDashboard") await initFoundDashboard();
   if (page === "upload") initUploadPage();
@@ -170,11 +165,25 @@ function toggleDarkMode() {
   const current = localStorage.getItem(DARK_KEY) === "true";
   localStorage.setItem(DARK_KEY, String(!current));
   applyDarkMode();
+  setupThemeToggle();
 }
 
 function applyDarkMode() {
   const enabled = localStorage.getItem(DARK_KEY) === "true";
   document.body.classList.toggle("dark", enabled);
+}
+
+function setupThemeToggle() {
+  const toggle = document.getElementById("themeToggle");
+
+  if (toggle) {
+    toggle.checked = localStorage.getItem(DARK_KEY) === "true";
+
+    toggle.onchange = () => {
+      localStorage.setItem(DARK_KEY, String(toggle.checked));
+      applyDarkMode();
+    };
+  }
 }
 
 /* COMMON */
@@ -237,6 +246,7 @@ function requireAdmin() {
 
 function goDashboard() {
   const user = getCurrentUser();
+
   if (!user) {
     window.location.href = "login.html";
     return;
@@ -291,56 +301,120 @@ function getStatusClass(status) {
   return "status";
 }
 
+function togglePassword(inputId) {
+  const input = document.getElementById(inputId);
+  input.type = input.type === "password" ? "text" : "password";
+}
+
+function setButtonLoading(button, loading, text) {
+  if (!button) return;
+
+  if (loading) {
+    button.disabled = true;
+    button.innerHTML = `<div class="loader"></div>`;
+  } else {
+    button.disabled = false;
+    button.innerHTML = `<span class="btn-text">${text}</span>`;
+  }
+}
+
 /* LOGIN / REGISTER */
 
-function initLogin() {
+function initAuthPage() {
+  const loginTab = document.getElementById("loginTab");
+  const registerTab = document.getElementById("registerTab");
+  const loginForm = document.getElementById("loginForm");
+  const registerForm = document.getElementById("registerForm");
+  const authTitle = document.getElementById("authTitle");
+
+  loginTab.addEventListener("click", () => {
+    loginTab.classList.add("active");
+    registerTab.classList.remove("active");
+    loginForm.classList.remove("hidden");
+    registerForm.classList.add("hidden");
+    authTitle.textContent = "Login";
+    clearMessage();
+  });
+
+  registerTab.addEventListener("click", () => {
+    registerTab.classList.add("active");
+    loginTab.classList.remove("active");
+    registerForm.classList.remove("hidden");
+    loginForm.classList.add("hidden");
+    authTitle.textContent = "Register";
+    clearMessage();
+  });
+
   const params = new URLSearchParams(window.location.search);
   const selectedRole = params.get("role");
 
   if (selectedRole) {
-    document.getElementById("role").value = selectedRole;
+    registerTab.click();
+    document.getElementById("regRole").value = selectedRole;
   }
 
-  const loginForm = document.getElementById("loginForm");
-  const message = document.getElementById("loginMessage");
+  loginForm.addEventListener("submit", loginUser);
+  registerForm.addEventListener("submit", registerUser);
+}
 
-  loginForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
+function clearMessage() {
+  const msg = document.getElementById("authMessage");
+  if (msg) {
+    msg.textContent = "";
+    msg.style.color = "";
+  }
+}
 
-    const fullName = document.getElementById("name").value.trim();
-    const userId = document.getElementById("userId").value.trim().toUpperCase();
-    const phone = document.getElementById("phone").value.trim();
-    const password = document.getElementById("password").value.trim();
-    const role = document.getElementById("role").value;
+function showAuthMessage(text, color = "red") {
+  const msg = document.getElementById("authMessage");
+  msg.textContent = text;
+  msg.style.color = color;
+}
 
-    if (!fullName || !userId || !phone || !password || !role) {
-      message.textContent = "Please fill all fields.";
-      message.style.color = "red";
-      return;
+async function registerUser(e) {
+  e.preventDefault();
+
+  const button = e.target.querySelector("button[type='submit']");
+  setButtonLoading(button, true, "Create Account");
+
+  const fullName = document.getElementById("regName").value.trim();
+  const userId = document.getElementById("regUserId").value.trim().toUpperCase();
+  const phone = document.getElementById("regPhone").value.trim();
+  const password = document.getElementById("regPassword").value.trim();
+  const confirmPassword = document.getElementById("confirmPassword").value.trim();
+  const role = document.getElementById("regRole").value;
+
+  try {
+    if (!fullName || !userId || !phone || !password || !confirmPassword || !role) {
+      throw new Error("Please fill all fields.");
     }
 
-    const { data: existingUser } = await supabaseClient
+    if (!/^[A-Z0-9_-]{3,30}$/.test(userId)) {
+      throw new Error("User ID must contain only letters, numbers, underscore or hyphen.");
+    }
+
+    if (!/^[0-9]{10}$/.test(phone)) {
+      throw new Error("Phone number must be exactly 10 digits.");
+    }
+
+    if (password.length < 8) {
+      throw new Error("Password must contain at least 8 characters.");
+    }
+
+    if (password !== confirmPassword) {
+      throw new Error("Passwords do not match.");
+    }
+
+    const { data: existingUser, error: checkError } = await supabaseClient
       .from("profiles")
-      .select("*")
+      .select("user_id")
       .eq("user_id", userId)
       .maybeSingle();
 
+    if (checkError) throw checkError;
+
     if (existingUser) {
-      if (existingUser.password !== password) {
-        message.textContent = "Wrong password.";
-        message.style.color = "red";
-        return;
-      }
-
-      if (existingUser.role !== role) {
-        message.textContent = "Selected role does not match your account.";
-        message.style.color = "red";
-        return;
-      }
-
-      setCurrentUser(existingUser);
-      redirectByRole(role);
-      return;
+      throw new Error("This User ID already exists. Please login.");
     }
 
     const newUser = {
@@ -359,15 +433,62 @@ function initLogin() {
       .select()
       .single();
 
-    if (error) {
-      message.textContent = error.message;
-      message.style.color = "red";
-      return;
-    }
+    if (error) throw error;
 
     setCurrentUser(createdUser);
-    redirectByRole(role);
-  });
+    showAuthMessage("Account created successfully. Redirecting...", "green");
+
+    setTimeout(() => {
+      redirectByRole(role);
+    }, 900);
+
+  } catch (error) {
+    showAuthMessage(error.message, "red");
+    setButtonLoading(button, false, "Create Account");
+  }
+}
+
+async function loginUser(e) {
+  e.preventDefault();
+
+  const button = e.target.querySelector("button[type='submit']");
+  setButtonLoading(button, true, "Login");
+
+  const userId = document.getElementById("loginUserId").value.trim().toUpperCase();
+  const password = document.getElementById("loginPassword").value.trim();
+
+  try {
+    if (!userId || !password) {
+      throw new Error("Please enter User ID and password.");
+    }
+
+    const { data: user, error } = await supabaseClient
+      .from("profiles")
+      .select("*")
+      .eq("user_id", userId)
+      .maybeSingle();
+
+    if (error) throw error;
+
+    if (!user) {
+      throw new Error("Account not found. Please register first.");
+    }
+
+    if (user.password !== password) {
+      throw new Error("Wrong password.");
+    }
+
+    setCurrentUser(user);
+    showAuthMessage("Login successful. Redirecting...", "green");
+
+    setTimeout(() => {
+      redirectByRole(user.role);
+    }, 700);
+
+  } catch (error) {
+    showAuthMessage(error.message, "red");
+    setButtonLoading(button, false, "Login");
+  }
 }
 
 /* FETCH */
@@ -624,8 +745,7 @@ function initUploadPage() {
     const submitBtn = uploadForm.querySelector("button[type='submit']");
     const message = document.getElementById("uploadMessage");
 
-    submitBtn.disabled = true;
-    submitBtn.textContent = "Uploading...";
+    setButtonLoading(submitBtn, true, "Submit Found Item");
 
     try {
       const title = document.getElementById("itemName").value.trim();
@@ -693,8 +813,7 @@ function initUploadPage() {
 
     } catch (error) {
       alert("Upload failed: " + error.message);
-      submitBtn.disabled = false;
-      submitBtn.textContent = "Submit Found Item";
+      setButtonLoading(submitBtn, false, "Submit Found Item");
     }
   });
 }
