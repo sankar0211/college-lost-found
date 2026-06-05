@@ -32,15 +32,18 @@ async function registerUser() {
   if (user) {
     const { error: profileError } = await supabaseClient
       .from("profiles")
-      .insert([
+      .upsert(
         {
           id: user.id,
           full_name: fullName,
           role: role,
           phone: phone,
           college_id: collegeId
+        },
+        {
+          onConflict: "id"
         }
-      ]);
+      );
 
     if (profileError) {
       message.innerText = profileError.message;
@@ -48,7 +51,8 @@ async function registerUser() {
     }
   }
 
-  message.innerText = "Registration successful. Check email if confirmation is enabled.";
+  message.innerText = "Registration successful. Please login.";
+
   setTimeout(() => {
     window.location.href = "login.html";
   }, 1500);
@@ -58,6 +62,11 @@ async function loginUser() {
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value;
   const message = document.getElementById("message");
+
+  if (!email || !password) {
+    message.innerText = "Please enter email and password.";
+    return;
+  }
 
   const { error } = await supabaseClient.auth.signInWithPassword({
     email: email,
@@ -85,13 +94,13 @@ async function loadDashboard() {
     return;
   }
 
-  const { data: profile } = await supabaseClient
+  const { data: profile, error } = await supabaseClient
     .from("profiles")
     .select("*")
     .eq("id", user.id)
     .single();
 
-  if (profile) {
+  if (!error && profile) {
     document.getElementById("welcomeText").innerText =
       `Welcome, ${profile.full_name} (${profile.role})`;
   }
@@ -102,13 +111,12 @@ async function loadDashboard() {
 async function loadItems() {
   const searchInput = document.getElementById("searchInput");
   const keyword = searchInput ? searchInput.value.toLowerCase() : "";
+  const itemsList = document.getElementById("itemsList");
 
   const { data: items, error } = await supabaseClient
     .from("items")
     .select("*")
     .order("created_at", { ascending: false });
-
-  const itemsList = document.getElementById("itemsList");
 
   if (error) {
     itemsList.innerHTML = `<p>${error.message}</p>`;
@@ -177,6 +185,7 @@ async function uploadItem() {
   }
 
   message.innerText = "Item uploaded successfully.";
+
   setTimeout(() => {
     window.location.href = "dashboard.html";
   }, 1200);
