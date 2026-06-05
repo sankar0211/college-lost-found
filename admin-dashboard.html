@@ -3,60 +3,57 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Found Reporter Dashboard</title>
+  <title>Admin Dashboard</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
-<body data-page="foundDashboard">
+<body data-page="adminDashboard">
 
 <nav class="dashboard-nav">
   <div>
-    <h2>Found Reporter Dashboard</h2>
+    <h2>Admin Dashboard</h2>
     <p id="userInfo"></p>
   </div>
   <div class="nav-actions">
-    <a href="complaints.html" class="nav-btn">Messages</a>
+    <a href="admin-users.html" class="nav-btn">Users</a>
+    <a href="admin-items.html" class="nav-btn">Items</a>
+    <a href="admin-complaints.html" class="nav-btn">Complaints</a>
     <button onclick="toggleDarkMode()" class="nav-btn">🌙</button>
     <button id="logoutBtn" class="logout-btn">Logout</button>
   </div>
 </nav>
 
 <main class="container">
-
   <section class="stats">
     <div class="stat-card">
-      <h3 id="uploadCount">0</h3>
-      <p>My Uploads</p>
+      <h3 id="totalUsers">0</h3>
+      <p>Total Users</p>
     </div>
 
     <div class="stat-card">
-      <h3 id="claimCount">0</h3>
-      <p>Claim Requests</p>
+      <h3 id="totalItems">0</h3>
+      <p>Total Items</p>
     </div>
 
     <div class="stat-card">
-      <h3 id="pendingCount">0</h3>
-      <p>Pending Claims</p>
+      <h3 id="pendingItems">0</h3>
+      <p>Pending Items</p>
+    </div>
+
+    <div class="stat-card">
+      <h3 id="totalClaims">0</h3>
+      <p>Total Claims</p>
+    </div>
+
+    <div class="stat-card">
+      <h3 id="openComplaints">0</h3>
+      <p>Open Complaints</p>
+    </div>
+
+    <div class="stat-card">
+      <h3 id="returnedItems">0</h3>
+      <p>Returned Items</p>
     </div>
   </section>
-
-  <section class="panel action-panel">
-    <div>
-      <h3>Report a Found Item</h3>
-      <p>Upload image, location, map link and contact details.</p>
-    </div>
-    <a href="upload.html" class="btn primary">Upload Item</a>
-  </section>
-
-  <section class="panel">
-    <h3>Claim Requests Received</h3>
-    <div id="claimsList"></div>
-  </section>
-
-  <section>
-    <h3>My Uploaded Items</h3>
-    <div id="myItemsGrid" class="items-grid"></div>
-  </section>
-
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

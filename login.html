@@ -12,17 +12,19 @@
   <div class="auth-card">
     <a href="index.html" class="back-link">← Back to Home</a>
 
-    <h2>Login / Register</h2>
-    <p class="muted">
-      No email. No OTP. Use Register No / Staff ID / Visitor ID and password.
-    </p>
+    <div class="top-row">
+      <h2 data-i18n="loginRegister">Login / Register</h2>
+      <button onclick="toggleDarkMode()" class="small-btn">🌙</button>
+    </div>
+
+    <p class="muted">No email. No OTP. Use User ID and password.</p>
 
     <form id="loginForm">
       <label>Full Name</label>
       <input type="text" id="name" placeholder="Enter your name" required />
 
-      <label>Register No / Staff ID / Visitor ID</label>
-      <input type="text" id="collegeId" placeholder="Example: 24I355" required />
+      <label>User ID / Register No / Staff ID / Visitor ID</label>
+      <input type="text" id="userId" placeholder="Example: 24I355" required />
 
       <label>Phone Number</label>
       <input type="tel" id="phone" placeholder="Example: 9876543210" required />
@@ -34,6 +36,14 @@
       <select id="role" required>
         <option value="lost">Lost Item User</option>
         <option value="found">Found Item Reporter</option>
+        <option value="student">Student</option>
+        <option value="faculty">Faculty</option>
+        <option value="assistant_professor">Assistant Professor</option>
+        <option value="parent">Parent</option>
+        <option value="visitor">Visitor</option>
+        <option value="staff">Security / Staff</option>
+        <option value="public">General Public</option>
+        <option value="admin">Admin</option>
       </select>
 
       <button type="submit" class="btn primary full">Continue</button>

@@ -3,17 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lost User Dashboard</title>
+  <title>Lost Dashboard</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body data-page="lostDashboard">
 
 <nav class="dashboard-nav">
   <div>
-    <h2>Lost User Dashboard</h2>
+    <h2 data-i18n="lostDashboard">Lost User Dashboard</h2>
     <p id="userInfo"></p>
   </div>
-  <button id="logoutBtn" class="logout-btn">Logout</button>
+  <div class="nav-actions">
+    <a href="complaints.html" class="nav-btn">Messages</a>
+    <button onclick="toggleDarkMode()" class="nav-btn">🌙</button>
+    <button id="logoutBtn" class="logout-btn">Logout</button>
+  </div>
 </nav>
 
 <main class="container">
@@ -31,10 +35,14 @@
         <option value="Electronics">Electronics</option>
         <option value="Books">Books</option>
         <option value="Keys">Keys</option>
+        <option value="Documents">Documents</option>
+        <option value="Mobile Phone">Mobile Phone</option>
+        <option value="Laptop Accessories">Laptop Accessories</option>
         <option value="Others">Others</option>
       </select>
 
       <input type="text" id="locationFilter" placeholder="Location" />
+      <input type="date" id="dateFilter" />
     </div>
   </section>
 

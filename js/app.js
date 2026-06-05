@@ -1,17 +1,183 @@
 const CURRENT_USER_KEY = "clf_current_user";
+const LANG_KEY = "clf_language";
+const DARK_KEY = "clf_dark_mode";
+
+let selectedComplaintId = null;
+let selectedAdminComplaintId = null;
+
+const translations = {
+  en: {
+    appName: "Campus Lost & Found",
+    login: "Login",
+    tag: "College Utility Website",
+    heroTitle: "Find Lost Items. Report Found Items.",
+    heroText: "A campus portal for students, faculty, parents, visitors and public users to report, search and claim lost items.",
+    lostBtn: "I Lost an Item",
+    foundBtn: "I Found an Item",
+    searchItems: "Search Items",
+    searchText: "Search found items by name, category, location and date.",
+    uploadImages: "Upload Images",
+    uploadText: "Upload from files or capture directly using mobile camera.",
+    claimRequests: "Claim Requests",
+    claimText: "Send proof and wait for reporter/admin approval.",
+    loginRegister: "Login / Register",
+    lostDashboard: "Lost User Dashboard"
+  },
+  ta: {
+    appName: "வளாக இழந்தது & கண்டது",
+    login: "உள்நுழை",
+    tag: "கல்லூரி பயன்பாட்டு இணையதளம்",
+    heroTitle: "இழந்த பொருட்களை கண்டுபிடிக்கவும். கண்ட பொருட்களை பதிவிடவும்.",
+    heroText: "மாணவர்கள், ஆசிரியர்கள், பெற்றோர், வருகையாளர்கள் மற்றும் பொதுமக்கள் பயன்படுத்தும் வளாக பொருள் தேடல் தளம்.",
+    lostBtn: "நான் பொருள் இழந்தேன்",
+    foundBtn: "நான் பொருள் கண்டேன்",
+    searchItems: "பொருட்களை தேடு",
+    searchText: "பெயர், வகை, இடம், தேதி மூலம் தேடலாம்.",
+    uploadImages: "படங்களை பதிவேற்று",
+    uploadText: "கோப்பிலிருந்து அல்லது மொபைல் கேமராவால் பதிவேற்றலாம்.",
+    claimRequests: "உரிமை கோரிக்கை",
+    claimText: "ஆதாரம் அனுப்பி அனுமதி பெறவும்.",
+    loginRegister: "உள்நுழை / பதிவு",
+    lostDashboard: "இழந்த பயனர் பலகை"
+  },
+  hi: {
+    appName: "Campus Lost & Found",
+    login: "लॉगिन",
+    tag: "कॉलेज उपयोगिता वेबसाइट",
+    heroTitle: "खोई वस्तु खोजें। मिली वस्तु रिपोर्ट करें।",
+    heroText: "छात्रों, शिक्षकों, अभिभावकों, आगंतुकों और सार्वजनिक उपयोगकर्ताओं के लिए पोर्टल।",
+    lostBtn: "मेरी वस्तु खो गई",
+    foundBtn: "मुझे वस्तु मिली",
+    searchItems: "वस्तु खोजें",
+    searchText: "नाम, श्रेणी, स्थान और तारीख से खोजें।",
+    uploadImages: "चित्र अपलोड करें",
+    uploadText: "फाइल से अपलोड करें या मोबाइल कैमरा से कैप्चर करें।",
+    claimRequests: "क्लेम अनुरोध",
+    claimText: "प्रमाण भेजें और अनुमति की प्रतीक्षा करें।",
+    loginRegister: "लॉगिन / रजिस्टर",
+    lostDashboard: "खोई वस्तु डैशबोर्ड"
+  },
+  te: {
+    appName: "క్యాంపస్ లాస్ట్ & ఫౌండ్",
+    login: "లాగిన్",
+    tag: "కాలేజ్ యుటిలిటీ వెబ్‌సైట్",
+    heroTitle: "పోయిన వస్తువులను కనుగొనండి. దొరికిన వస్తువులను నివేదించండి.",
+    heroText: "విద్యార్థులు, ఉపాధ్యాయులు, తల్లిదండ్రులు, సందర్శకుల కోసం క్యాంపస్ పోర్టల్.",
+    lostBtn: "నేను వస్తువు కోల్పోయాను",
+    foundBtn: "నాకు వస్తువు దొరికింది",
+    searchItems: "వస్తువులు వెతకండి",
+    searchText: "పేరు, వర్గం, స్థలం, తేదీ ద్వారా వెతకండి.",
+    uploadImages: "చిత్రాలు అప్లోడ్ చేయండి",
+    uploadText: "ఫైల్ నుండి లేదా మొబైల్ కెమెరాతో అప్లోడ్ చేయండి.",
+    claimRequests: "క్లెయిమ్ అభ్యర్థనలు",
+    claimText: "ఆధారం పంపి ఆమోదం కోసం వేచి ఉండండి.",
+    loginRegister: "లాగిన్ / నమోదు",
+    lostDashboard: "లాస్ట్ యూజర్ డ్యాష్‌బోర్డ్"
+  },
+  ml: {
+    appName: "ക്യാമ്പസ് Lost & Found",
+    login: "ലോഗിൻ",
+    tag: "കോളേജ് യൂട്ടിലിറ്റി വെബ്സൈറ്റ്",
+    heroTitle: "നഷ്ടപ്പെട്ട വസ്തുക്കൾ കണ്ടെത്തുക. കണ്ടെത്തിയ വസ്തുക്കൾ റിപ്പോർട്ട് ചെയ്യുക.",
+    heroText: "വിദ്യാർത്ഥികൾ, അധ്യാപകർ, രക്ഷിതാക്കൾ, സന്ദർശകർ എന്നിവർക്ക് ഉപയോഗിക്കാവുന്ന പോർട്ടൽ.",
+    lostBtn: "എനിക്ക് വസ്തു നഷ്ടപ്പെട്ടു",
+    foundBtn: "എനിക്ക് വസ്തു കിട്ടി",
+    searchItems: "വസ്തുക്കൾ തിരയുക",
+    searchText: "പേര്, വിഭാഗം, സ്ഥലം, തീയതി ഉപയോഗിച്ച് തിരയുക.",
+    uploadImages: "ചിത്രങ്ങൾ അപ്ലോഡ് ചെയ്യുക",
+    uploadText: "ഫയലിൽ നിന്നോ മൊബൈൽ ക്യാമറ ഉപയോഗിച്ചോ അപ്ലോഡ് ചെയ്യുക.",
+    claimRequests: "ക്ലെയിം അഭ്യർത്ഥനകൾ",
+    claimText: "തെളിവ് അയച്ച് അംഗീകാരം കാത്തിരിക്കുക.",
+    loginRegister: "ലോഗിൻ / രജിസ്റ്റർ",
+    lostDashboard: "നഷ്ടപ്പെട്ട ഉപയോക്തൃ ഡാഷ്ബോർഡ്"
+  },
+  kn: {
+    appName: "ಕ್ಯಾಂಪಸ್ Lost & Found",
+    login: "ಲಾಗಿನ್",
+    tag: "ಕಾಲೇಜು ಉಪಯೋಗಿ ವೆಬ್‌ಸೈಟ್",
+    heroTitle: "ಕಳೆದುಹೋದ ವಸ್ತುಗಳನ್ನು ಹುಡುಕಿ. ಸಿಕ್ಕ ವಸ್ತುಗಳನ್ನು ವರದಿ ಮಾಡಿ.",
+    heroText: "ವಿದ್ಯಾರ್ಥಿಗಳು, ಶಿಕ್ಷಕರು, ಪೋಷಕರು, ಭೇಟಿ ದಾರರು ಬಳಸಬಹುದಾದ ಕ್ಯಾಂಪಸ್ ಪೋರ್ಟಲ್.",
+    lostBtn: "ನಾನು ವಸ್ತು ಕಳೆದುಕೊಂಡೆ",
+    foundBtn: "ನನಗೆ ವಸ್ತು ಸಿಕ್ಕಿತು",
+    searchItems: "ವಸ್ತುಗಳನ್ನು ಹುಡುಕಿ",
+    searchText: "ಹೆಸರು, ವರ್ಗ, ಸ್ಥಳ, ದಿನಾಂಕದಿಂದ ಹುಡುಕಿ.",
+    uploadImages: "ಚಿತ್ರಗಳನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿ",
+    uploadText: "ಫೈಲ್‌ನಿಂದ ಅಥವಾ ಮೊಬೈಲ್ ಕ್ಯಾಮೆರಾ ಮೂಲಕ ಅಪ್ಲೋಡ್ ಮಾಡಿ.",
+    claimRequests: "ಹಕ್ಕು ವಿನಂತಿಗಳು",
+    claimText: "ಸಾಕ್ಷಿ ಕಳುಹಿಸಿ ಅನುಮೋದನೆಗಾಗಿ ಕಾಯಿರಿ.",
+    loginRegister: "ಲಾಗಿನ್ / ನೋಂದಣಿ",
+    lostDashboard: "ಕಳೆದುಹೋದ ಬಳಕೆದಾರ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್"
+  }
+};
 
 document.addEventListener("DOMContentLoaded", async () => {
+  applyDarkMode();
+  applyLanguage();
   setupLogout();
   showUserInfo();
 
   const page = document.body.dataset.page;
 
+  if (page === "home") initHome();
   if (page === "login") initLogin();
   if (page === "lostDashboard") await initLostDashboard();
   if (page === "foundDashboard") await initFoundDashboard();
   if (page === "upload") initUploadPage();
   if (page === "itemDetails") await initItemDetails();
+  if (page === "complaints") await initComplaints();
+  if (page === "adminDashboard") await initAdminDashboard();
+  if (page === "adminUsers") await initAdminUsers();
+  if (page === "adminItems") await initAdminItems();
+  if (page === "adminComplaints") await initAdminComplaints();
 });
+
+/* LANGUAGE */
+
+function initHome() {
+  const lang = localStorage.getItem(LANG_KEY);
+  const screen = document.getElementById("languageScreen");
+
+  if (!lang && screen) {
+    screen.style.display = "flex";
+  }
+}
+
+function setLanguage(lang) {
+  localStorage.setItem(LANG_KEY, lang);
+
+  const screen = document.getElementById("languageScreen");
+  if (screen) screen.style.display = "none";
+
+  applyLanguage();
+}
+
+function applyLanguage() {
+  const lang = localStorage.getItem(LANG_KEY) || "en";
+  const dict = translations[lang] || translations.en;
+
+  const select = document.getElementById("languageSelect");
+  if (select) select.value = lang;
+
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    if (dict[key]) el.textContent = dict[key];
+  });
+}
+
+/* DARK MODE */
+
+function toggleDarkMode() {
+  const current = localStorage.getItem(DARK_KEY) === "true";
+  localStorage.setItem(DARK_KEY, String(!current));
+  applyDarkMode();
+}
+
+function applyDarkMode() {
+  const enabled = localStorage.getItem(DARK_KEY) === "true";
+  document.body.classList.toggle("dark", enabled);
+}
+
+/* COMMON */
 
 function getCurrentUser() {
   return JSON.parse(localStorage.getItem(CURRENT_USER_KEY));
@@ -28,10 +194,7 @@ function logoutUser() {
 
 function setupLogout() {
   const logoutBtn = document.getElementById("logoutBtn");
-
-  if (logoutBtn) {
-    logoutBtn.addEventListener("click", logoutUser);
-  }
+  if (logoutBtn) logoutBtn.addEventListener("click", logoutUser);
 }
 
 function showUserInfo() {
@@ -39,11 +202,11 @@ function showUserInfo() {
   const user = getCurrentUser();
 
   if (userInfo && user) {
-    userInfo.textContent = `${user.full_name} | ID: ${user.college_id}`;
+    userInfo.textContent = `${user.full_name} | ID: ${user.user_id} | Role: ${user.role}`;
   }
 }
 
-function requireLogin(role) {
+function requireLogin(role = null) {
   const user = getCurrentUser();
 
   if (!user) {
@@ -60,6 +223,38 @@ function requireLogin(role) {
   return user;
 }
 
+function requireAdmin() {
+  const user = getCurrentUser();
+
+  if (!user || user.role !== "admin") {
+    alert("Admin access only.");
+    window.location.href = "login.html";
+    return null;
+  }
+
+  return user;
+}
+
+function goDashboard() {
+  const user = getCurrentUser();
+  if (!user) {
+    window.location.href = "login.html";
+    return;
+  }
+
+  redirectByRole(user.role);
+}
+
+function redirectByRole(role) {
+  if (role === "admin") {
+    window.location.href = "admin-dashboard.html";
+  } else if (role === "found" || role === "staff") {
+    window.location.href = "found-dashboard.html";
+  } else {
+    window.location.href = "lost-dashboard.html";
+  }
+}
+
 function escapeHTML(value) {
   if (value === null || value === undefined) return "";
 
@@ -73,8 +268,7 @@ function escapeHTML(value) {
 
 function shortText(text, limit) {
   if (!text) return "";
-  if (text.length <= limit) return text;
-  return text.substring(0, limit) + "...";
+  return text.length <= limit ? text : text.substring(0, limit) + "...";
 }
 
 function createPlaceholderImage(text) {
@@ -92,12 +286,12 @@ function createPlaceholderImage(text) {
 }
 
 function getStatusClass(status) {
-  if (status === "Returned") return "danger-status";
-  if (status === "Claim Pending") return "pending-status";
+  if (status === "Returned" || status === "Rejected") return "danger-status";
+  if (status === "Pending Approval" || status === "Claim Pending") return "pending-status";
   return "status";
 }
 
-/* LOGIN + AUTO REGISTER */
+/* LOGIN / REGISTER */
 
 function initLogin() {
   const params = new URLSearchParams(window.location.search);
@@ -114,12 +308,12 @@ function initLogin() {
     e.preventDefault();
 
     const fullName = document.getElementById("name").value.trim();
-    const collegeId = document.getElementById("collegeId").value.trim().toUpperCase();
+    const userId = document.getElementById("userId").value.trim().toUpperCase();
     const phone = document.getElementById("phone").value.trim();
     const password = document.getElementById("password").value.trim();
     const role = document.getElementById("role").value;
 
-    if (!fullName || !collegeId || !phone || !password || !role) {
+    if (!fullName || !userId || !phone || !password || !role) {
       message.textContent = "Please fill all fields.";
       message.style.color = "red";
       return;
@@ -128,7 +322,7 @@ function initLogin() {
     const { data: existingUser } = await supabaseClient
       .from("profiles")
       .select("*")
-      .eq("college_id", collegeId)
+      .eq("user_id", userId)
       .maybeSingle();
 
     if (existingUser) {
@@ -145,22 +339,18 @@ function initLogin() {
       }
 
       setCurrentUser(existingUser);
-
-      if (role === "lost") {
-        window.location.href = "lost-dashboard.html";
-      } else {
-        window.location.href = "found-dashboard.html";
-      }
-
+      redirectByRole(role);
       return;
     }
 
     const newUser = {
-      college_id: collegeId,
+      user_id: userId,
       full_name: fullName,
-      role: role,
-      phone: phone,
-      password: password
+      role,
+      phone,
+      password,
+      preferred_language: localStorage.getItem(LANG_KEY) || "en",
+      dark_mode: localStorage.getItem(DARK_KEY) === "true"
     };
 
     const { data: createdUser, error } = await supabaseClient
@@ -176,16 +366,11 @@ function initLogin() {
     }
 
     setCurrentUser(createdUser);
-
-    if (role === "lost") {
-      window.location.href = "lost-dashboard.html";
-    } else {
-      window.location.href = "found-dashboard.html";
-    }
+    redirectByRole(role);
   });
 }
 
-/* DATABASE */
+/* FETCH */
 
 async function fetchItems() {
   const { data, error } = await supabaseClient
@@ -215,26 +400,44 @@ async function fetchClaims() {
   return data || [];
 }
 
-async function fetchItemById(itemId) {
+async function fetchUsers() {
   const { data, error } = await supabaseClient
-    .from("items")
+    .from("profiles")
     .select("*")
-    .eq("id", itemId)
-    .single();
+    .order("created_at", { ascending: false });
 
-  if (error) return null;
-  return data;
+  if (error) {
+    alert("Error loading users: " + error.message);
+    return [];
+  }
+
+  return data || [];
+}
+
+async function fetchComplaints() {
+  const { data, error } = await supabaseClient
+    .from("complaints")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    alert("Error loading complaints: " + error.message);
+    return [];
+  }
+
+  return data || [];
 }
 
 /* LOST DASHBOARD */
 
 async function initLostDashboard() {
-  const user = requireLogin("lost");
+  const user = requireLogin();
   if (!user) return;
 
   document.getElementById("searchInput").addEventListener("input", renderLostItems);
   document.getElementById("categoryFilter").addEventListener("change", renderLostItems);
   document.getElementById("locationFilter").addEventListener("input", renderLostItems);
+  document.getElementById("dateFilter").addEventListener("change", renderLostItems);
 
   await renderLostItems();
 }
@@ -246,18 +449,23 @@ async function renderLostItems() {
   const search = document.getElementById("searchInput").value.toLowerCase();
   const category = document.getElementById("categoryFilter").value;
   const location = document.getElementById("locationFilter").value.toLowerCase();
+  const date = document.getElementById("dateFilter").value;
 
   let items = await fetchItems();
 
-  items = items.filter(item => item.status !== "Returned");
+  items = items.filter(item =>
+    item.admin_status === "Approved" &&
+    item.status !== "Returned"
+  );
 
   items = items.filter(item => {
-    const text = `${item.title} ${item.category} ${item.description} ${item.location}`.toLowerCase();
+    const text = `${item.title} ${item.category} ${item.description} ${item.location_name}`.toLowerCase();
 
     return (
       text.includes(search) &&
       (category === "" || item.category === category) &&
-      item.location.toLowerCase().includes(location)
+      (location === "" || (item.location_name || "").toLowerCase().includes(location)) &&
+      (date === "" || item.found_date === date)
     );
   });
 
@@ -272,7 +480,7 @@ async function renderLostItems() {
 /* FOUND DASHBOARD */
 
 async function initFoundDashboard() {
-  const user = requireLogin("found");
+  const user = requireLogin();
   if (!user) return;
 
   await renderFoundDashboard(user);
@@ -282,7 +490,7 @@ async function renderFoundDashboard(user) {
   const items = await fetchItems();
   const claims = await fetchClaims();
 
-  const myItems = items.filter(item => item.user_id === user.college_id);
+  const myItems = items.filter(item => item.reporter_id === user.user_id);
   const myItemIds = myItems.map(item => item.id);
   const myClaims = claims.filter(claim => myItemIds.includes(claim.item_id));
   const pendingClaims = myClaims.filter(claim => claim.status === "Pending");
@@ -348,13 +556,13 @@ async function updateClaimStatus(claimId, status) {
     return;
   }
 
-  const { error: claimError } = await supabaseClient
+  const { error } = await supabaseClient
     .from("claims")
     .update({ status })
     .eq("id", claimId);
 
-  if (claimError) {
-    alert("Claim update failed: " + claimError.message);
+  if (error) {
+    alert(error.message);
     return;
   }
 
@@ -373,13 +581,13 @@ async function updateClaimStatus(claimId, status) {
   }
 
   alert(`Claim ${status}`);
-  await initFoundDashboard();
+  location.reload();
 }
 
 /* UPLOAD */
 
 function initUploadPage() {
-  const user = requireLogin("found");
+  const user = requireLogin();
   if (!user) return;
 
   const uploadForm = document.getElementById("uploadForm");
@@ -414,22 +622,27 @@ function initUploadPage() {
     e.preventDefault();
 
     const submitBtn = uploadForm.querySelector("button[type='submit']");
+    const message = document.getElementById("uploadMessage");
+
     submitBtn.disabled = true;
     submitBtn.textContent = "Uploading...";
 
     try {
-      const itemName = document.getElementById("itemName").value.trim();
+      const title = document.getElementById("itemName").value.trim();
       const category = document.getElementById("category").value;
       const description = document.getElementById("description").value.trim();
-      const location = document.getElementById("location").value.trim();
+      const locationName = document.getElementById("locationName").value.trim();
       const date = document.getElementById("date").value;
       const contact = document.getElementById("contact").value.trim();
+      const latitude = document.getElementById("latitude").value;
+      const longitude = document.getElementById("longitude").value;
+      const mapsLink = document.getElementById("mapsLink").value.trim();
 
       let imageUrl = createPlaceholderImage(category);
 
       if (selectedFile) {
         const fileExt = selectedFile.name.split(".").pop();
-        const safeId = user.college_id.replace(/[^A-Za-z0-9]/g, "");
+        const safeId = user.user_id.replace(/[^A-Za-z0-9]/g, "");
         const filePath = `${safeId}/${Date.now()}.${fileExt}`;
 
         const { error: uploadError } = await supabaseClient.storage
@@ -449,16 +662,20 @@ function initUploadPage() {
       }
 
       const newItem = {
-        title: itemName,
-        category: category,
-        description: description,
-        location: location,
+        title,
+        category,
+        description,
         found_date: date,
+        location_name: locationName,
+        latitude,
+        longitude,
+        maps_link: mapsLink,
         contact_number: contact,
         image_url: imageUrl,
-        user_id: user.college_id,
+        reporter_id: user.user_id,
         reporter_name: user.full_name,
-        status: "Available"
+        status: "Pending Approval",
+        admin_status: "Pending"
       };
 
       const { error } = await supabaseClient
@@ -467,8 +684,12 @@ function initUploadPage() {
 
       if (error) throw error;
 
-      alert("Found item uploaded successfully.");
-      window.location.href = "found-dashboard.html";
+      message.textContent = "Item uploaded. Waiting for admin approval.";
+      message.style.color = "green";
+
+      setTimeout(() => {
+        window.location.href = "found-dashboard.html";
+      }, 1200);
 
     } catch (error) {
       alert("Upload failed: " + error.message);
@@ -478,7 +699,31 @@ function initUploadPage() {
   });
 }
 
-/* ITEM DETAILS + CLAIM */
+function getCurrentLocation() {
+  if (!navigator.geolocation) {
+    alert("Geolocation is not supported in this browser.");
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(
+    position => {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+      const link = `https://www.google.com/maps?q=${lat},${lon}`;
+
+      document.getElementById("latitude").value = lat;
+      document.getElementById("longitude").value = lon;
+      document.getElementById("mapsLink").value = link;
+
+      alert("Location captured successfully.");
+    },
+    () => {
+      alert("Location permission denied or unavailable.");
+    }
+  );
+}
+
+/* ITEM DETAILS */
 
 async function initItemDetails() {
   const user = getCurrentUser();
@@ -488,21 +733,17 @@ async function initItemDetails() {
     return;
   }
 
-  const params = new URLSearchParams(window.location.search);
-  const itemId = params.get("id");
-
+  const itemId = new URLSearchParams(window.location.search).get("id");
   const detailsBox = document.getElementById("detailsBox");
   const claimSection = document.getElementById("claimSection");
 
-  if (!itemId) {
-    detailsBox.innerHTML = `<div class="empty">Invalid item link.</div>`;
-    claimSection.style.display = "none";
-    return;
-  }
+  const { data: item, error } = await supabaseClient
+    .from("items")
+    .select("*")
+    .eq("id", itemId)
+    .single();
 
-  const item = await fetchItemById(itemId);
-
-  if (!item) {
+  if (error || !item) {
     detailsBox.innerHTML = `<div class="empty">Item not found.</div>`;
     claimSection.style.display = "none";
     return;
@@ -520,15 +761,20 @@ async function initItemDetails() {
       <h2>${escapeHTML(item.title)}</h2>
 
       <p><b>Description:</b> ${escapeHTML(item.description)}</p>
-      <p><b>Found Location:</b> ${escapeHTML(item.location)}</p>
+      <p><b>Found Location:</b> ${escapeHTML(item.location_name)}</p>
       <p><b>Found Date:</b> ${escapeHTML(item.found_date)}</p>
       <p><b>Reporter Name:</b> ${escapeHTML(item.reporter_name)}</p>
-      <p><b>Reporter ID:</b> ${escapeHTML(item.user_id)}</p>
+      <p><b>Reporter ID:</b> ${escapeHTML(item.reporter_id)}</p>
       <p><b>Contact:</b> ${escapeHTML(item.contact_number)}</p>
+      ${
+        item.maps_link
+        ? `<p><a class="btn secondary" target="_blank" href="${escapeHTML(item.maps_link)}">Open Google Maps Location</a></p>`
+        : ""
+      }
     </div>
   `;
 
-  if (user.role !== "lost" || item.status === "Returned") {
+  if (item.status === "Returned" || user.user_id === item.reporter_id) {
     claimSection.style.display = "none";
     return;
   }
@@ -543,7 +789,7 @@ async function initItemDetails() {
 
     const alreadyClaimed = claims.some(
       c => c.item_id == item.id &&
-           c.claimant_id === user.college_id &&
+           c.claimant_id === user.user_id &&
            c.status === "Pending"
     );
 
@@ -556,9 +802,9 @@ async function initItemDetails() {
 
     const newClaim = {
       item_id: item.id,
-      claimant_id: user.college_id,
+      claimant_id: user.user_id,
       claimant_name: user.full_name,
-      proof: proof,
+      proof,
       status: "Pending"
     };
 
@@ -584,7 +830,308 @@ async function initItemDetails() {
   });
 }
 
-/* CARD UI */
+/* COMPLAINTS */
+
+async function initComplaints() {
+  const user = requireLogin();
+  if (!user) return;
+
+  document.getElementById("complaintForm").addEventListener("submit", createComplaint);
+  document.getElementById("replyForm").addEventListener("submit", sendUserReply);
+
+  await renderUserComplaints();
+}
+
+async function createComplaint(e) {
+  e.preventDefault();
+
+  const user = getCurrentUser();
+  const subject = document.getElementById("complaintSubject").value.trim();
+  const message = document.getElementById("complaintMessageInput").value.trim();
+
+  const { data: complaint, error } = await supabaseClient
+    .from("complaints")
+    .insert({
+      user_id: user.user_id,
+      user_name: user.full_name,
+      subject,
+      status: "Open"
+    })
+    .select()
+    .single();
+
+  if (error) {
+    alert(error.message);
+    return;
+  }
+
+  await supabaseClient.from("complaint_messages").insert({
+    complaint_id: complaint.id,
+    sender_id: user.user_id,
+    sender_name: user.full_name,
+    sender_role: user.role,
+    message
+  });
+
+  e.target.reset();
+  await renderUserComplaints();
+}
+
+async function renderUserComplaints() {
+  const user = getCurrentUser();
+  const list = document.getElementById("complaintsList");
+
+  const { data } = await supabaseClient
+    .from("complaints")
+    .select("*")
+    .eq("user_id", user.user_id)
+    .order("created_at", { ascending: false });
+
+  if (!data || data.length === 0) {
+    list.innerHTML = `<div class="empty">No complaints yet.</div>`;
+    return;
+  }
+
+  list.innerHTML = data.map(c => `
+    <div class="claim-card" onclick="openComplaint(${c.id})">
+      <h4>${escapeHTML(c.subject)}</h4>
+      <p>Status: ${escapeHTML(c.status)}</p>
+    </div>
+  `).join("");
+}
+
+async function openComplaint(id) {
+  selectedComplaintId = id;
+
+  const { data } = await supabaseClient
+    .from("complaint_messages")
+    .select("*")
+    .eq("complaint_id", id)
+    .order("created_at", { ascending: true });
+
+  const box = document.getElementById("chatMessages");
+
+  box.innerHTML = data.map(m => `
+    <div class="chat-message ${m.sender_role === "admin" ? "chat-admin" : "chat-user"}">
+      <b>${escapeHTML(m.sender_name)}:</b>
+      <p>${escapeHTML(m.message)}</p>
+    </div>
+  `).join("");
+}
+
+async function sendUserReply(e) {
+  e.preventDefault();
+
+  if (!selectedComplaintId) {
+    alert("Select a complaint first.");
+    return;
+  }
+
+  const user = getCurrentUser();
+  const text = document.getElementById("replyText").value.trim();
+
+  if (!text) return;
+
+  await supabaseClient.from("complaint_messages").insert({
+    complaint_id: selectedComplaintId,
+    sender_id: user.user_id,
+    sender_name: user.full_name,
+    sender_role: user.role,
+    message: text
+  });
+
+  document.getElementById("replyText").value = "";
+  await openComplaint(selectedComplaintId);
+}
+
+/* ADMIN */
+
+async function initAdminDashboard() {
+  const admin = requireAdmin();
+  if (!admin) return;
+
+  const users = await fetchUsers();
+  const items = await fetchItems();
+  const claims = await fetchClaims();
+  const complaints = await fetchComplaints();
+
+  document.getElementById("totalUsers").textContent = users.length;
+  document.getElementById("totalItems").textContent = items.length;
+  document.getElementById("pendingItems").textContent =
+    items.filter(i => i.admin_status === "Pending").length;
+  document.getElementById("totalClaims").textContent = claims.length;
+  document.getElementById("openComplaints").textContent =
+    complaints.filter(c => c.status === "Open").length;
+  document.getElementById("returnedItems").textContent =
+    items.filter(i => i.status === "Returned").length;
+}
+
+async function initAdminUsers() {
+  const admin = requireAdmin();
+  if (!admin) return;
+
+  const users = await fetchUsers();
+  const list = document.getElementById("adminUsersList");
+
+  list.innerHTML = users.map(u => `
+    <div class="admin-row">
+      <h4>${escapeHTML(u.full_name)}</h4>
+      <p><b>ID:</b> ${escapeHTML(u.user_id)}</p>
+      <p><b>Role:</b> ${escapeHTML(u.role)}</p>
+      <p><b>Phone:</b> ${escapeHTML(u.phone)}</p>
+    </div>
+  `).join("");
+}
+
+async function initAdminItems() {
+  const admin = requireAdmin();
+  if (!admin) return;
+
+  const items = await fetchItems();
+  const grid = document.getElementById("adminItemsGrid");
+
+  grid.innerHTML = items.map(item => `
+    <div class="item-card">
+      <img src="${escapeHTML(item.image_url)}" alt="${escapeHTML(item.title)}">
+      <div class="item-content">
+        <span class="badge">${escapeHTML(item.category)}</span>
+        <span class="badge ${getStatusClass(item.status)}">${escapeHTML(item.status)}</span>
+        <h3>${escapeHTML(item.title)}</h3>
+        <p><b>Reporter:</b> ${escapeHTML(item.reporter_name)}</p>
+        <p><b>Location:</b> ${escapeHTML(item.location_name)}</p>
+        <p><b>Admin Status:</b> ${escapeHTML(item.admin_status)}</p>
+
+        <div class="card-actions">
+          <button class="btn accept" onclick="approveItem(${item.id})">Approve</button>
+          <button class="btn reject" onclick="rejectItem(${item.id})">Reject</button>
+        </div>
+
+        <button class="btn secondary full" onclick="deleteItem(${item.id})">Delete</button>
+      </div>
+    </div>
+  `).join("");
+}
+
+async function approveItem(id) {
+  await supabaseClient
+    .from("items")
+    .update({
+      admin_status: "Approved",
+      status: "Available"
+    })
+    .eq("id", id);
+
+  location.reload();
+}
+
+async function rejectItem(id) {
+  await supabaseClient
+    .from("items")
+    .update({
+      admin_status: "Rejected",
+      status: "Rejected"
+    })
+    .eq("id", id);
+
+  location.reload();
+}
+
+async function deleteItem(id) {
+  const confirmDelete = confirm("Delete this item permanently?");
+  if (!confirmDelete) return;
+
+  await supabaseClient
+    .from("items")
+    .delete()
+    .eq("id", id);
+
+  location.reload();
+}
+
+async function initAdminComplaints() {
+  const admin = requireAdmin();
+  if (!admin) return;
+
+  document.getElementById("adminReplyForm").addEventListener("submit", sendAdminReply);
+
+  await renderAdminComplaints();
+}
+
+async function renderAdminComplaints() {
+  const complaints = await fetchComplaints();
+  const list = document.getElementById("adminComplaintsList");
+
+  if (complaints.length === 0) {
+    list.innerHTML = `<div class="empty">No complaints.</div>`;
+    return;
+  }
+
+  list.innerHTML = complaints.map(c => `
+    <div class="claim-card" onclick="openAdminComplaint(${c.id})">
+      <h4>${escapeHTML(c.subject)}</h4>
+      <p><b>User:</b> ${escapeHTML(c.user_name)} (${escapeHTML(c.user_id)})</p>
+      <p><b>Status:</b> ${escapeHTML(c.status)}</p>
+      <button class="btn secondary" onclick="closeComplaint(event, ${c.id})">Close</button>
+    </div>
+  `).join("");
+}
+
+async function openAdminComplaint(id) {
+  selectedAdminComplaintId = id;
+
+  const { data } = await supabaseClient
+    .from("complaint_messages")
+    .select("*")
+    .eq("complaint_id", id)
+    .order("created_at", { ascending: true });
+
+  const box = document.getElementById("adminChatMessages");
+
+  box.innerHTML = data.map(m => `
+    <div class="chat-message ${m.sender_role === "admin" ? "chat-admin" : "chat-user"}">
+      <b>${escapeHTML(m.sender_name)}:</b>
+      <p>${escapeHTML(m.message)}</p>
+    </div>
+  `).join("");
+}
+
+async function sendAdminReply(e) {
+  e.preventDefault();
+
+  if (!selectedAdminComplaintId) {
+    alert("Select a complaint first.");
+    return;
+  }
+
+  const admin = getCurrentUser();
+  const text = document.getElementById("adminReplyText").value.trim();
+
+  if (!text) return;
+
+  await supabaseClient.from("complaint_messages").insert({
+    complaint_id: selectedAdminComplaintId,
+    sender_id: admin.user_id,
+    sender_name: admin.full_name,
+    sender_role: "admin",
+    message: text
+  });
+
+  document.getElementById("adminReplyText").value = "";
+  await openAdminComplaint(selectedAdminComplaintId);
+}
+
+async function closeComplaint(event, id) {
+  event.stopPropagation();
+
+  await supabaseClient
+    .from("complaints")
+    .update({ status: "Closed" })
+    .eq("id", id);
+
+  location.reload();
+}
+
+/* CARD */
 
 function createItemCard(item, showClaimButton) {
   const statusClass = getStatusClass(item.status);
@@ -598,7 +1145,7 @@ function createItemCard(item, showClaimButton) {
         <span class="badge ${statusClass}">${escapeHTML(item.status)}</span>
 
         <h3>${escapeHTML(item.title)}</h3>
-        <p><b>Location:</b> ${escapeHTML(item.location)}</p>
+        <p><b>Location:</b> ${escapeHTML(item.location_name)}</p>
         <p><b>Date:</b> ${escapeHTML(item.found_date || "Not given")}</p>
         <p>${escapeHTML(shortText(item.description, 80))}</p>
 

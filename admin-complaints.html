@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Complaints</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-page="adminComplaints">
+
+<nav class="dashboard-nav">
+  <div>
+    <h2>Admin Complaint Center</h2>
+    <p id="userInfo"></p>
+  </div>
+  <div class="nav-actions">
+    <a href="admin-dashboard.html" class="nav-btn">Admin Home</a>
+    <button id="logoutBtn" class="logout-btn">Logout</button>
+  </div>
+</nav>
+
+<main class="container">
+  <section class="form-layout">
+    <section class="panel">
+      <h3>All Complaints</h3>
+      <div id="adminComplaintsList"></div>
+    </section>
+
+    <section class="panel chat-panel">
+      <h3>Conversation</h3>
+      <div id="adminChatMessages" class="chat-box"></div>
+
+      <form id="adminReplyForm" class="reply-form">
+        <input type="text" id="adminReplyText" placeholder="Reply to user..." />
+        <button class="btn primary">Send</button>
+      </form>
+    </section>
+  </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
