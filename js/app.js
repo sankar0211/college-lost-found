@@ -283,6 +283,21 @@ function goDashboard() {
   }
 }
 
+function getNextActionUrl() {
+  const selected = document.querySelector('input[name="nextAction"]:checked');
+  const action = selected ? selected.value : "browse";
+
+  if (action === "lost") {
+    return "upload.html?type=lost";
+  }
+
+  if (action === "found") {
+    return "upload.html?type=found";
+  }
+
+  return "lost-dashboard.html";
+}
+
 function escapeHTML(value) {
   if (value === null || value === undefined) return "";
 
@@ -452,7 +467,7 @@ async function registerUser(e) {
       if (createdUser.user_type === "admin") {
         window.location.href = "admin-dashboard.html";
       } else {
-        window.location.href = "lost-dashboard.html";
+        window.location.href = getNextActionUrl();
       }
     }, 900);
 
@@ -499,7 +514,7 @@ async function loginUser(e) {
       if (user.user_type === "admin") {
         window.location.href = "admin-dashboard.html";
       } else {
-        window.location.href = "lost-dashboard.html";
+        window.location.href = getNextActionUrl();
       }
     }, 700);
 
@@ -732,6 +747,14 @@ function initUploadPage() {
   const uploadForm = document.getElementById("uploadForm");
   const imageInput = document.getElementById("imageInput");
   const imagePreview = document.getElementById("imagePreview");
+  const itemTypeElement = document.getElementById("itemType");
+
+  const params = new URLSearchParams(window.location.search);
+  const urlType = params.get("type");
+
+  if (itemTypeElement && (urlType === "lost" || urlType === "found")) {
+    itemTypeElement.value = urlType;
+  }
 
   let selectedFile = null;
 
@@ -766,8 +789,6 @@ function initUploadPage() {
     setButtonLoading(submitBtn, true, "Submit Item");
 
     try {
-      const itemTypeElement = document.getElementById("itemType");
-
       const itemType = itemTypeElement ? itemTypeElement.value : "found";
       const title = document.getElementById("itemName").value.trim();
       const category = document.getElementById("category").value;

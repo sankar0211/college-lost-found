@@ -760,3 +760,39 @@ button:disabled {
     width: 100%;
   }
 }
+.action-choice {
+  margin: 20px 0;
+}
+
+.choice-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.choice-grid label {
+  margin: 0;
+  cursor: pointer;
+}
+
+.choice-grid input {
+  display: none;
+}
+
+.choice-grid span {
+  display: block;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg);
+  text-align: center;
+  font-weight: 700;
+}
+
+.choice-grid input:checked + span {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+  transform: scale(1.02);
+}

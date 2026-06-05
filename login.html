@@ -25,6 +25,27 @@
       </label>
     </div>
 
+    <div class="action-choice">
+      <p class="muted">What do you want to do?</p>
+
+      <div class="choice-grid">
+        <label>
+          <input type="radio" name="nextAction" value="browse" checked>
+          <span>Search Items</span>
+        </label>
+
+        <label>
+          <input type="radio" name="nextAction" value="lost">
+          <span>Report Lost Item</span>
+        </label>
+
+        <label>
+          <input type="radio" name="nextAction" value="found">
+          <span>Report Found Item</span>
+        </label>
+      </div>
+    </div>
+
     <div class="auth-tabs">
       <button id="loginTab" class="active" type="button">Login</button>
       <button id="registerTab" type="button">Register</button>
@@ -86,10 +107,6 @@
     </form>
 
     <p id="authMessage" class="message"></p>
-
-    <p class="muted center-text">
-      After login, any user can report lost items or found items.
-    </p>
 
   </div>
 </div>
