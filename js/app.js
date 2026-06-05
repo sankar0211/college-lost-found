@@ -1,8 +1,5 @@
-const SITE_URL = "https://campus-find-lost.netlify.app";
-
-async function getCurrentUser() {
-  const { data } = await supabaseClient.auth.getUser();
-  return data.user;
+function getLoggedInUser() {
+  return JSON.parse(localStorage.getItem("loggedInUser"));
 }
 
 async function registerUser() {
@@ -10,102 +7,90 @@ async function registerUser() {
   const role = document.getElementById("role").value;
   const collegeId = document.getElementById("collegeId").value.trim();
   const phone = document.getElementById("phone").value.trim();
-  const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value;
   const message = document.getElementById("message");
 
-  if (!fullName || !role || !email || !password) {
-    message.innerText = "Please fill all required fields.";
+  if (!fullName || !role || !collegeId || !phone || !password) {
+    message.innerText = "Please fill all fields.";
     return;
   }
 
-  const { data, error } = await supabaseClient.auth.signUp({
-    email: email,
-    password: password,
-    options: {
-      emailRedirectTo: `${SITE_URL}/login.html`
-    }
-  });
+  const { data: existingUser } = await supabaseClient
+    .from("profiles")
+    .select("*")
+    .eq("college_id", collegeId)
+    .single();
+
+  if (existingUser) {
+    message.innerText = "This ID is already registered. Please login.";
+    return;
+  }
+
+  const { error } = await supabaseClient
+    .from("profiles")
+    .insert([
+      {
+        college_id: collegeId,
+        full_name: fullName,
+        role: role,
+        phone: phone,
+        password: password
+      }
+    ]);
 
   if (error) {
     message.innerText = error.message;
     return;
   }
 
-  const user = data.user;
+  message.innerText = "Registration successful. Please login.";
 
-  if (user) {
-    const { error: profileError } = await supabaseClient
-      .from("profiles")
-      .upsert(
-        {
-          id: user.id,
-          full_name: fullName,
-          role: role,
-          phone: phone,
-          college_id: collegeId
-        },
-        {
-          onConflict: "id"
-        }
-      );
-
-    if (profileError) {
-      message.innerText = profileError.message;
-      return;
-    }
-  }
-
-  message.innerText =
-    "Registration successful. Please check your email and confirm your account before login.";
+  setTimeout(() => {
+    window.location.href = "login.html";
+  }, 1200);
 }
 
 async function loginUser() {
-  const email = document.getElementById("email").value.trim();
+  const collegeId = document.getElementById("collegeId").value.trim();
   const password = document.getElementById("password").value;
   const message = document.getElementById("message");
 
-  if (!email || !password) {
-    message.innerText = "Please enter email and password.";
+  if (!collegeId || !password) {
+    message.innerText = "Please enter ID and password.";
     return;
   }
 
-  const { error } = await supabaseClient.auth.signInWithPassword({
-    email: email,
-    password: password
-  });
+  const { data: user, error } = await supabaseClient
+    .from("profiles")
+    .select("*")
+    .eq("college_id", collegeId)
+    .eq("password", password)
+    .single();
 
-  if (error) {
-    message.innerText = error.message;
+  if (error || !user) {
+    message.innerText = "Invalid ID or password.";
     return;
   }
 
+  localStorage.setItem("loggedInUser", JSON.stringify(user));
   window.location.href = "dashboard.html";
 }
 
-async function logoutUser() {
-  await supabaseClient.auth.signOut();
+function logoutUser() {
+  localStorage.removeItem("loggedInUser");
   window.location.href = "login.html";
 }
 
 async function loadDashboard() {
-  const user = await getCurrentUser();
+  const user = getLoggedInUser();
 
   if (!user) {
     window.location.href = "login.html";
     return;
   }
 
-  const { data: profile, error } = await supabaseClient
-    .from("profiles")
-    .select("*")
-    .eq("id", user.id)
-    .single();
-
-  if (!error && profile) {
-    document.getElementById("welcomeText").innerText =
-      `Welcome, ${profile.full_name} (${profile.role})`;
-  }
+  document.getElementById("welcomeText").innerText =
+    `Welcome, ${user.full_name} (${user.role})`;
 
   loadItems();
 }
@@ -149,7 +134,7 @@ async function loadItems() {
 }
 
 async function uploadItem() {
-  const user = await getCurrentUser();
+  const user = getLoggedInUser();
 
   if (!user) {
     window.location.href = "login.html";
@@ -177,7 +162,7 @@ async function uploadItem() {
         category: category,
         location: location,
         image_url: imageUrl,
-        user_id: user.id
+        user_id: user.college_id
       }
     ]);
 
@@ -223,7 +208,7 @@ async function loadItemDetails() {
 }
 
 async function submitClaim() {
-  const user = await getCurrentUser();
+  const user = getLoggedInUser();
 
   if (!user) {
     window.location.href = "login.html";
@@ -245,7 +230,7 @@ async function submitClaim() {
     .insert([
       {
         item_id: itemId,
-        claimant_id: user.id,
+        claimant_id: user.college_id,
         proof: proof
       }
     ]);
@@ -259,7 +244,7 @@ async function submitClaim() {
 }
 
 async function loadClaims() {
-  const user = await getCurrentUser();
+  const user = getLoggedInUser();
 
   if (!user) {
     window.location.href = "login.html";
@@ -274,6 +259,7 @@ async function loadClaims() {
       status,
       created_at,
       item_id,
+      claimant_id,
       items (
         title,
         location,
@@ -289,12 +275,17 @@ async function loadClaims() {
     return;
   }
 
-  if (!claims || claims.length === 0) {
+  const visibleClaims = claims.filter(claim =>
+    claim.claimant_id === user.college_id ||
+    claim.items.user_id === user.college_id
+  );
+
+  if (visibleClaims.length === 0) {
     claimsList.innerHTML = "<p>No claims found.</p>";
     return;
   }
 
-  claimsList.innerHTML = claims.map(claim => `
+  claimsList.innerHTML = visibleClaims.map(claim => `
     <div class="card">
       <h3>${claim.items.title}</h3>
       <p><b>Location:</b> ${claim.items.location}</p>
@@ -302,7 +293,7 @@ async function loadClaims() {
       <p><b>Status:</b> ${claim.status}</p>
 
       ${
-        claim.items.user_id === user.id && claim.status === "pending"
+        claim.items.user_id === user.college_id && claim.status === "pending"
         ? `
           <button onclick="updateClaimStatus(${claim.id}, 'accepted')">Accept</button>
           <button onclick="updateClaimStatus(${claim.id}, 'rejected')">Reject</button>
