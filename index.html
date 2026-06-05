@@ -1,41 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>College Lost & Found Portal</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Campus Lost & Found Portal</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
-<body>
+<body data-page="home">
 
-<nav>
-  <h2>Lost & Found Portal</h2>
-  <div>
-    <a href="index.html">Home</a>
-    <a href="login.html">Login</a>
-    <a href="register.html" class="btn">Register</a>
+<header class="hero">
+  <nav class="navbar">
+    <div class="logo">Campus Lost & Found</div>
+    <a href="login.html" class="nav-btn">Login</a>
+  </nav>
+
+  <div class="hero-content">
+    <span class="tag">College Utility Website</span>
+    <h1>Find Lost Items. Report Found Items.</h1>
+    <p>
+      A campus portal for students, faculty, parents and visitors to search,
+      report and claim lost items easily.
+    </p>
+
+    <div class="hero-actions">
+      <a href="login.html?role=lost" class="btn primary">I Lost an Item</a>
+      <a href="login.html?role=found" class="btn secondary">I Found an Item</a>
+    </div>
   </div>
-</nav>
-
-<section class="hero">
-  <h1>Find Lost Items Inside Campus Easily</h1>
-  <p>A simple portal for students, faculty, parents and visitors to report and claim lost items.</p>
-  <a href="register.html" class="main-btn">Get Started</a>
-</section>
+</header>
 
 <section class="features">
-  <div>
-    <h3>Report Found Items</h3>
-    <p>Upload details of items found inside the campus.</p>
+  <div class="feature-card">
+    <h3>Search Items</h3>
+    <p>Search uploaded found items by name, category and location.</p>
   </div>
-  <div>
-    <h3>Search Lost Items</h3>
-    <p>Check whether your missing item has been reported.</p>
+
+  <div class="feature-card">
+    <h3>Upload Images</h3>
+    <p>Report found items with image, date, place and contact number.</p>
   </div>
-  <div>
-    <h3>Submit Claim Proof</h3>
-    <p>Claim items by giving valid proof.</p>
+
+  <div class="feature-card">
+    <h3>Claim Requests</h3>
+    <p>Owners can submit proof and reporters can accept or reject claims.</p>
   </div>
 </section>
+
+<footer>
+  <p>Developed using HTML, CSS, JavaScript, Supabase and Netlify.</p>
+</footer>
 
 </body>
 </html>

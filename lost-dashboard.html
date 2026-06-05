@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lost User Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-page="lostDashboard">
+
+<nav class="dashboard-nav">
+  <div>
+    <h2>Lost User Dashboard</h2>
+    <p id="userInfo"></p>
+  </div>
+  <button id="logoutBtn" class="logout-btn">Logout</button>
+</nav>
+
+<main class="container">
+  <section class="panel">
+    <h3>Search Found Items</h3>
+
+    <div class="filters">
+      <input type="text" id="searchInput" placeholder="Search item, description or location..." />
+
+      <select id="categoryFilter">
+        <option value="">All Categories</option>
+        <option value="ID Card">ID Card</option>
+        <option value="Wallet">Wallet</option>
+        <option value="Bag">Bag</option>
+        <option value="Electronics">Electronics</option>
+        <option value="Books">Books</option>
+        <option value="Keys">Keys</option>
+        <option value="Others">Others</option>
+      </select>
+
+      <input type="text" id="locationFilter" placeholder="Location" />
+    </div>
+  </section>
+
+  <section>
+    <h3>Available Found Items</h3>
+    <div id="itemsGrid" class="items-grid"></div>
+  </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>

@@ -1,42 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Upload Item</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Upload Found Item</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
-<body>
+<body data-page="upload">
 
-<nav>
-  <h2>Upload Found Item</h2>
+<nav class="dashboard-nav">
   <div>
-    <a href="dashboard.html">Dashboard</a>
-    <button onclick="logoutUser()">Logout</button>
+    <h2>Upload Found Item</h2>
+    <p id="userInfo"></p>
   </div>
+  <button id="logoutBtn" class="logout-btn">Logout</button>
 </nav>
 
-<div class="form-box">
-  <h2>Report Found Item</h2>
+<main class="container">
+  <section class="form-layout">
 
-  <input type="text" id="title" placeholder="Item Name">
-  <textarea id="description" placeholder="Item Description"></textarea>
+    <form id="uploadForm" class="panel">
+      <h3>Item Details</h3>
 
-  <select id="category">
-    <option value="">Select Category</option>
-    <option value="ID Card">ID Card</option>
-    <option value="Electronics">Electronics</option>
-    <option value="Books">Books</option>
-    <option value="Keys">Keys</option>
-    <option value="Others">Others</option>
-  </select>
+      <label>Item Name</label>
+      <input type="text" id="itemName" placeholder="Example: Black Wallet" required />
 
-  <input type="text" id="location" placeholder="Found Location">
-  <input type="text" id="imageUrl" placeholder="Image URL optional">
+      <label>Category</label>
+      <select id="category" required>
+        <option value="">Select Category</option>
+        <option value="ID Card">ID Card</option>
+        <option value="Wallet">Wallet</option>
+        <option value="Bag">Bag</option>
+        <option value="Electronics">Electronics</option>
+        <option value="Books">Books</option>
+        <option value="Keys">Keys</option>
+        <option value="Others">Others</option>
+      </select>
 
-  <button onclick="uploadItem()">Upload Item</button>
+      <label>Description</label>
+      <textarea id="description" rows="4" placeholder="Mention color, brand, unique marks..." required></textarea>
 
-  <p id="message"></p>
-</div>
+      <label>Found Location</label>
+      <input type="text" id="location" placeholder="Example: Library entrance" required />
+
+      <label>Found Date</label>
+      <input type="date" id="date" required />
+
+      <label>Contact Number</label>
+      <input type="tel" id="contact" placeholder="Example: 9876543210" required />
+
+      <label>Upload Image</label>
+      <input type="file" id="imageInput" accept="image/*" />
+
+      <button type="submit" class="btn primary full">Submit Found Item</button>
+    </form>
+
+    <div class="panel preview-box">
+      <h3>Image Preview</h3>
+      <img id="imagePreview" src="" alt="Preview will appear here" />
+      <p class="muted">Selected image will be uploaded to Supabase Storage.</p>
+    </div>
+
+  </section>
+</main>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="js/supabase-config.js"></script>

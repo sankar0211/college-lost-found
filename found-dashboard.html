@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Found Reporter Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-page="foundDashboard">
+
+<nav class="dashboard-nav">
+  <div>
+    <h2>Found Reporter Dashboard</h2>
+    <p id="userInfo"></p>
+  </div>
+  <button id="logoutBtn" class="logout-btn">Logout</button>
+</nav>
+
+<main class="container">
+
+  <section class="stats">
+    <div class="stat-card">
+      <h3 id="uploadCount">0</h3>
+      <p>My Uploads</p>
+    </div>
+
+    <div class="stat-card">
+      <h3 id="claimCount">0</h3>
+      <p>Claim Requests</p>
+    </div>
+
+    <div class="stat-card">
+      <h3 id="pendingCount">0</h3>
+      <p>Pending Claims</p>
+    </div>
+  </section>
+
+  <section class="panel action-panel">
+    <div>
+      <h3>Report a Found Item</h3>
+      <p>Upload image, location, description and contact details.</p>
+    </div>
+    <a href="upload.html" class="btn primary">Upload Item</a>
+  </section>
+
+  <section class="panel">
+    <h3>Claim Requests Received</h3>
+    <div id="claimsList"></div>
+  </section>
+
+  <section>
+    <h3>My Uploaded Items</h3>
+    <div id="myItemsGrid" class="items-grid"></div>
+  </section>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
