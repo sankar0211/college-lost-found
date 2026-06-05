@@ -22,6 +22,7 @@ const translations = {
     claimText: "Send proof and wait for reporter/admin approval.",
     lostDashboard: "Lost User Dashboard"
   },
+
   ta: {
     appName: "வளாக இழந்தது & கண்டது",
     login: "உள்நுழை",
@@ -38,6 +39,7 @@ const translations = {
     claimText: "ஆதாரம் அனுப்பி அனுமதி பெறவும்.",
     lostDashboard: "இழந்த பயனர் பலகை"
   },
+
   hi: {
     appName: "Campus Lost & Found",
     login: "लॉगिन",
@@ -54,6 +56,7 @@ const translations = {
     claimText: "प्रमाण भेजें और अनुमति की प्रतीक्षा करें।",
     lostDashboard: "खोई वस्तु डैशबोर्ड"
   },
+
   te: {
     appName: "క్యాంపస్ లాస్ట్ & ఫౌండ్",
     login: "లాగిన్",
@@ -70,6 +73,7 @@ const translations = {
     claimText: "ఆధారం పంపి ఆమోదం కోసం వేచి ఉండండి.",
     lostDashboard: "లాస్ట్ యూజర్ డ్యాష్‌బోర్డ్"
   },
+
   ml: {
     appName: "ക്യാമ്പസ് Lost & Found",
     login: "ലോഗിൻ",
@@ -86,6 +90,7 @@ const translations = {
     claimText: "തെളിവ് അയച്ച് അംഗീകാരം കാത്തിരിക്കുക.",
     lostDashboard: "നഷ്ടപ്പെട്ട ഉപയോക്തൃ ഡാഷ്ബോർഡ്"
   },
+
   kn: {
     appName: "ಕ್ಯಾಂಪಸ್ Lost & Found",
     login: "ಲಾಗಿನ್",
@@ -108,6 +113,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   applyDarkMode();
   setupThemeToggle();
   applyLanguage();
+  setupLanguageMenu();
   setupLogout();
   showUserInfo();
 
@@ -126,7 +132,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (page === "adminComplaints") await initAdminComplaints();
 });
 
-/* LANGUAGE */
+/* ---------------- LANGUAGE ---------------- */
 
 function initHome() {
   const lang = localStorage.getItem(LANG_KEY);
@@ -137,11 +143,34 @@ function initHome() {
   }
 }
 
+function setupLanguageMenu() {
+  const btn = document.getElementById("languageBtn");
+  const menu = document.getElementById("languageMenu");
+
+  if (!btn || !menu) return;
+
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    menu.classList.toggle("open");
+  });
+
+  menu.addEventListener("click", (e) => {
+    e.stopPropagation();
+  });
+
+  document.addEventListener("click", () => {
+    menu.classList.remove("open");
+  });
+}
+
 function setLanguage(lang) {
   localStorage.setItem(LANG_KEY, lang);
 
   const screen = document.getElementById("languageScreen");
   if (screen) screen.style.display = "none";
+
+  const menu = document.getElementById("languageMenu");
+  if (menu) menu.classList.remove("open");
 
   applyLanguage();
 }
@@ -153,13 +182,13 @@ function applyLanguage() {
   const select = document.getElementById("languageSelect");
   if (select) select.value = lang;
 
-  document.querySelectorAll("[data-i18n]").forEach(el => {
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
     const key = el.getAttribute("data-i18n");
     if (dict[key]) el.textContent = dict[key];
   });
 }
 
-/* DARK MODE */
+/* ---------------- DARK MODE ---------------- */
 
 function toggleDarkMode() {
   const current = localStorage.getItem(DARK_KEY) === "true";
@@ -186,7 +215,7 @@ function setupThemeToggle() {
   }
 }
 
-/* COMMON */
+/* ---------------- COMMON ---------------- */
 
 function getCurrentUser() {
   return JSON.parse(localStorage.getItem(CURRENT_USER_KEY));
@@ -211,21 +240,16 @@ function showUserInfo() {
   const user = getCurrentUser();
 
   if (userInfo && user) {
-    userInfo.textContent = `${user.full_name} | ID: ${user.user_id} | Role: ${user.role}`;
+    userInfo.textContent =
+      `${user.full_name} | ID: ${user.user_id} | Type: ${user.user_type}`;
   }
 }
 
-function requireLogin(role = null) {
+function requireLogin() {
   const user = getCurrentUser();
 
   if (!user) {
     window.location.href = "login.html";
-    return null;
-  }
-
-  if (role && user.role !== role) {
-    alert("You are not allowed to access this page.");
-    window.location.href = "index.html";
     return null;
   }
 
@@ -235,7 +259,7 @@ function requireLogin(role = null) {
 function requireAdmin() {
   const user = getCurrentUser();
 
-  if (!user || user.role !== "admin") {
+  if (!user || user.user_type !== "admin") {
     alert("Admin access only.");
     window.location.href = "login.html";
     return null;
@@ -252,14 +276,8 @@ function goDashboard() {
     return;
   }
 
-  redirectByRole(user.role);
-}
-
-function redirectByRole(role) {
-  if (role === "admin") {
+  if (user.user_type === "admin") {
     window.location.href = "admin-dashboard.html";
-  } else if (role === "found" || role === "staff") {
-    window.location.href = "found-dashboard.html";
   } else {
     window.location.href = "lost-dashboard.html";
   }
@@ -279,6 +297,23 @@ function escapeHTML(value) {
 function shortText(text, limit) {
   if (!text) return "";
   return text.length <= limit ? text : text.substring(0, limit) + "...";
+}
+
+function togglePassword(inputId) {
+  const input = document.getElementById(inputId);
+  input.type = input.type === "password" ? "text" : "password";
+}
+
+function setButtonLoading(button, loading, text) {
+  if (!button) return;
+
+  if (loading) {
+    button.disabled = true;
+    button.innerHTML = `<div class="loader"></div>`;
+  } else {
+    button.disabled = false;
+    button.innerHTML = `<span class="btn-text">${text}</span>`;
+  }
 }
 
 function createPlaceholderImage(text) {
@@ -301,24 +336,7 @@ function getStatusClass(status) {
   return "status";
 }
 
-function togglePassword(inputId) {
-  const input = document.getElementById(inputId);
-  input.type = input.type === "password" ? "text" : "password";
-}
-
-function setButtonLoading(button, loading, text) {
-  if (!button) return;
-
-  if (loading) {
-    button.disabled = true;
-    button.innerHTML = `<div class="loader"></div>`;
-  } else {
-    button.disabled = false;
-    button.innerHTML = `<span class="btn-text">${text}</span>`;
-  }
-}
-
-/* LOGIN / REGISTER */
+/* ---------------- AUTH ---------------- */
 
 function initAuthPage() {
   const loginTab = document.getElementById("loginTab");
@@ -344,14 +362,6 @@ function initAuthPage() {
     authTitle.textContent = "Register";
     clearMessage();
   });
-
-  const params = new URLSearchParams(window.location.search);
-  const selectedRole = params.get("role");
-
-  if (selectedRole) {
-    registerTab.click();
-    document.getElementById("regRole").value = selectedRole;
-  }
 
   loginForm.addEventListener("submit", loginUser);
   registerForm.addEventListener("submit", registerUser);
@@ -382,10 +392,10 @@ async function registerUser(e) {
   const phone = document.getElementById("regPhone").value.trim();
   const password = document.getElementById("regPassword").value.trim();
   const confirmPassword = document.getElementById("confirmPassword").value.trim();
-  const role = document.getElementById("regRole").value;
+  const userType = document.getElementById("regUserType").value;
 
   try {
-    if (!fullName || !userId || !phone || !password || !confirmPassword || !role) {
+    if (!fullName || !userId || !phone || !password || !confirmPassword || !userType) {
       throw new Error("Please fill all fields.");
     }
 
@@ -420,9 +430,9 @@ async function registerUser(e) {
     const newUser = {
       user_id: userId,
       full_name: fullName,
-      role,
       phone,
       password,
+      user_type: userType,
       preferred_language: localStorage.getItem(LANG_KEY) || "en",
       dark_mode: localStorage.getItem(DARK_KEY) === "true"
     };
@@ -439,7 +449,11 @@ async function registerUser(e) {
     showAuthMessage("Account created successfully. Redirecting...", "green");
 
     setTimeout(() => {
-      redirectByRole(role);
+      if (createdUser.user_type === "admin") {
+        window.location.href = "admin-dashboard.html";
+      } else {
+        window.location.href = "lost-dashboard.html";
+      }
     }, 900);
 
   } catch (error) {
@@ -482,7 +496,11 @@ async function loginUser(e) {
     showAuthMessage("Login successful. Redirecting...", "green");
 
     setTimeout(() => {
-      redirectByRole(user.role);
+      if (user.user_type === "admin") {
+        window.location.href = "admin-dashboard.html";
+      } else {
+        window.location.href = "lost-dashboard.html";
+      }
     }, 700);
 
   } catch (error) {
@@ -491,7 +509,7 @@ async function loginUser(e) {
   }
 }
 
-/* FETCH */
+/* ---------------- FETCH ---------------- */
 
 async function fetchItems() {
   const { data, error } = await supabaseClient
@@ -549,7 +567,7 @@ async function fetchComplaints() {
   return data || [];
 }
 
-/* LOST DASHBOARD */
+/* ---------------- LOST DASHBOARD ---------------- */
 
 async function initLostDashboard() {
   const user = requireLogin();
@@ -565,7 +583,7 @@ async function initLostDashboard() {
 
 async function renderLostItems() {
   const grid = document.getElementById("itemsGrid");
-  grid.innerHTML = `<div class="empty">Loading found items...</div>`;
+  grid.innerHTML = `<div class="empty">Loading items...</div>`;
 
   const search = document.getElementById("searchInput").value.toLowerCase();
   const category = document.getElementById("categoryFilter").value;
@@ -591,14 +609,14 @@ async function renderLostItems() {
   });
 
   if (items.length === 0) {
-    grid.innerHTML = `<div class="empty">No matching found items available.</div>`;
+    grid.innerHTML = `<div class="empty">No matching items available.</div>`;
     return;
   }
 
   grid.innerHTML = items.map(item => createItemCard(item, true)).join("");
 }
 
-/* FOUND DASHBOARD */
+/* ---------------- FOUND DASHBOARD ---------------- */
 
 async function initFoundDashboard() {
   const user = requireLogin();
@@ -705,7 +723,7 @@ async function updateClaimStatus(claimId, status) {
   location.reload();
 }
 
-/* UPLOAD */
+/* ---------------- UPLOAD ---------------- */
 
 function initUploadPage() {
   const user = requireLogin();
@@ -745,9 +763,12 @@ function initUploadPage() {
     const submitBtn = uploadForm.querySelector("button[type='submit']");
     const message = document.getElementById("uploadMessage");
 
-    setButtonLoading(submitBtn, true, "Submit Found Item");
+    setButtonLoading(submitBtn, true, "Submit Item");
 
     try {
+      const itemTypeElement = document.getElementById("itemType");
+
+      const itemType = itemTypeElement ? itemTypeElement.value : "found";
       const title = document.getElementById("itemName").value.trim();
       const category = document.getElementById("category").value;
       const description = document.getElementById("description").value.trim();
@@ -782,6 +803,7 @@ function initUploadPage() {
       }
 
       const newItem = {
+        item_type: itemType,
         title,
         category,
         description,
@@ -804,7 +826,7 @@ function initUploadPage() {
 
       if (error) throw error;
 
-      message.textContent = "Item uploaded. Waiting for admin approval.";
+      message.textContent = "Item submitted. Waiting for admin approval.";
       message.style.color = "green";
 
       setTimeout(() => {
@@ -813,7 +835,7 @@ function initUploadPage() {
 
     } catch (error) {
       alert("Upload failed: " + error.message);
-      setButtonLoading(submitBtn, false, "Submit Found Item");
+      setButtonLoading(submitBtn, false, "Submit Item");
     }
   });
 }
@@ -842,7 +864,7 @@ function getCurrentLocation() {
   );
 }
 
-/* ITEM DETAILS */
+/* ---------------- ITEM DETAILS ---------------- */
 
 async function initItemDetails() {
   const user = getCurrentUser();
@@ -874,14 +896,15 @@ async function initItemDetails() {
     <img src="${escapeHTML(item.image_url)}" alt="${escapeHTML(item.title)}">
 
     <div class="details-info">
+      <span class="badge">${escapeHTML(item.item_type || "found")}</span>
       <span class="badge">${escapeHTML(item.category)}</span>
       <span class="badge ${statusClass}">${escapeHTML(item.status)}</span>
 
       <h2>${escapeHTML(item.title)}</h2>
 
       <p><b>Description:</b> ${escapeHTML(item.description)}</p>
-      <p><b>Found Location:</b> ${escapeHTML(item.location_name)}</p>
-      <p><b>Found Date:</b> ${escapeHTML(item.found_date)}</p>
+      <p><b>Location:</b> ${escapeHTML(item.location_name)}</p>
+      <p><b>Date:</b> ${escapeHTML(item.found_date)}</p>
       <p><b>Reporter Name:</b> ${escapeHTML(item.reporter_name)}</p>
       <p><b>Reporter ID:</b> ${escapeHTML(item.reporter_id)}</p>
       <p><b>Contact:</b> ${escapeHTML(item.contact_number)}</p>
@@ -914,7 +937,7 @@ async function initItemDetails() {
 
     if (alreadyClaimed) {
       document.getElementById("claimMessage").textContent =
-        "You already sent a pending claim for this item.";
+        "You already sent a pending request for this item.";
       document.getElementById("claimMessage").style.color = "red";
       return;
     }
@@ -932,7 +955,7 @@ async function initItemDetails() {
       .insert(newClaim);
 
     if (claimError) {
-      alert("Claim failed: " + claimError.message);
+      alert("Request failed: " + claimError.message);
       return;
     }
 
@@ -942,14 +965,14 @@ async function initItemDetails() {
       .eq("id", item.id);
 
     document.getElementById("claimMessage").textContent =
-      "Claim request sent successfully.";
+      "Request sent successfully.";
     document.getElementById("claimMessage").style.color = "green";
 
     claimForm.reset();
   });
 }
 
-/* COMPLAINTS */
+/* ---------------- COMPLAINTS ---------------- */
 
 async function initComplaints() {
   const user = requireLogin();
@@ -988,7 +1011,7 @@ async function createComplaint(e) {
     complaint_id: complaint.id,
     sender_id: user.user_id,
     sender_name: user.full_name,
-    sender_role: user.role,
+    sender_role: user.user_type,
     message
   });
 
@@ -1055,7 +1078,7 @@ async function sendUserReply(e) {
     complaint_id: selectedComplaintId,
     sender_id: user.user_id,
     sender_name: user.full_name,
-    sender_role: user.role,
+    sender_role: user.user_type,
     message: text
   });
 
@@ -1063,7 +1086,7 @@ async function sendUserReply(e) {
   await openComplaint(selectedComplaintId);
 }
 
-/* ADMIN */
+/* ---------------- ADMIN ---------------- */
 
 async function initAdminDashboard() {
   const admin = requireAdmin();
@@ -1096,7 +1119,7 @@ async function initAdminUsers() {
     <div class="admin-row">
       <h4>${escapeHTML(u.full_name)}</h4>
       <p><b>ID:</b> ${escapeHTML(u.user_id)}</p>
-      <p><b>Role:</b> ${escapeHTML(u.role)}</p>
+      <p><b>Type:</b> ${escapeHTML(u.user_type)}</p>
       <p><b>Phone:</b> ${escapeHTML(u.phone)}</p>
     </div>
   `).join("");
@@ -1109,12 +1132,19 @@ async function initAdminItems() {
   const items = await fetchItems();
   const grid = document.getElementById("adminItemsGrid");
 
+  if (items.length === 0) {
+    grid.innerHTML = `<div class="empty">No uploaded items yet.</div>`;
+    return;
+  }
+
   grid.innerHTML = items.map(item => `
     <div class="item-card">
       <img src="${escapeHTML(item.image_url)}" alt="${escapeHTML(item.title)}">
       <div class="item-content">
+        <span class="badge">${escapeHTML(item.item_type || "found")}</span>
         <span class="badge">${escapeHTML(item.category)}</span>
         <span class="badge ${getStatusClass(item.status)}">${escapeHTML(item.status)}</span>
+
         <h3>${escapeHTML(item.title)}</h3>
         <p><b>Reporter:</b> ${escapeHTML(item.reporter_name)}</p>
         <p><b>Location:</b> ${escapeHTML(item.location_name)}</p>
@@ -1250,7 +1280,7 @@ async function closeComplaint(event, id) {
   location.reload();
 }
 
-/* CARD */
+/* ---------------- CARD ---------------- */
 
 function createItemCard(item, showClaimButton) {
   const statusClass = getStatusClass(item.status);
@@ -1260,6 +1290,7 @@ function createItemCard(item, showClaimButton) {
       <img src="${escapeHTML(item.image_url)}" alt="${escapeHTML(item.title)}">
 
       <div class="item-content">
+        <span class="badge">${escapeHTML(item.item_type || "found")}</span>
         <span class="badge">${escapeHTML(item.category)}</span>
         <span class="badge ${statusClass}">${escapeHTML(item.status)}</span>
 
