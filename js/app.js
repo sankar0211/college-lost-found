@@ -1,3 +1,5 @@
+const SITE_URL = "https://campus-find-lost.netlify.app";
+
 async function getCurrentUser() {
   const { data } = await supabaseClient.auth.getUser();
   return data.user;
@@ -19,7 +21,10 @@ async function registerUser() {
 
   const { data, error } = await supabaseClient.auth.signUp({
     email: email,
-    password: password
+    password: password,
+    options: {
+      emailRedirectTo: `${SITE_URL}/login.html`
+    }
   });
 
   if (error) {
@@ -51,11 +56,8 @@ async function registerUser() {
     }
   }
 
-  message.innerText = "Registration successful. Please login.";
-
-  setTimeout(() => {
-    window.location.href = "login.html";
-  }, 1500);
+  message.innerText =
+    "Registration successful. Please check your email and confirm your account before login.";
 }
 
 async function loginUser() {
