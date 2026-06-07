@@ -247,10 +247,6 @@ const translations = {
   }
 };
 
-["hi", "te", "ml", "kn"].forEach((lang) => {
-  translations[lang] = { ...translations.en, ...translations[lang] };
-});
-
 document.addEventListener("DOMContentLoaded", async () => {
   applyDarkMode();
   setupThemeToggle();
