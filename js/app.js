@@ -4,6 +4,10 @@ const DARK_KEY = "clf_dark_mode";
 
 let selectedComplaintId = null;
 let selectedAdminComplaintId = null;
+let editingItemId = null;
+let editingOldImageUrl = "";
+
+/* ---------------- TRANSLATIONS ---------------- */
 
 const translations = {
   en: {
@@ -20,7 +24,36 @@ const translations = {
     uploadText: "Upload from files or capture directly using mobile camera.",
     claimRequests: "Claim Requests",
     claimText: "Send proof and wait for reporter/admin approval.",
-    lostDashboard: "Lost User Dashboard"
+    lostDashboard: "Lost User Dashboard",
+    dashboard: "Dashboard",
+    logout: "Logout",
+    messages: "Messages",
+    uploadTitle: "Upload Item",
+    editTitle: "Edit Uploaded Request",
+    itemDetails: "Item Details",
+    itemType: "Item Type",
+    itemName: "Item Name",
+    category: "Category",
+    description: "Description",
+    locationName: "Location Name",
+    useLocation: "Use My Current Location",
+    mapsLink: "Google Maps Link",
+    date: "Date",
+    contact: "Contact Number",
+    imageUpload: "Upload Image / Capture Using Camera",
+    submitItem: "Submit Item",
+    updateItem: "Update Request",
+    imagePreview: "Image Preview",
+    cameraNote: "Mobile users can capture item photo directly using camera.",
+    foundDashboard: "Found Reporter Dashboard",
+    uploadFoundItem: "Report a Found Item",
+    uploadFoundText: "Upload image, location, map link and contact details.",
+    uploadItem: "Upload Item",
+    availableItems: "Available Found Items",
+    claimThisItem: "Claim This Item",
+    proofText: "Enter proof to show that this item belongs to you.",
+    sendClaim: "Send Claim Request",
+    editRequest: "Edit Request"
   },
 
   ta: {
@@ -37,7 +70,36 @@ const translations = {
     uploadText: "கோப்பிலிருந்து அல்லது மொபைல் கேமராவால் பதிவேற்றலாம்.",
     claimRequests: "உரிமை கோரிக்கை",
     claimText: "ஆதாரம் அனுப்பி அனுமதி பெறவும்.",
-    lostDashboard: "இழந்த பயனர் பலகை"
+    lostDashboard: "இழந்த பயனர் பலகை",
+    dashboard: "பலகை",
+    logout: "வெளியேறு",
+    messages: "செய்திகள்",
+    uploadTitle: "பொருள் பதிவேற்று",
+    editTitle: "பதிவை திருத்து",
+    itemDetails: "பொருள் விவரங்கள்",
+    itemType: "பொருள் வகை",
+    itemName: "பொருள் பெயர்",
+    category: "வகை",
+    description: "விளக்கம்",
+    locationName: "இடத்தின் பெயர்",
+    useLocation: "என் தற்போதைய இடத்தை பயன்படுத்து",
+    mapsLink: "Google Maps இணைப்பு",
+    date: "தேதி",
+    contact: "தொடர்பு எண்",
+    imageUpload: "படம் பதிவேற்று / கேமராவில் எடு",
+    submitItem: "பொருளை சமர்ப்பி",
+    updateItem: "பதிவை புதுப்பி",
+    imagePreview: "பட முன்னோட்டம்",
+    cameraNote: "மொபைல் பயனர்கள் கேமரா மூலம் நேரடியாக படம் எடுக்கலாம்.",
+    foundDashboard: "கண்ட பொருள் பலகை",
+    uploadFoundItem: "கண்ட பொருளை பதிவு செய்",
+    uploadFoundText: "படம், இடம், வரைபட இணைப்பு மற்றும் தொடர்பு விவரங்களை சேர்க்கவும்.",
+    uploadItem: "பதிவேற்று",
+    availableItems: "கிடைக்கும் பொருட்கள்",
+    claimThisItem: "இந்த பொருளை கோரு",
+    proofText: "இந்த பொருள் உங்களுடையது என்பதை நிரூபிக்கும் ஆதாரம் எழுதவும்.",
+    sendClaim: "கோரிக்கை அனுப்பு",
+    editRequest: "திருத்து"
   },
 
   hi: {
@@ -54,7 +116,36 @@ const translations = {
     uploadText: "फाइल से अपलोड करें या मोबाइल कैमरा से कैप्चर करें।",
     claimRequests: "क्लेम अनुरोध",
     claimText: "प्रमाण भेजें और अनुमति की प्रतीक्षा करें।",
-    lostDashboard: "खोई वस्तु डैशबोर्ड"
+    lostDashboard: "खोई वस्तु डैशबोर्ड",
+    dashboard: "डैशबोर्ड",
+    logout: "लॉगआउट",
+    messages: "संदेश",
+    uploadTitle: "वस्तु अपलोड करें",
+    editTitle: "अपलोड अनुरोध संपादित करें",
+    itemDetails: "वस्तु विवरण",
+    itemType: "वस्तु प्रकार",
+    itemName: "वस्तु नाम",
+    category: "श्रेणी",
+    description: "विवरण",
+    locationName: "स्थान नाम",
+    useLocation: "मेरी वर्तमान लोकेशन उपयोग करें",
+    mapsLink: "Google Maps लिंक",
+    date: "तारीख",
+    contact: "संपर्क नंबर",
+    imageUpload: "चित्र अपलोड / कैमरा से कैप्चर करें",
+    submitItem: "वस्तु सबमिट करें",
+    updateItem: "अनुरोध अपडेट करें",
+    imagePreview: "चित्र पूर्वावलोकन",
+    cameraNote: "मोबाइल यूज़र सीधे कैमरा से फोटो ले सकते हैं।",
+    foundDashboard: "Found Reporter Dashboard",
+    uploadFoundItem: "मिली वस्तु रिपोर्ट करें",
+    uploadFoundText: "चित्र, स्थान, मैप लिंक और संपर्क जानकारी अपलोड करें।",
+    uploadItem: "अपलोड करें",
+    availableItems: "उपलब्ध वस्तुएं",
+    claimThisItem: "इस वस्तु पर दावा करें",
+    proofText: "यह वस्तु आपकी है, इसका प्रमाण लिखें।",
+    sendClaim: "दावा भेजें",
+    editRequest: "संपादित करें"
   },
 
   te: {
@@ -71,7 +162,36 @@ const translations = {
     uploadText: "ఫైల్ నుండి లేదా మొబైల్ కెమెరాతో అప్లోడ్ చేయండి.",
     claimRequests: "క్లెయిమ్ అభ్యర్థనలు",
     claimText: "ఆధారం పంపి ఆమోదం కోసం వేచి ఉండండి.",
-    lostDashboard: "లాస్ట్ యూజర్ డ్యాష్‌బోర్డ్"
+    lostDashboard: "లాస్ట్ యూజర్ డ్యాష్‌బోర్డ్",
+    dashboard: "డ్యాష్‌బోర్డ్",
+    logout: "లాగౌట్",
+    messages: "సందేశాలు",
+    uploadTitle: "వస్తువు అప్లోడ్ చేయండి",
+    editTitle: "అప్లోడ్ చేసిన అభ్యర్థనను మార్చండి",
+    itemDetails: "వస్తువు వివరాలు",
+    itemType: "వస్తువు రకం",
+    itemName: "వస్తువు పేరు",
+    category: "వర్గం",
+    description: "వివరణ",
+    locationName: "స్థానం పేరు",
+    useLocation: "నా ప్రస్తుత స్థానాన్ని ఉపయోగించు",
+    mapsLink: "Google Maps లింక్",
+    date: "తేదీ",
+    contact: "సంప్రదింపు నంబర్",
+    imageUpload: "చిత్రం అప్లోడ్ / కెమెరాతో తీసుకోండి",
+    submitItem: "వస్తువును సమర్పించు",
+    updateItem: "అభ్యర్థనను నవీకరించు",
+    imagePreview: "చిత్రం ప్రివ్యూ",
+    cameraNote: "మొబైల్ వినియోగదారులు కెమెరాతో నేరుగా ఫోటో తీసుకోవచ్చు.",
+    foundDashboard: "దొరికిన వస్తువు డ్యాష్‌బోర్డ్",
+    uploadFoundItem: "దొరికిన వస్తువును నివేదించండి",
+    uploadFoundText: "చిత్రం, స్థానం, మ్యాప్ లింక్ మరియు సంప్రదింపు వివరాలు అప్లోడ్ చేయండి.",
+    uploadItem: "అప్లోడ్",
+    availableItems: "అందుబాటులో ఉన్న వస్తువులు",
+    claimThisItem: "ఈ వస్తువును క్లెయిమ్ చేయండి",
+    proofText: "ఈ వస్తువు మీదేనని ఆధారం ఇవ్వండి.",
+    sendClaim: "క్లెయిమ్ పంపు",
+    editRequest: "సవరించు"
   },
 
   ml: {
@@ -88,7 +208,36 @@ const translations = {
     uploadText: "ഫയലിൽ നിന്നോ മൊബൈൽ ക്യാമറ ഉപയോഗിച്ചോ അപ്ലോഡ് ചെയ്യുക.",
     claimRequests: "ക്ലെയിം അഭ്യർത്ഥനകൾ",
     claimText: "തെളിവ് അയച്ച് അംഗീകാരം കാത്തിരിക്കുക.",
-    lostDashboard: "നഷ്ടപ്പെട്ട ഉപയോക്തൃ ഡാഷ്ബോർഡ്"
+    lostDashboard: "നഷ്ടപ്പെട്ട ഉപയോക്തൃ ഡാഷ്ബോർഡ്",
+    dashboard: "ഡാഷ്ബോർഡ്",
+    logout: "ലോഗൗട്ട്",
+    messages: "സന്ദേശങ്ങൾ",
+    uploadTitle: "വസ്തു അപ്ലോഡ് ചെയ്യുക",
+    editTitle: "അപ്ലോഡ് ചെയ്ത അപേക്ഷ തിരുത്തുക",
+    itemDetails: "വസ്തു വിവരങ്ങൾ",
+    itemType: "വസ്തു തരം",
+    itemName: "വസ്തു പേര്",
+    category: "വിഭാഗം",
+    description: "വിവരണം",
+    locationName: "സ്ഥലത്തിന്റെ പേര്",
+    useLocation: "എന്റെ നിലവിലെ സ്ഥാനം ഉപയോഗിക്കുക",
+    mapsLink: "Google Maps ലിങ്ക്",
+    date: "തീയതി",
+    contact: "ബന്ധപ്പെടേണ്ട നമ്പർ",
+    imageUpload: "ചിത്രം അപ്ലോഡ് / ക്യാമറ ഉപയോഗിക്കുക",
+    submitItem: "വസ്തു സമർപ്പിക്കുക",
+    updateItem: "അപേക്ഷ പുതുക്കുക",
+    imagePreview: "ചിത്രം പ്രിവ്യൂ",
+    cameraNote: "മൊബൈൽ ഉപയോക്താക്കൾക്ക് നേരിട്ട് ക്യാമറ ഉപയോഗിച്ച് ഫോട്ടോ എടുക്കാം.",
+    foundDashboard: "കണ്ടെത്തിയ വസ്തു ഡാഷ്ബോർഡ്",
+    uploadFoundItem: "കണ്ടെത്തിയ വസ്തു റിപ്പോർട്ട് ചെയ്യുക",
+    uploadFoundText: "ചിത്രം, സ്ഥലം, മാപ്പ് ലിങ്ക്, ബന്ധപ്പെടേണ്ട വിവരങ്ങൾ ചേർക്കുക.",
+    uploadItem: "അപ്ലോഡ്",
+    availableItems: "ലഭ്യമായ വസ്തുക്കൾ",
+    claimThisItem: "ഈ വസ്തു ക്ലെയിം ചെയ്യുക",
+    proofText: "ഈ വസ്തു നിങ്ങളുടേതാണ് എന്ന് തെളിയിക്കുന്ന വിവരങ്ങൾ നൽകുക.",
+    sendClaim: "ക്ലെയിം അയക്കുക",
+    editRequest: "തിരുത്തുക"
   },
 
   kn: {
@@ -105,13 +254,45 @@ const translations = {
     uploadText: "ಫೈಲ್‌ನಿಂದ ಅಥವಾ ಮೊಬೈಲ್ ಕ್ಯಾಮೆರಾ ಮೂಲಕ ಅಪ್ಲೋಡ್ ಮಾಡಿ.",
     claimRequests: "ಹಕ್ಕು ವಿನಂತಿಗಳು",
     claimText: "ಸಾಕ್ಷಿ ಕಳುಹಿಸಿ ಅನುಮೋದನೆಗಾಗಿ ಕಾಯಿರಿ.",
-    lostDashboard: "ಕಳೆದುಹೋದ ಬಳಕೆದಾರ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್"
+    lostDashboard: "ಕಳೆದುಹೋದ ಬಳಕೆದಾರ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
+    dashboard: "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
+    logout: "ಲಾಗೌಟ್",
+    messages: "ಸಂದೇಶಗಳು",
+    uploadTitle: "ವಸ್ತು ಅಪ್ಲೋಡ್ ಮಾಡಿ",
+    editTitle: "ಅಪ್ಲೋಡ್ ವಿನಂತಿ ತಿದ್ದು",
+    itemDetails: "ವಸ್ತು ವಿವರಗಳು",
+    itemType: "ವಸ್ತು ಪ್ರಕಾರ",
+    itemName: "ವಸ್ತು ಹೆಸರು",
+    category: "ವರ್ಗ",
+    description: "ವಿವರಣೆ",
+    locationName: "ಸ್ಥಳದ ಹೆಸರು",
+    useLocation: "ನನ್ನ ಪ್ರಸ್ತುತ ಸ್ಥಳ ಬಳಸಿ",
+    mapsLink: "Google Maps ಲಿಂಕ್",
+    date: "ದಿನಾಂಕ",
+    contact: "ಸಂಪರ್ಕ ಸಂಖ್ಯೆ",
+    imageUpload: "ಚಿತ್ರ ಅಪ್ಲೋಡ್ / ಕ್ಯಾಮೆರಾ ಬಳಸಿ",
+    submitItem: "ವಸ್ತು ಸಲ್ಲಿಸಿ",
+    updateItem: "ವಿನಂತಿ ನವೀಕರಿಸಿ",
+    imagePreview: "ಚಿತ್ರ ಪೂರ್ವವೀಕ್ಷಣೆ",
+    cameraNote: "ಮೊಬೈಲ್ ಬಳಕೆದಾರರು ನೇರವಾಗಿ ಕ್ಯಾಮೆರಾದಿಂದ ಫೋಟೋ ತೆಗೆದುಕೊಳ್ಳಬಹುದು.",
+    foundDashboard: "ಸಿಕ್ಕ ವಸ್ತು ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
+    uploadFoundItem: "ಸಿಕ್ಕ ವಸ್ತು ವರದಿ ಮಾಡಿ",
+    uploadFoundText: "ಚಿತ್ರ, ಸ್ಥಳ, ಮ್ಯಾಪ್ ಲಿಂಕ್ ಮತ್ತು ಸಂಪರ್ಕ ವಿವರಗಳನ್ನು ಸೇರಿಸಿ.",
+    uploadItem: "ಅಪ್ಲೋಡ್",
+    availableItems: "ಲಭ್ಯವಿರುವ ವಸ್ತುಗಳು",
+    claimThisItem: "ಈ ವಸ್ತು ಕ್ಲೇಮ್ ಮಾಡಿ",
+    proofText: "ಈ ವಸ್ತು ನಿಮ್ಮದು ಎಂದು ಸಾಬೀತುಪಡಿಸಿ.",
+    sendClaim: "ಕ್ಲೇಮ್ ಕಳುಹಿಸಿ",
+    editRequest: "ತಿದ್ದು"
   }
 };
+
+/* ---------------- PAGE START ---------------- */
 
 document.addEventListener("DOMContentLoaded", async () => {
   applyDarkMode();
   setupThemeToggle();
+  injectLanguageSwitcher();
   applyLanguage();
   setupLanguageMenu();
   setupLogout();
@@ -123,7 +304,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (page === "login") initAuthPage();
   if (page === "lostDashboard") await initLostDashboard();
   if (page === "foundDashboard") await initFoundDashboard();
-  if (page === "upload") initUploadPage();
+  if (page === "upload") await initUploadPage();
   if (page === "itemDetails") await initItemDetails();
   if (page === "complaints") await initComplaints();
   if (page === "adminDashboard") await initAdminDashboard();
@@ -141,6 +322,30 @@ function initHome() {
   if (!lang && screen) {
     screen.style.display = "flex";
   }
+}
+
+function injectLanguageSwitcher() {
+  const navActions = document.querySelector(".nav-actions");
+
+  if (!navActions) return;
+  if (document.getElementById("languageBtn")) return;
+
+  const wrapper = document.createElement("div");
+  wrapper.className = "custom-language";
+
+  wrapper.innerHTML = `
+    <button type="button" id="languageBtn">🌐 Language</button>
+    <div id="languageMenu" class="language-menu">
+      <button type="button" onclick="setLanguage('en')">English</button>
+      <button type="button" onclick="setLanguage('ta')">தமிழ்</button>
+      <button type="button" onclick="setLanguage('hi')">हिन्दी</button>
+      <button type="button" onclick="setLanguage('te')">తెలుగు</button>
+      <button type="button" onclick="setLanguage('ml')">മലയാളം</button>
+      <button type="button" onclick="setLanguage('kn')">ಕನ್ನಡ</button>
+    </div>
+  `;
+
+  navActions.prepend(wrapper);
 }
 
 function setupLanguageMenu() {
@@ -186,6 +391,44 @@ function applyLanguage() {
     const key = el.getAttribute("data-i18n");
     if (dict[key]) el.textContent = dict[key];
   });
+
+  translateStaticPageText(dict);
+}
+
+function translateStaticPageText(dict) {
+  const page = document.body.dataset.page;
+
+  if (page === "foundDashboard") {
+    setText("h2", dict.foundDashboard);
+    setText(".action-panel h3", dict.uploadFoundItem);
+    setText(".action-panel p", dict.uploadFoundText);
+    setText(".action-panel .btn", dict.uploadItem);
+    setText("section:last-of-type h3", "My Uploaded Items");
+  }
+
+  if (page === "lostDashboard") {
+    setText("h2", dict.lostDashboard);
+    setText("section h3", dict.searchItems);
+  }
+
+  if (page === "itemDetails") {
+    setText("h2", "Item Details");
+    setText("#claimSection h3", dict.claimThisItem);
+    setText("#claimSection .muted", dict.proofText);
+    setText("#claimForm button", dict.sendClaim);
+  }
+
+  if (page === "upload") {
+    if (!editingItemId) {
+      setText("h2", dict.uploadTitle);
+      setText("#submitItemBtn", dict.submitItem);
+    }
+  }
+}
+
+function setText(selector, value) {
+  const el = document.querySelector(selector);
+  if (el && value) el.textContent = value;
 }
 
 /* ---------------- DARK MODE ---------------- */
@@ -287,13 +530,8 @@ function getNextActionUrl() {
   const selected = document.querySelector('input[name="nextAction"]:checked');
   const action = selected ? selected.value : "browse";
 
-  if (action === "lost") {
-    return "upload.html?type=lost";
-  }
-
-  if (action === "found") {
-    return "upload.html?type=found";
-  }
+  if (action === "lost") return "upload.html?type=lost";
+  if (action === "found") return "upload.html?type=found";
 
   return "lost-dashboard.html";
 }
@@ -327,7 +565,7 @@ function setButtonLoading(button, loading, text) {
     button.innerHTML = `<div class="loader"></div>`;
   } else {
     button.disabled = false;
-    button.innerHTML = `<span class="btn-text">${text}</span>`;
+    button.textContent = text;
   }
 }
 
@@ -738,9 +976,9 @@ async function updateClaimStatus(claimId, status) {
   location.reload();
 }
 
-/* ---------------- UPLOAD ---------------- */
+/* ---------------- UPLOAD + EDIT ---------------- */
 
-function initUploadPage() {
+async function initUploadPage() {
   const user = requireLogin();
   if (!user) return;
 
@@ -751,9 +989,14 @@ function initUploadPage() {
 
   const params = new URLSearchParams(window.location.search);
   const urlType = params.get("type");
+  const editId = params.get("edit");
 
   if (itemTypeElement && (urlType === "lost" || urlType === "found")) {
     itemTypeElement.value = urlType;
+  }
+
+  if (editId) {
+    await loadItemForEdit(editId, user);
   }
 
   let selectedFile = null;
@@ -783,10 +1026,11 @@ function initUploadPage() {
   uploadForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const submitBtn = uploadForm.querySelector("button[type='submit']");
+    const submitBtn = document.getElementById("submitItemBtn");
     const message = document.getElementById("uploadMessage");
 
-    setButtonLoading(submitBtn, true, "Submit Item");
+    const buttonText = editingItemId ? "Update Request" : "Submit Item";
+    setButtonLoading(submitBtn, true, buttonText);
 
     try {
       const itemType = itemTypeElement ? itemTypeElement.value : "found";
@@ -800,7 +1044,7 @@ function initUploadPage() {
       const longitude = document.getElementById("longitude").value;
       const mapsLink = document.getElementById("mapsLink").value.trim();
 
-      let imageUrl = createPlaceholderImage(category);
+      let imageUrl = editingOldImageUrl || createPlaceholderImage(category);
 
       if (selectedFile) {
         const fileExt = selectedFile.name.split(".").pop();
@@ -823,7 +1067,7 @@ function initUploadPage() {
         imageUrl = publicData.data.publicUrl;
       }
 
-      const newItem = {
+      const itemData = {
         item_type: itemType,
         title,
         category,
@@ -841,13 +1085,26 @@ function initUploadPage() {
         admin_status: "Pending"
       };
 
-      const { error } = await supabaseClient
-        .from("items")
-        .insert(newItem);
+      if (editingItemId) {
+        const { error } = await supabaseClient
+          .from("items")
+          .update(itemData)
+          .eq("id", editingItemId)
+          .eq("reporter_id", user.user_id);
 
-      if (error) throw error;
+        if (error) throw error;
 
-      message.textContent = "Item submitted. Waiting for admin approval.";
+        message.textContent = "Request updated. Waiting for admin approval again.";
+      } else {
+        const { error } = await supabaseClient
+          .from("items")
+          .insert(itemData);
+
+        if (error) throw error;
+
+        message.textContent = "Item submitted. Waiting for admin approval.";
+      }
+
       message.style.color = "green";
 
       setTimeout(() => {
@@ -856,9 +1113,51 @@ function initUploadPage() {
 
     } catch (error) {
       alert("Upload failed: " + error.message);
-      setButtonLoading(submitBtn, false, "Submit Item");
+      setButtonLoading(submitBtn, false, buttonText);
     }
   });
+}
+
+async function loadItemForEdit(itemId, user) {
+  const { data: item, error } = await supabaseClient
+    .from("items")
+    .select("*")
+    .eq("id", itemId)
+    .single();
+
+  if (error || !item) {
+    alert("Item not found.");
+    window.location.href = "found-dashboard.html";
+    return;
+  }
+
+  if (item.reporter_id !== user.user_id) {
+    alert("You can edit only your own uploaded request.");
+    window.location.href = "found-dashboard.html";
+    return;
+  }
+
+  editingItemId = item.id;
+  editingOldImageUrl = item.image_url || "";
+
+  document.querySelector("h2").textContent = translations[localStorage.getItem(LANG_KEY) || "en"].editTitle;
+  document.getElementById("submitItemBtn").textContent =
+    translations[localStorage.getItem(LANG_KEY) || "en"].updateItem;
+
+  document.getElementById("itemType").value = item.item_type || "found";
+  document.getElementById("itemName").value = item.title || "";
+  document.getElementById("category").value = item.category || "";
+  document.getElementById("description").value = item.description || "";
+  document.getElementById("locationName").value = item.location_name || "";
+  document.getElementById("date").value = item.found_date || "";
+  document.getElementById("contact").value = item.contact_number || "";
+  document.getElementById("latitude").value = item.latitude || "";
+  document.getElementById("longitude").value = item.longitude || "";
+  document.getElementById("mapsLink").value = item.maps_link || "";
+
+  if (item.image_url) {
+    document.getElementById("imagePreview").src = item.image_url;
+  }
 }
 
 function getCurrentLocation() {
@@ -912,6 +1211,7 @@ async function initItemDetails() {
   }
 
   const statusClass = getStatusClass(item.status);
+  const isOwner = user.user_id === item.reporter_id;
 
   detailsBox.innerHTML = `
     <img src="${escapeHTML(item.image_url)}" alt="${escapeHTML(item.title)}">
@@ -929,15 +1229,22 @@ async function initItemDetails() {
       <p><b>Reporter Name:</b> ${escapeHTML(item.reporter_name)}</p>
       <p><b>Reporter ID:</b> ${escapeHTML(item.reporter_id)}</p>
       <p><b>Contact:</b> ${escapeHTML(item.contact_number)}</p>
+
       ${
         item.maps_link
         ? `<p><a class="btn secondary" target="_blank" href="${escapeHTML(item.maps_link)}">Open Google Maps Location</a></p>`
         : ""
       }
+
+      ${
+        isOwner
+        ? `<p><a class="btn primary" href="upload.html?edit=${encodeURIComponent(item.id)}">Edit Request</a></p>`
+        : ""
+      }
     </div>
   `;
 
-  if (item.status === "Returned" || user.user_id === item.reporter_id) {
+  if (item.status === "Returned" || isOwner) {
     claimSection.style.display = "none";
     return;
   }
@@ -1305,6 +1612,8 @@ async function closeComplaint(event, id) {
 
 function createItemCard(item, showClaimButton) {
   const statusClass = getStatusClass(item.status);
+  const user = getCurrentUser();
+  const isOwner = user && user.user_id === item.reporter_id;
 
   return `
     <div class="item-card">
@@ -1323,9 +1632,11 @@ function createItemCard(item, showClaimButton) {
         <div class="card-actions">
           <a class="btn primary" href="item-details.html?id=${encodeURIComponent(item.id)}">View Details</a>
           ${
-            showClaimButton
-            ? `<a class="btn secondary" href="item-details.html?id=${encodeURIComponent(item.id)}">Claim</a>`
-            : ""
+            isOwner
+            ? `<a class="btn secondary" href="upload.html?edit=${encodeURIComponent(item.id)}">Edit</a>`
+            : showClaimButton
+              ? `<a class="btn secondary" href="item-details.html?id=${encodeURIComponent(item.id)}">Claim</a>`
+              : ""
           }
         </div>
       </div>

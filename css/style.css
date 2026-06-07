@@ -796,3 +796,57 @@ button:disabled {
   border-color: var(--primary);
   transform: scale(1.02);
 }
+.custom-language {
+  position: relative;
+}
+
+#languageBtn {
+  border: none;
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: var(--secondary);
+  color: var(--primary);
+  cursor: pointer;
+  font-weight: 700;
+  box-shadow: 0 5px 15px var(--shadow);
+}
+
+.language-menu {
+  position: absolute;
+  top: 48px;
+  right: 0;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 20px 45px var(--shadow);
+  padding: 10px;
+  min-width: 170px;
+  opacity: 0;
+  transform: translateY(-10px) scale(0.96);
+  pointer-events: none;
+  transition: 0.28s ease;
+  z-index: 1000;
+}
+
+.language-menu.open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.language-menu button {
+  display: block;
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  padding: 10px;
+  text-align: left;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.language-menu button:hover {
+  background: var(--primary-soft);
+  color: var(--primary);
+}
