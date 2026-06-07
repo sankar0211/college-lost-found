@@ -1198,7 +1198,7 @@ async function renderLostItems() {
   let items = await fetchItems();
 
   items = items.filter(item =>
-    item.admin_status === "Approved" &&
+    item.status !== "Hidden" &&
     item.status !== "Returned"
   );
 
@@ -1438,8 +1438,8 @@ async function initUploadPage() {
         image_url: imageUrl,
         reporter_id: user.user_id,
         reporter_name: user.full_name,
-        status: "Pending Approval",
-        admin_status: "Pending"
+        status: "Active",
+        admin_status: "Visible"
       };
 
       if (editingItemId) {
@@ -1910,12 +1910,12 @@ async function approveItem(id) {
   await supabaseClient
     .from("items")
     .update({
-      admin_status: "Approved",
-      status: "Available"
+      admin_status: "Visible",
+      status: "Active"
     })
     .eq("id", id);
 
-  showToast("Item approved successfully.");
+  showToast("Item made visible.");
   location.reload();
 }
 
@@ -1923,12 +1923,12 @@ async function rejectItem(id) {
   await supabaseClient
     .from("items")
     .update({
-      admin_status: "Rejected",
-      status: "Rejected"
+      admin_status: "Hidden",
+      status: "Hidden"
     })
     .eq("id", id);
 
-  showToast("Item rejected successfully.");
+  showToast("Item hidden successfully.");
   location.reload();
 }
 
