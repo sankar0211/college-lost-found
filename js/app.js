@@ -7,10 +7,12 @@ let selectedAdminComplaintId = null;
 let editingItemId = null;
 let editingOldImageUrl = "";
 
+/* ---------------- TRANSLATIONS ---------------- */
+
 const translations = {
   en: {
-    appName: "Campus Lost & Found",
     language: "Language",
+    appName: "Campus Lost & Found",
     login: "Login",
     register: "Register",
     backHome: "← Back to Home",
@@ -24,8 +26,6 @@ const translations = {
     heroText: "A campus portal for students, faculty, parents, visitors and public users to report, search and claim lost items.",
     getStarted: "Get Started",
     reportNow: "Report / Search Item",
-    lostBtn: "I Lost an Item",
-    foundBtn: "I Found an Item",
     searchItems: "Search Items",
     searchText: "Search lost and found items by name, category, location and date.",
     uploadImages: "Upload Images",
@@ -128,8 +128,8 @@ const translations = {
   },
 
   ta: {
-    appName: "வளாக இழந்தது & கண்டது",
     language: "மொழி",
+    appName: "வளாக இழந்தது & கண்டது",
     login: "உள்நுழை",
     register: "பதிவு",
     backHome: "← முகப்பிற்கு செல்",
@@ -143,8 +143,6 @@ const translations = {
     heroText: "மாணவர்கள், ஆசிரியர்கள், பெற்றோர், வருகையாளர்கள் மற்றும் பொதுமக்கள் பயன்படுத்தும் வளாக பொருள் தேடல் தளம்.",
     getStarted: "தொடங்கு",
     reportNow: "பதிவு / தேடல்",
-    lostBtn: "நான் பொருள் இழந்தேன்",
-    foundBtn: "நான் பொருள் கண்டேன்",
     searchItems: "பொருட்களை தேடு",
     searchText: "பெயர், வகை, இடம், தேதி மூலம் தேடலாம்.",
     uploadImages: "படங்களை பதிவேற்று",
@@ -153,7 +151,7 @@ const translations = {
     claimText: "ஆதாரம் அனுப்பி அனுமதி பெறவும்.",
     userDashboard: "பயனர் பலகை",
     lostDashboard: "பயனர் பலகை",
-    foundDashboard: "என் பதிவுகள்",
+    foundDashboard: "என் பதிவுகள் பலகை",
     dashboard: "பலகை",
     logout: "வெளியேறு",
     messages: "செய்திகள்",
@@ -240,16 +238,482 @@ const translations = {
     descriptionPlaceholder: "நிறம், பிராண்ட், தனிப்பட்ட அடையாளங்களை குறிப்பிடவும்...",
     locationNamePlaceholder: "உதாரணம்: நூலக நுழைவாயில்",
     mapsPlaceholder: "Google Maps இணைப்பை ஒட்டவும்",
-    proofPlaceholder: "உதாரணம்: என் கால்குலேட்டரின் பின்புறம் நீல ஸ்டிக்கர் உள்ளது.",
+    proofPlaceholder: "உதாரணம்: என் பொருளில் தனிப்பட்ட அடையாளம் உள்ளது.",
     subjectPlaceholder: "உதாரணம்: தவறான பொருள் அனுமதி",
     messagePlaceholder: "உங்கள் பிரச்சனையை விவரிக்கவும்...",
     replyPlaceholder: "உங்கள் பதிலை தட்டச்சு செய்யவும்..."
+  },
+
+  hi: {
+    language: "भाषा",
+    appName: "कैंपस खोया और पाया",
+    login: "लॉगिन",
+    register: "रजिस्टर",
+    backHome: "← होम पर वापस जाएं",
+    loginNote: "अपना यूज़र ID और पासवर्ड उपयोग करें।",
+    whatDo: "आप क्या करना चाहते हैं?",
+    searchAction: "वस्तु खोजें",
+    reportLost: "खोई वस्तु रिपोर्ट करें",
+    reportFound: "मिली वस्तु रिपोर्ट करें",
+    tag: "कॉलेज उपयोगिता वेबसाइट",
+    heroTitle: "खोई वस्तु खोजें। मिली वस्तु रिपोर्ट करें।",
+    heroText: "छात्रों, शिक्षकों, अभिभावकों, आगंतुकों और सार्वजनिक उपयोगकर्ताओं के लिए कैंपस पोर्टल।",
+    getStarted: "शुरू करें",
+    reportNow: "रिपोर्ट / खोज",
+    searchItems: "वस्तु खोजें",
+    searchText: "नाम, श्रेणी, स्थान और तारीख से खोजें।",
+    uploadImages: "चित्र अपलोड करें",
+    uploadText: "फाइल से अपलोड करें या मोबाइल कैमरा से कैप्चर करें।",
+    claimRequests: "क्लेम अनुरोध",
+    claimText: "प्रमाण भेजें और स्वीकृति की प्रतीक्षा करें।",
+    userDashboard: "यूज़र डैशबोर्ड",
+    lostDashboard: "यूज़र डैशबोर्ड",
+    foundDashboard: "मेरे रिपोर्ट डैशबोर्ड",
+    dashboard: "डैशबोर्ड",
+    logout: "लॉगआउट",
+    messages: "संदेश",
+    uploadTitle: "वस्तु अपलोड करें",
+    editTitle: "अपलोड अनुरोध संपादित करें",
+    itemDetails: "वस्तु विवरण",
+    itemType: "वस्तु प्रकार",
+    foundItem: "मिली वस्तु",
+    lostItem: "खोई वस्तु",
+    itemName: "वस्तु नाम",
+    category: "श्रेणी",
+    description: "विवरण",
+    locationName: "स्थान नाम",
+    useLocation: "मेरी वर्तमान लोकेशन उपयोग करें",
+    mapsLink: "Google Maps लिंक",
+    date: "तारीख",
+    contact: "संपर्क नंबर",
+    imageUpload: "चित्र अपलोड / कैमरा से कैप्चर करें",
+    submitItem: "वस्तु सबमिट करें",
+    updateItem: "अनुरोध अपडेट करें",
+    imagePreview: "चित्र पूर्वावलोकन",
+    cameraNote: "मोबाइल यूज़र सीधे कैमरा से फोटो ले सकते हैं।",
+    uploadFoundItem: "वस्तु रिपोर्ट करें",
+    uploadFoundText: "चित्र, स्थान, मैप लिंक और संपर्क जानकारी अपलोड करें।",
+    uploadItem: "अपलोड करें",
+    availableItems: "उपलब्ध वस्तुएं",
+    myUploads: "मेरे अपलोड",
+    totalUploads: "कुल अपलोड",
+    pendingRequests: "लंबित अनुरोध",
+    claimThisItem: "इस वस्तु पर दावा करें",
+    proofText: "यह वस्तु आपकी है, इसका प्रमाण लिखें।",
+    sendClaim: "क्लेम भेजें",
+    editRequest: "संपादित करें",
+    fullName: "पूरा नाम",
+    userId: "यूज़र ID / रजिस्टर नंबर / स्टाफ ID / विज़िटर ID",
+    phone: "फोन नंबर",
+    password: "पासवर्ड",
+    userType: "यूज़र प्रकार",
+    selectUserType: "यूज़र प्रकार चुनें",
+    student: "छात्र",
+    faculty: "फैकल्टी",
+    assistantProfessor: "असिस्टेंट प्रोफेसर",
+    professor: "प्रोफेसर",
+    parent: "अभिभावक",
+    visitor: "विज़िटर",
+    staff: "सुरक्षा / स्टाफ",
+    publicUser: "सामान्य उपयोगकर्ता",
+    createPassword: "पासवर्ड बनाएं",
+    confirmPassword: "पासवर्ड पुष्टि करें",
+    createAccount: "खाता बनाएं",
+    selectCategory: "श्रेणी चुनें",
+    allCategories: "सभी श्रेणियां",
+    loadingItem: "वस्तु विवरण लोड हो रहा है...",
+    raiseComplaint: "शिकायत दर्ज करें",
+    subject: "विषय",
+    message: "संदेश",
+    sendComplaint: "शिकायत भेजें",
+    myComplaints: "मेरी शिकायतें",
+    chatWithAdmin: "एडमिन से चैट करें",
+    sendReply: "जवाब भेजें",
+    adminDashboard: "एडमिन डैशबोर्ड",
+    manageUsers: "यूज़र्स",
+    manageItems: "वस्तुएं",
+    complaints: "शिकायतें",
+    totalUsers: "कुल यूज़र्स",
+    totalItems: "कुल वस्तुएं",
+    pendingItems: "लंबित वस्तुएं",
+    totalClaims: "कुल क्लेम",
+    openComplaints: "खुली शिकायतें",
+    returnedItems: "वापस की गई वस्तुएं",
+    allUsers: "सभी रजिस्टर्ड यूज़र्स",
+    uploadedItems: "अपलोड की गई वस्तुएं",
+    allComplaints: "सभी शिकायतें",
+    chatWithUser: "यूज़र से चैट करें",
+    userIdPlaceholder: "उदाहरण: 24I355",
+    passwordPlaceholder: "पासवर्ड दर्ज करें",
+    namePlaceholder: "अपना नाम दर्ज करें",
+    phonePlaceholder: "उदाहरण: 9876543210",
+    createPasswordPlaceholder: "कम से कम 8 अक्षर",
+    confirmPasswordPlaceholder: "पासवर्ड फिर से दर्ज करें",
+    searchPlaceholder: "वस्तु नाम से खोजें...",
+    locationPlaceholder: "स्थान",
+    itemNamePlaceholder: "उदाहरण: काला वॉलेट",
+    descriptionPlaceholder: "रंग, ब्रांड, विशेष निशान लिखें...",
+    locationNamePlaceholder: "उदाहरण: लाइब्रेरी प्रवेश द्वार",
+    mapsPlaceholder: "Google Maps लिंक पेस्ट करें",
+    proofPlaceholder: "उदाहरण: मेरी वस्तु पर खास निशान है।",
+    subjectPlaceholder: "उदाहरण: गलत वस्तु स्वीकृति",
+    messagePlaceholder: "अपनी समस्या लिखें...",
+    replyPlaceholder: "अपना जवाब लिखें..."
+  },
+
+  te: {
+    language: "భాష",
+    appName: "క్యాంపస్ లాస్ట్ & ఫౌండ్",
+    login: "లాగిన్",
+    register: "రిజిస్టర్",
+    backHome: "← హోమ్‌కు తిరిగి వెళ్ళు",
+    loginNote: "మీ యూజర్ ID మరియు పాస్‌వర్డ్ ఉపయోగించండి.",
+    whatDo: "మీరు ఏమి చేయాలనుకుంటున్నారు?",
+    searchAction: "వస్తువులు వెతకండి",
+    reportLost: "పోయిన వస్తువు నివేదించండి",
+    reportFound: "దొరికిన వస్తువు నివేదించండి",
+    tag: "కాలేజ్ యుటిలిటీ వెబ్‌సైట్",
+    heroTitle: "పోయిన వస్తువులను కనుగొనండి. దొరికిన వస్తువులను నివేదించండి.",
+    heroText: "విద్యార్థులు, ఉపాధ్యాయులు, తల్లిదండ్రులు, సందర్శకుల కోసం క్యాంపస్ పోర్టల్.",
+    getStarted: "ప్రారంభించండి",
+    reportNow: "నివేదించండి / వెతకండి",
+    searchItems: "వస్తువులు వెతకండి",
+    searchText: "పేరు, వర్గం, స్థానం, తేదీ ద్వారా వెతకండి.",
+    uploadImages: "చిత్రాలు అప్లోడ్ చేయండి",
+    uploadText: "ఫైల్ నుండి లేదా మొబైల్ కెమెరాతో అప్లోడ్ చేయండి.",
+    claimRequests: "క్లెయిమ్ అభ్యర్థనలు",
+    claimText: "ఆధారం పంపి ఆమోదం కోసం వేచి ఉండండి.",
+    userDashboard: "యూజర్ డ్యాష్‌బోర్డ్",
+    lostDashboard: "యూజర్ డ్యాష్‌బోర్డ్",
+    foundDashboard: "నా రిపోర్ట్స్ డ్యాష్‌బోర్డ్",
+    dashboard: "డ్యాష్‌బోర్డ్",
+    logout: "లాగౌట్",
+    messages: "సందేశాలు",
+    uploadTitle: "వస్తువు అప్లోడ్ చేయండి",
+    editTitle: "అప్లోడ్ అభ్యర్థన సవరించండి",
+    itemDetails: "వస్తువు వివరాలు",
+    itemType: "వస్తువు రకం",
+    foundItem: "దొరికిన వస్తువు",
+    lostItem: "పోయిన వస్తువు",
+    itemName: "వస్తువు పేరు",
+    category: "వర్గం",
+    description: "వివరణ",
+    locationName: "స్థానం పేరు",
+    useLocation: "నా ప్రస్తుత స్థానం ఉపయోగించు",
+    mapsLink: "Google Maps లింక్",
+    date: "తేదీ",
+    contact: "సంప్రదింపు నంబర్",
+    imageUpload: "చిత్రం అప్లోడ్ / కెమెరాతో తీసుకోండి",
+    submitItem: "వస్తువు సమర్పించు",
+    updateItem: "అభ్యర్థన నవీకరించు",
+    imagePreview: "చిత్రం ప్రివ్యూ",
+    cameraNote: "మొబైల్ వినియోగదారులు కెమెరాతో నేరుగా ఫోటో తీసుకోవచ్చు.",
+    uploadFoundItem: "వస్తువును నివేదించండి",
+    uploadFoundText: "చిత్రం, స్థానం, మ్యాప్ లింక్ మరియు సంప్రదింపు వివరాలు అప్లోడ్ చేయండి.",
+    uploadItem: "అప్లోడ్",
+    availableItems: "అందుబాటులో ఉన్న వస్తువులు",
+    myUploads: "నా అప్లోడ్లు",
+    totalUploads: "మొత్తం అప్లోడ్లు",
+    pendingRequests: "పెండింగ్ అభ్యర్థనలు",
+    claimThisItem: "ఈ వస్తువును క్లెయిమ్ చేయండి",
+    proofText: "ఈ వస్తువు మీదేనని ఆధారం ఇవ్వండి.",
+    sendClaim: "క్లెయిమ్ పంపు",
+    editRequest: "సవరించు",
+    fullName: "పూర్తి పేరు",
+    userId: "యూజర్ ID / రిజిస్టర్ నంబర్ / స్టాఫ్ ID / విజిటర్ ID",
+    phone: "ఫోన్ నంబర్",
+    password: "పాస్‌వర్డ్",
+    userType: "యూజర్ రకం",
+    selectUserType: "యూజర్ రకం ఎంచుకోండి",
+    student: "విద్యార్థి",
+    faculty: "ఫ్యాకల్టీ",
+    assistantProfessor: "అసిస్టెంట్ ప్రొఫెసర్",
+    professor: "ప్రొఫెసర్",
+    parent: "తల్లిదండ్రులు",
+    visitor: "సందర్శకుడు",
+    staff: "సెక్యూరిటీ / స్టాఫ్",
+    publicUser: "సాధారణ ప్రజలు",
+    createPassword: "పాస్‌వర్డ్ సృష్టించు",
+    confirmPassword: "పాస్‌వర్డ్ నిర్ధారించు",
+    createAccount: "ఖాతా సృష్టించు",
+    selectCategory: "వర్గం ఎంచుకోండి",
+    allCategories: "అన్ని వర్గాలు",
+    loadingItem: "వస్తువు వివరాలు లోడ్ అవుతున్నాయి...",
+    raiseComplaint: "ఫిర్యాదు చేయండి",
+    subject: "విషయం",
+    message: "సందేశం",
+    sendComplaint: "ఫిర్యాదు పంపు",
+    myComplaints: "నా ఫిర్యాదులు",
+    chatWithAdmin: "అడ్మిన్‌తో చాట్",
+    sendReply: "ప్రత్యుత్తరం పంపు",
+    adminDashboard: "అడ్మిన్ డ్యాష్‌బోర్డ్",
+    manageUsers: "యూజర్లు",
+    manageItems: "వస్తువులు",
+    complaints: "ఫిర్యాదులు",
+    totalUsers: "మొత్తం యూజర్లు",
+    totalItems: "మొత్తం వస్తువులు",
+    pendingItems: "పెండింగ్ వస్తువులు",
+    totalClaims: "మొత్తం క్లెయిమ్స్",
+    openComplaints: "ఓపెన్ ఫిర్యాదులు",
+    returnedItems: "తిరిగి ఇచ్చిన వస్తువులు",
+    allUsers: "అన్ని నమోదిత యూజర్లు",
+    uploadedItems: "అప్లోడ్ చేసిన వస్తువులు",
+    allComplaints: "అన్ని ఫిర్యాదులు",
+    chatWithUser: "యూజర్‌తో చాట్",
+    userIdPlaceholder: "ఉదాహరణ: 24I355",
+    passwordPlaceholder: "పాస్‌వర్డ్ నమోదు చేయండి",
+    namePlaceholder: "మీ పేరు నమోదు చేయండి",
+    phonePlaceholder: "ఉదాహరణ: 9876543210",
+    createPasswordPlaceholder: "కనీసం 8 అక్షరాలు",
+    confirmPasswordPlaceholder: "పాస్‌వర్డ్ మళ్లీ నమోదు చేయండి",
+    searchPlaceholder: "వస్తువు పేరుతో వెతకండి...",
+    locationPlaceholder: "స్థానం",
+    itemNamePlaceholder: "ఉదాహరణ: బ్లాక్ వాలెట్",
+    descriptionPlaceholder: "రంగు, బ్రాండ్, ప్రత్యేక గుర్తులు నమోదు చేయండి...",
+    locationNamePlaceholder: "ఉదాహరణ: లైబ్రరీ ప్రవేశం",
+    mapsPlaceholder: "Google Maps లింక్ పేస్ట్ చేయండి",
+    proofPlaceholder: "ఉదాహరణ: నా వస్తువులో ప్రత్యేక గుర్తు ఉంది.",
+    subjectPlaceholder: "ఉదాహరణ: తప్పు వస్తువు ఆమోదం",
+    messagePlaceholder: "మీ సమస్యను వివరించండి...",
+    replyPlaceholder: "మీ ప్రత్యుత్తరం టైప్ చేయండి..."
+  },
+
+  ml: {
+    language: "ഭാഷ",
+    appName: "ക്യാമ്പസ് Lost & Found",
+    login: "ലോഗിൻ",
+    register: "രജിസ്റ്റർ",
+    backHome: "← ഹോമിലേക്ക് മടങ്ങുക",
+    loginNote: "നിങ്ങളുടെ യൂസർ IDയും പാസ്‌വേഡും ഉപയോഗിക്കുക.",
+    whatDo: "നിങ്ങൾ എന്ത് ചെയ്യാൻ ആഗ്രഹിക്കുന്നു?",
+    searchAction: "വസ്തുക്കൾ തിരയുക",
+    reportLost: "നഷ്ടപ്പെട്ട വസ്തു റിപ്പോർട്ട് ചെയ്യുക",
+    reportFound: "കണ്ടെത്തിയ വസ്തു റിപ്പോർട്ട് ചെയ്യുക",
+    tag: "കോളേജ് യൂട്ടിലിറ്റി വെബ്സൈറ്റ്",
+    heroTitle: "നഷ്ടപ്പെട്ട വസ്തുക്കൾ കണ്ടെത്തുക. കണ്ടെത്തിയ വസ്തുക്കൾ റിപ്പോർട്ട് ചെയ്യുക.",
+    heroText: "വിദ്യാർത്ഥികൾ, അധ്യാപകർ, രക്ഷിതാക്കൾ, സന്ദർശകർ എന്നിവർക്ക് ഉപയോഗിക്കാവുന്ന പോർട്ടൽ.",
+    getStarted: "തുടങ്ങുക",
+    reportNow: "റിപ്പോർട്ട് / തിരയുക",
+    searchItems: "വസ്തുക്കൾ തിരയുക",
+    searchText: "പേര്, വിഭാഗം, സ്ഥലം, തീയതി ഉപയോഗിച്ച് തിരയുക.",
+    uploadImages: "ചിത്രങ്ങൾ അപ്ലോഡ് ചെയ്യുക",
+    uploadText: "ഫയലിൽ നിന്നോ മൊബൈൽ ക്യാമറ ഉപയോഗിച്ചോ അപ്ലോഡ് ചെയ്യുക.",
+    claimRequests: "ക്ലെയിം അഭ്യർത്ഥനകൾ",
+    claimText: "തെളിവ് അയച്ച് അംഗീകാരം കാത്തിരിക്കുക.",
+    userDashboard: "ഉപയോക്തൃ ഡാഷ്ബോർഡ്",
+    lostDashboard: "ഉപയോക്തൃ ഡാഷ്ബോർഡ്",
+    foundDashboard: "എന്റെ റിപ്പോർട്ടുകൾ",
+    dashboard: "ഡാഷ്ബോർഡ്",
+    logout: "ലോഗൗട്ട്",
+    messages: "സന്ദേശങ്ങൾ",
+    uploadTitle: "വസ്തു അപ്ലോഡ് ചെയ്യുക",
+    editTitle: "അപ്ലോഡ് അപേക്ഷ തിരുത്തുക",
+    itemDetails: "വസ്തു വിവരങ്ങൾ",
+    itemType: "വസ്തു തരം",
+    foundItem: "കണ്ടെത്തിയ വസ്തു",
+    lostItem: "നഷ്ടപ്പെട്ട വസ്തു",
+    itemName: "വസ്തു പേര്",
+    category: "വിഭാഗം",
+    description: "വിവരണം",
+    locationName: "സ്ഥലത്തിന്റെ പേര്",
+    useLocation: "എന്റെ നിലവിലെ സ്ഥാനം ഉപയോഗിക്കുക",
+    mapsLink: "Google Maps ലിങ്ക്",
+    date: "തീയതി",
+    contact: "ബന്ധപ്പെടേണ്ട നമ്പർ",
+    imageUpload: "ചിത്രം അപ്ലോഡ് / ക്യാമറ ഉപയോഗിക്കുക",
+    submitItem: "വസ്തു സമർപ്പിക്കുക",
+    updateItem: "അപേക്ഷ പുതുക്കുക",
+    imagePreview: "ചിത്രം പ്രിവ്യൂ",
+    cameraNote: "മൊബൈൽ ഉപയോക്താക്കൾക്ക് നേരിട്ട് ക്യാമറ ഉപയോഗിച്ച് ഫോട്ടോ എടുക്കാം.",
+    uploadFoundItem: "വസ്തു റിപ്പോർട്ട് ചെയ്യുക",
+    uploadFoundText: "ചിത്രം, സ്ഥലം, മാപ്പ് ലിങ്ക്, ബന്ധപ്പെടേണ്ട വിവരങ്ങൾ ചേർക്കുക.",
+    uploadItem: "അപ്ലോഡ്",
+    availableItems: "ലഭ്യമായ വസ്തുക്കൾ",
+    myUploads: "എന്റെ അപ്ലോഡുകൾ",
+    totalUploads: "മൊത്തം അപ്ലോഡുകൾ",
+    pendingRequests: "ബാക്കിയുള്ള അഭ്യർത്ഥനകൾ",
+    claimThisItem: "ഈ വസ്തു ക്ലെയിം ചെയ്യുക",
+    proofText: "ഈ വസ്തു നിങ്ങളുടേതാണ് എന്ന് തെളിയിക്കുന്ന വിവരങ്ങൾ നൽകുക.",
+    sendClaim: "ക്ലെയിം അയക്കുക",
+    editRequest: "തിരുത്തുക",
+    fullName: "പൂർണ്ണ പേര്",
+    userId: "യൂസർ ID / രജിസ്റ്റർ നമ്പർ / സ്റ്റാഫ് ID / വിസിറ്റർ ID",
+    phone: "ഫോൺ നമ്പർ",
+    password: "പാസ്‌വേഡ്",
+    userType: "ഉപയോക്തൃ തരം",
+    selectUserType: "ഉപയോക്തൃ തരം തിരഞ്ഞെടുക്കുക",
+    student: "വിദ്യാർത്ഥി",
+    faculty: "ഫാക്കൽറ്റി",
+    assistantProfessor: "അസിസ്റ്റന്റ് പ്രൊഫസർ",
+    professor: "പ്രൊഫസർ",
+    parent: "രക്ഷിതാവ്",
+    visitor: "സന്ദർശകൻ",
+    staff: "സെക്യൂരിറ്റി / സ്റ്റാഫ്",
+    publicUser: "പൊതു ഉപയോക്താവ്",
+    createPassword: "പാസ്‌വേഡ് സൃഷ്ടിക്കുക",
+    confirmPassword: "പാസ്‌വേഡ് സ്ഥിരീകരിക്കുക",
+    createAccount: "അക്കൗണ്ട് സൃഷ്ടിക്കുക",
+    selectCategory: "വിഭാഗം തിരഞ്ഞെടുക്കുക",
+    allCategories: "എല്ലാ വിഭാഗങ്ങളും",
+    loadingItem: "വസ്തു വിവരങ്ങൾ ലോഡ് ചെയ്യുന്നു...",
+    raiseComplaint: "പരാതി നൽകുക",
+    subject: "വിഷയം",
+    message: "സന്ദേശം",
+    sendComplaint: "പരാതി അയക്കുക",
+    myComplaints: "എന്റെ പരാതികൾ",
+    chatWithAdmin: "അഡ്മിനുമായി ചാറ്റ് ചെയ്യുക",
+    sendReply: "മറുപടി അയക്കുക",
+    adminDashboard: "അഡ്മിൻ ഡാഷ്ബോർഡ്",
+    manageUsers: "ഉപയോക്താക്കൾ",
+    manageItems: "വസ്തുക്കൾ",
+    complaints: "പരാതികൾ",
+    totalUsers: "മൊത്തം ഉപയോക്താക്കൾ",
+    totalItems: "മൊത്തം വസ്തുക്കൾ",
+    pendingItems: "ബാക്കിയുള്ള വസ്തുക്കൾ",
+    totalClaims: "മൊത്തം ക്ലെയിമുകൾ",
+    openComplaints: "തുറന്ന പരാതികൾ",
+    returnedItems: "തിരികെ നൽകിയ വസ്തുക്കൾ",
+    allUsers: "എല്ലാ രജിസ്റ്റർ ചെയ്ത ഉപയോക്താക്കൾ",
+    uploadedItems: "അപ്ലോഡ് ചെയ്ത വസ്തുക്കൾ",
+    allComplaints: "എല്ലാ പരാതികളും",
+    chatWithUser: "ഉപയോക്താവുമായി ചാറ്റ് ചെയ്യുക",
+    userIdPlaceholder: "ഉദാഹരണം: 24I355",
+    passwordPlaceholder: "പാസ്‌വേഡ് നൽകുക",
+    namePlaceholder: "നിങ്ങളുടെ പേര് നൽകുക",
+    phonePlaceholder: "ഉദാഹരണം: 9876543210",
+    createPasswordPlaceholder: "കുറഞ്ഞത് 8 അക്ഷരങ്ങൾ",
+    confirmPasswordPlaceholder: "പാസ്‌വേഡ് വീണ്ടും നൽകുക",
+    searchPlaceholder: "വസ്തു പേരിൽ തിരയുക...",
+    locationPlaceholder: "സ്ഥലം",
+    itemNamePlaceholder: "ഉദാഹരണം: കറുത്ത വാലറ്റ്",
+    descriptionPlaceholder: "നിറം, ബ്രാൻഡ്, പ്രത്യേക അടയാളങ്ങൾ നൽകുക...",
+    locationNamePlaceholder: "ഉദാഹരണം: ലൈബ്രറി പ്രവേശനം",
+    mapsPlaceholder: "Google Maps ലിങ്ക് പേസ്റ്റ് ചെയ്യുക",
+    proofPlaceholder: "ഉദാഹരണം: എന്റെ വസ്തുവിൽ പ്രത്യേക അടയാളം ഉണ്ട്.",
+    subjectPlaceholder: "ഉദാഹരണം: തെറ്റായ വസ്തു അംഗീകാരം",
+    messagePlaceholder: "നിങ്ങളുടെ പ്രശ്നം വിശദീകരിക്കുക...",
+    replyPlaceholder: "മറുപടി ടൈപ്പ് ചെയ്യുക..."
+  },
+
+  kn: {
+    language: "ಭಾಷೆ",
+    appName: "ಕ್ಯಾಂಪಸ್ Lost & Found",
+    login: "ಲಾಗಿನ್",
+    register: "ರಿಜಿಸ್ಟರ್",
+    backHome: "← ಮನೆಗೆ ಹಿಂತಿರುಗಿ",
+    loginNote: "ನಿಮ್ಮ ಯೂಸರ್ ID ಮತ್ತು ಪಾಸ್‌ವರ್ಡ್ ಬಳಸಿ.",
+    whatDo: "ನೀವು ಏನು ಮಾಡಲು ಬಯಸುತ್ತೀರಿ?",
+    searchAction: "ವಸ್ತುಗಳನ್ನು ಹುಡುಕಿ",
+    reportLost: "ಕಳೆದುಹೋದ ವಸ್ತು ವರದಿ ಮಾಡಿ",
+    reportFound: "ಸಿಕ್ಕ ವಸ್ತು ವರದಿ ಮಾಡಿ",
+    tag: "ಕಾಲೇಜು ಉಪಯೋಗಿ ವೆಬ್‌ಸೈಟ್",
+    heroTitle: "ಕಳೆದುಹೋದ ವಸ್ತುಗಳನ್ನು ಹುಡುಕಿ. ಸಿಕ್ಕ ವಸ್ತುಗಳನ್ನು ವರದಿ ಮಾಡಿ.",
+    heroText: "ವಿದ್ಯಾರ್ಥಿಗಳು, ಶಿಕ್ಷಕರು, ಪೋಷಕರು, ಭೇಟಿ ದಾರರು ಬಳಸಬಹುದಾದ ಕ್ಯಾಂಪಸ್ ಪೋರ್ಟಲ್.",
+    getStarted: "ಪ್ರಾರಂಭಿಸಿ",
+    reportNow: "ವರದಿ / ಹುಡುಕಿ",
+    searchItems: "ವಸ್ತುಗಳನ್ನು ಹುಡುಕಿ",
+    searchText: "ಹೆಸರು, ವರ್ಗ, ಸ್ಥಳ, ದಿನಾಂಕದಿಂದ ಹುಡುಕಿ.",
+    uploadImages: "ಚಿತ್ರಗಳನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿ",
+    uploadText: "ಫೈಲ್‌ನಿಂದ ಅಥವಾ ಮೊಬೈಲ್ ಕ್ಯಾಮೆರಾ ಮೂಲಕ ಅಪ್ಲೋಡ್ ಮಾಡಿ.",
+    claimRequests: "ಹಕ್ಕು ವಿನಂತಿಗಳು",
+    claimText: "ಸಾಕ್ಷಿ ಕಳುಹಿಸಿ ಅನುಮೋದನೆಗಾಗಿ ಕಾಯಿರಿ.",
+    userDashboard: "ಬಳಕೆದಾರ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
+    lostDashboard: "ಬಳಕೆದಾರ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
+    foundDashboard: "ನನ್ನ ವರದಿಗಳು",
+    dashboard: "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
+    logout: "ಲಾಗೌಟ್",
+    messages: "ಸಂದೇಶಗಳು",
+    uploadTitle: "ವಸ್ತು ಅಪ್ಲೋಡ್ ಮಾಡಿ",
+    editTitle: "ಅಪ್ಲೋಡ್ ವಿನಂತಿ ತಿದ್ದು",
+    itemDetails: "ವಸ್ತು ವಿವರಗಳು",
+    itemType: "ವಸ್ತು ಪ್ರಕಾರ",
+    foundItem: "ಸಿಕ್ಕ ವಸ್ತು",
+    lostItem: "ಕಳೆದುಹೋದ ವಸ್ತು",
+    itemName: "ವಸ್ತು ಹೆಸರು",
+    category: "ವರ್ಗ",
+    description: "ವಿವರಣೆ",
+    locationName: "ಸ್ಥಳದ ಹೆಸರು",
+    useLocation: "ನನ್ನ ಪ್ರಸ್ತುತ ಸ್ಥಳ ಬಳಸಿ",
+    mapsLink: "Google Maps ಲಿಂಕ್",
+    date: "ದಿನಾಂಕ",
+    contact: "ಸಂಪರ್ಕ ಸಂಖ್ಯೆ",
+    imageUpload: "ಚಿತ್ರ ಅಪ್ಲೋಡ್ / ಕ್ಯಾಮೆರಾ ಬಳಸಿ",
+    submitItem: "ವಸ್ತು ಸಲ್ಲಿಸಿ",
+    updateItem: "ವಿನಂತಿ ನವೀಕರಿಸಿ",
+    imagePreview: "ಚಿತ್ರ ಪೂರ್ವವೀಕ್ಷಣೆ",
+    cameraNote: "ಮೊಬೈಲ್ ಬಳಕೆದಾರರು ನೇರವಾಗಿ ಕ್ಯಾಮೆರಾದಿಂದ ಫೋಟೋ ತೆಗೆದುಕೊಳ್ಳಬಹುದು.",
+    uploadFoundItem: "ವಸ್ತು ವರದಿ ಮಾಡಿ",
+    uploadFoundText: "ಚಿತ್ರ, ಸ್ಥಳ, ಮ್ಯಾಪ್ ಲಿಂಕ್ ಮತ್ತು ಸಂಪರ್ಕ ವಿವರಗಳನ್ನು ಸೇರಿಸಿ.",
+    uploadItem: "ಅಪ್ಲೋಡ್",
+    availableItems: "ಲಭ್ಯವಿರುವ ವಸ್ತುಗಳು",
+    myUploads: "ನನ್ನ ಅಪ್ಲೋಡ್‌ಗಳು",
+    totalUploads: "ಒಟ್ಟು ಅಪ್ಲೋಡ್‌ಗಳು",
+    pendingRequests: "ಬಾಕಿ ವಿನಂತಿಗಳು",
+    claimThisItem: "ಈ ವಸ್ತು ಕ್ಲೇಮ್ ಮಾಡಿ",
+    proofText: "ಈ ವಸ್ತು ನಿಮ್ಮದು ಎಂದು ಸಾಬೀತುಪಡಿಸಿ.",
+    sendClaim: "ಕ್ಲೇಮ್ ಕಳುಹಿಸಿ",
+    editRequest: "ತಿದ್ದು",
+    fullName: "ಪೂರ್ಣ ಹೆಸರು",
+    userId: "ಯೂಸರ್ ID / ರಿಜಿಸ್ಟರ್ ನಂ / ಸ್ಟಾಫ್ ID / ವಿಸಿಟರ್ ID",
+    phone: "ಫೋನ್ ಸಂಖ್ಯೆ",
+    password: "ಪಾಸ್‌ವರ್ಡ್",
+    userType: "ಬಳಕೆದಾರ ಪ್ರಕಾರ",
+    selectUserType: "ಬಳಕೆದಾರ ಪ್ರಕಾರ ಆಯ್ಕೆಮಾಡಿ",
+    student: "ವಿದ್ಯಾರ್ಥಿ",
+    faculty: "ಫ್ಯಾಕಲ್ಟಿ",
+    assistantProfessor: "ಅಸಿಸ್ಟೆಂಟ್ ಪ್ರೊಫೆಸರ್",
+    professor: "ಪ್ರೊಫೆಸರ್",
+    parent: "ಪೋಷಕರು",
+    visitor: "ಭೇಟಿದಾರ",
+    staff: "ಸಿಕ್ಯುರಿಟಿ / ಸ್ಟಾಫ್",
+    publicUser: "ಸಾಮಾನ್ಯ ಬಳಕೆದಾರ",
+    createPassword: "ಪಾಸ್‌ವರ್ಡ್ ರಚಿಸಿ",
+    confirmPassword: "ಪಾಸ್‌ವರ್ಡ್ ದೃಢೀಕರಿಸಿ",
+    createAccount: "ಖಾತೆ ರಚಿಸಿ",
+    selectCategory: "ವರ್ಗ ಆಯ್ಕೆಮಾಡಿ",
+    allCategories: "ಎಲ್ಲಾ ವರ್ಗಗಳು",
+    loadingItem: "ವಸ್ತು ವಿವರಗಳು ಲೋಡ್ ಆಗುತ್ತಿವೆ...",
+    raiseComplaint: "ದೂರು ನೀಡಿ",
+    subject: "ವಿಷಯ",
+    message: "ಸಂದೇಶ",
+    sendComplaint: "ದೂರು ಕಳುಹಿಸಿ",
+    myComplaints: "ನನ್ನ ದೂರುಗಳು",
+    chatWithAdmin: "ಅಡ್ಮಿನ್ ಜೊತೆ ಚಾಟ್",
+    sendReply: "ಪ್ರತ್ಯುತ್ತರ ಕಳುಹಿಸಿ",
+    adminDashboard: "ಅಡ್ಮಿನ್ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
+    manageUsers: "ಬಳಕೆದಾರರು",
+    manageItems: "ವಸ್ತುಗಳು",
+    complaints: "ದೂರುಗಳು",
+    totalUsers: "ಒಟ್ಟು ಬಳಕೆದಾರರು",
+    totalItems: "ಒಟ್ಟು ವಸ್ತುಗಳು",
+    pendingItems: "ಬಾಕಿ ವಸ್ತುಗಳು",
+    totalClaims: "ಒಟ್ಟು ಕ್ಲೇಮ್‌ಗಳು",
+    openComplaints: "ತೆರೆದ ದೂರುಗಳು",
+    returnedItems: "ಹಿಂತಿರುಗಿಸಿದ ವಸ್ತುಗಳು",
+    allUsers: "ಎಲ್ಲಾ ನೋಂದಾಯಿತ ಬಳಕೆದಾರರು",
+    uploadedItems: "ಅಪ್ಲೋಡ್ ಮಾಡಿದ ವಸ್ತುಗಳು",
+    allComplaints: "ಎಲ್ಲಾ ದೂರುಗಳು",
+    chatWithUser: "ಬಳಕೆದಾರರ ಜೊತೆ ಚಾಟ್",
+    userIdPlaceholder: "ಉದಾಹರಣೆ: 24I355",
+    passwordPlaceholder: "ಪಾಸ್‌ವರ್ಡ್ ನಮೂದಿಸಿ",
+    namePlaceholder: "ನಿಮ್ಮ ಹೆಸರು ನಮೂದಿಸಿ",
+    phonePlaceholder: "ಉದಾಹರಣೆ: 9876543210",
+    createPasswordPlaceholder: "ಕನಿಷ್ಠ 8 ಅಕ್ಷರಗಳು",
+    confirmPasswordPlaceholder: "ಪಾಸ್‌ವರ್ಡ್ ಮತ್ತೆ ನಮೂದಿಸಿ",
+    searchPlaceholder: "ವಸ್ತು ಹೆಸರಿನಿಂದ ಹುಡುಕಿ...",
+    locationPlaceholder: "ಸ್ಥಳ",
+    itemNamePlaceholder: "ಉದಾಹರಣೆ: ಕಪ್ಪು ವಾಲೆಟ್",
+    descriptionPlaceholder: "ಬಣ್ಣ, ಬ್ರ್ಯಾಂಡ್, ವಿಶೇಷ ಗುರುತುಗಳನ್ನು ನಮೂದಿಸಿ...",
+    locationNamePlaceholder: "ಉದಾಹರಣೆ: ಲೈಬ್ರರಿ ಪ್ರವೇಶ",
+    mapsPlaceholder: "Google Maps ಲಿಂಕ್ ಪೇಸ್ಟ್ ಮಾಡಿ",
+    proofPlaceholder: "ಉದಾಹರಣೆ: ನನ್ನ ವಸ್ತುವಿನಲ್ಲಿ ವಿಶೇಷ ಗುರುತು ಇದೆ.",
+    subjectPlaceholder: "ಉದಾಹರಣೆ: ತಪ್ಪಾದ ವಸ್ತು ಅನುಮೋದನೆ",
+    messagePlaceholder: "ನಿಮ್ಮ ಸಮಸ್ಯೆಯನ್ನು ವಿವರಿಸಿ...",
+    replyPlaceholder: "ನಿಮ್ಮ ಉತ್ತರವನ್ನು ಟೈಪ್ ಮಾಡಿ..."
   }
 };
 
-["hi", "te", "ml", "kn"].forEach((lang) => {
-  translations[lang] = { ...translations.en, ...translations[lang] };
-});
+/* ---------------- PAGE START ---------------- */
 
 document.addEventListener("DOMContentLoaded", async () => {
   applyDarkMode();
@@ -276,7 +740,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (page === "adminComplaints") await initAdminComplaints();
 });
 
-/* LANGUAGE */
+/* ---------------- LANGUAGE ---------------- */
 
 function initHome() {
   const lang = localStorage.getItem(LANG_KEY);
@@ -288,8 +752,9 @@ function removeDuplicateLanguageControls() {
   const oldSelect = document.getElementById("languageSelect");
   if (oldSelect) oldSelect.remove();
 
-  document.querySelectorAll(".custom-language").forEach((el, index) => {
-    if (index > 0) el.remove();
+  const languageBlocks = document.querySelectorAll(".custom-language");
+  languageBlocks.forEach((block, index) => {
+    if (index > 0) block.remove();
   });
 }
 
@@ -341,12 +806,15 @@ function setupLanguageMenu() {
 }
 
 function setLanguage(lang) {
+  if (!translations[lang]) lang = "en";
+
   localStorage.setItem(LANG_KEY, lang);
 
   const user = getCurrentUser();
   if (user) {
     user.preferred_language = lang;
     setCurrentUser(user);
+
     supabaseClient
       .from("profiles")
       .update({ preferred_language: lang })
@@ -382,16 +850,28 @@ function applyLanguage() {
 }
 
 function translateDynamicPageText() {
-  if (document.body.dataset.page === "upload") {
+  const page = document.body.dataset.page;
+
+  if (page === "upload") {
     const title = document.querySelector("h2");
     const submit = document.getElementById("submitItemBtn");
 
     if (title) title.textContent = editingItemId ? t("editTitle") : t("uploadTitle");
     if (submit) submit.textContent = editingItemId ? t("updateItem") : t("submitItem");
   }
+
+  if (page === "login") {
+    const authTitle = document.getElementById("authTitle");
+    const registerForm = document.getElementById("registerForm");
+
+    if (authTitle) {
+      const isRegister = registerForm && !registerForm.classList.contains("hidden");
+      authTitle.textContent = isRegister ? t("register") : t("login");
+    }
+  }
 }
 
-/* DARK MODE */
+/* ---------------- DARK MODE ---------------- */
 
 function toggleDarkMode() {
   const current = localStorage.getItem(DARK_KEY) === "true";
@@ -418,6 +898,7 @@ function setupThemeToggle() {
     if (user) {
       user.dark_mode = toggle.checked;
       setCurrentUser(user);
+
       supabaseClient
         .from("profiles")
         .update({ dark_mode: toggle.checked })
@@ -426,7 +907,7 @@ function setupThemeToggle() {
   };
 }
 
-/* COMMON */
+/* ---------------- COMMON ---------------- */
 
 function getCurrentUser() {
   return JSON.parse(localStorage.getItem(CURRENT_USER_KEY));
@@ -480,14 +961,16 @@ function requireAdmin() {
 
 function goDashboard() {
   const user = getCurrentUser();
+
   if (!user) {
     window.location.href = "login.html";
     return;
   }
 
-  window.location.href = user.user_type === "admin"
-    ? "admin-dashboard.html"
-    : "lost-dashboard.html";
+  window.location.href =
+    user.user_type === "admin"
+      ? "admin-dashboard.html"
+      : "lost-dashboard.html";
 }
 
 function getNextActionUrl() {
@@ -501,6 +984,7 @@ function getNextActionUrl() {
 
 function escapeHTML(value) {
   if (value === null || value === undefined) return "";
+
   return String(value)
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
@@ -516,6 +1000,7 @@ function shortText(text, limit) {
 
 function togglePassword(inputId) {
   const input = document.getElementById(inputId);
+  if (!input) return;
   input.type = input.type === "password" ? "text" : "password";
 }
 
@@ -533,6 +1018,7 @@ function setButtonLoading(button, loading, text) {
 
 function createPlaceholderImage(text) {
   const safeText = escapeHTML(text || "Item");
+
   const svg = `
     <svg xmlns="http://www.w3.org/2000/svg" width="600" height="400">
       <rect width="100%" height="100%" fill="#dbeafe"/>
@@ -540,6 +1026,7 @@ function createPlaceholderImage(text) {
       font-size="42" font-family="Arial" fill="#1d4ed8">${safeText}</text>
     </svg>
   `;
+
   return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
 }
 
@@ -549,7 +1036,7 @@ function getStatusClass(status) {
   return "status";
 }
 
-/* AUTH */
+/* ---------------- AUTH ---------------- */
 
 function initAuthPage() {
   const loginTab = document.getElementById("loginTab");
@@ -590,6 +1077,7 @@ function clearMessage() {
 
 function showAuthMessage(text, color = "red") {
   const msg = document.getElementById("authMessage");
+  if (!msg) return;
   msg.textContent = text;
   msg.style.color = color;
 }
@@ -659,10 +1147,12 @@ async function registerUser(e) {
     showAuthMessage("Account created successfully. Redirecting...", "green");
 
     setTimeout(() => {
-      window.location.href = createdUser.user_type === "admin"
-        ? "admin-dashboard.html"
-        : getNextActionUrl();
+      window.location.href =
+        createdUser.user_type === "admin"
+          ? "admin-dashboard.html"
+          : getNextActionUrl();
     }, 900);
+
   } catch (error) {
     showAuthMessage(error.message, "red");
     setButtonLoading(button, false, t("createAccount"));
@@ -679,7 +1169,9 @@ async function loginUser(e) {
   const password = document.getElementById("loginPassword").value.trim();
 
   try {
-    if (!userId || !password) throw new Error("Please enter User ID and password.");
+    if (!userId || !password) {
+      throw new Error("Please enter User ID and password.");
+    }
 
     const { data: user, error } = await supabaseClient
       .from("profiles")
@@ -693,23 +1185,30 @@ async function loginUser(e) {
 
     setCurrentUser(user);
 
-    if (user.preferred_language) localStorage.setItem(LANG_KEY, user.preferred_language);
-    if (typeof user.dark_mode === "boolean") localStorage.setItem(DARK_KEY, String(user.dark_mode));
+    if (user.preferred_language) {
+      localStorage.setItem(LANG_KEY, user.preferred_language);
+    }
+
+    if (typeof user.dark_mode === "boolean") {
+      localStorage.setItem(DARK_KEY, String(user.dark_mode));
+    }
 
     showAuthMessage("Login successful. Redirecting...", "green");
 
     setTimeout(() => {
-      window.location.href = user.user_type === "admin"
-        ? "admin-dashboard.html"
-        : getNextActionUrl();
+      window.location.href =
+        user.user_type === "admin"
+          ? "admin-dashboard.html"
+          : getNextActionUrl();
     }, 700);
+
   } catch (error) {
     showAuthMessage(error.message, "red");
     setButtonLoading(button, false, t("login"));
   }
 }
 
-/* FETCH */
+/* ---------------- FETCH ---------------- */
 
 async function fetchItems() {
   const { data, error } = await supabaseClient
@@ -767,7 +1266,7 @@ async function fetchComplaints() {
   return data || [];
 }
 
-/* LOST DASHBOARD */
+/* ---------------- LOST DASHBOARD ---------------- */
 
 async function initLostDashboard() {
   const user = requireLogin();
@@ -818,11 +1317,12 @@ async function renderLostItems() {
     : `<div class="empty">No matching items available.</div>`;
 }
 
-/* FOUND DASHBOARD */
+/* ---------------- FOUND DASHBOARD ---------------- */
 
 async function initFoundDashboard() {
   const user = requireLogin();
   if (!user) return;
+
   await renderFoundDashboard(user);
 }
 
@@ -835,9 +1335,17 @@ async function renderFoundDashboard(user) {
   const myClaims = claims.filter(claim => myItemIds.includes(claim.item_id));
   const pendingClaims = myClaims.filter(claim => claim.status === "Pending");
 
-  if (document.getElementById("uploadCount")) document.getElementById("uploadCount").textContent = myItems.length;
-  if (document.getElementById("claimCount")) document.getElementById("claimCount").textContent = myClaims.length;
-  if (document.getElementById("pendingCount")) document.getElementById("pendingCount").textContent = pendingClaims.length;
+  if (document.getElementById("uploadCount")) {
+    document.getElementById("uploadCount").textContent = myItems.length;
+  }
+
+  if (document.getElementById("claimCount")) {
+    document.getElementById("claimCount").textContent = myClaims.length;
+  }
+
+  if (document.getElementById("pendingCount")) {
+    document.getElementById("pendingCount").textContent = pendingClaims.length;
+  }
 
   renderClaimsList(myClaims, items);
   renderMyUploadedItems(myItems);
@@ -861,12 +1369,15 @@ function renderClaimsList(claims, items) {
         <p><b>Claimed By:</b> ${escapeHTML(claim.claimant_name)} (${escapeHTML(claim.claimant_id)})</p>
         <p><b>Proof:</b> ${escapeHTML(claim.proof)}</p>
         <p><b>Status:</b> ${escapeHTML(claim.status)}</p>
+
         ${
           claim.status === "Pending"
-            ? `<div class="claim-actions">
+            ? `
+              <div class="claim-actions">
                 <button class="btn accept" onclick="updateClaimStatus(${claim.id}, 'Accepted')">Accept</button>
                 <button class="btn reject" onclick="updateClaimStatus(${claim.id}, 'Rejected')">Reject</button>
-              </div>`
+              </div>
+            `
             : ""
         }
       </div>
@@ -882,7 +1393,6 @@ function renderMyUploadedItems(items) {
     ? items.map(item => createItemCard(item, false)).join("")
     : `<div class="empty">You have not uploaded any item yet.</div>`;
 }
-
 async function updateClaimStatus(claimId, status) {
   const claims = await fetchClaims();
   const claim = claims.find(c => c.id === claimId);
@@ -920,7 +1430,7 @@ async function updateClaimStatus(claimId, status) {
   location.reload();
 }
 
-/* UPLOAD + EDIT */
+/* ---------------- UPLOAD + EDIT ---------------- */
 
 async function initUploadPage() {
   const user = requireLogin();
@@ -939,31 +1449,37 @@ async function initUploadPage() {
     itemTypeElement.value = urlType;
   }
 
-  if (editId) await loadItemForEdit(editId, user);
+  if (editId) {
+    await loadItemForEdit(editId, user);
+  }
 
   let selectedFile = null;
 
-  imageInput.addEventListener("change", () => {
-    selectedFile = imageInput.files[0];
+  if (imageInput) {
+    imageInput.addEventListener("change", () => {
+      selectedFile = imageInput.files[0];
 
-    if (!selectedFile) return;
+      if (!selectedFile) return;
 
-    if (!selectedFile.type.startsWith("image/")) {
-      alert("Please select only image files.");
-      imageInput.value = "";
-      selectedFile = null;
-      return;
-    }
+      if (!selectedFile.type.startsWith("image/")) {
+        alert("Please select only image files.");
+        imageInput.value = "";
+        selectedFile = null;
+        return;
+      }
 
-    if (selectedFile.size > 5 * 1024 * 1024) {
-      alert("Image is too large. Upload below 5 MB.");
-      imageInput.value = "";
-      selectedFile = null;
-      return;
-    }
+      if (selectedFile.size > 5 * 1024 * 1024) {
+        alert("Image is too large. Upload below 5 MB.");
+        imageInput.value = "";
+        selectedFile = null;
+        return;
+      }
 
-    imagePreview.src = URL.createObjectURL(selectedFile);
-  });
+      if (imagePreview) {
+        imagePreview.src = URL.createObjectURL(selectedFile);
+      }
+    });
+  }
 
   uploadForm.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -1033,17 +1549,23 @@ async function initUploadPage() {
           .eq("reporter_id", user.user_id);
 
         if (error) throw error;
-        message.textContent = "Request updated. Waiting for admin approval again.";
+
+        if (message) {
+          message.textContent = "Request updated. Waiting for admin approval again.";
+          message.style.color = "green";
+        }
       } else {
         const { error } = await supabaseClient
           .from("items")
           .insert(itemData);
 
         if (error) throw error;
-        message.textContent = "Item submitted. Waiting for admin approval.";
-      }
 
-      message.style.color = "green";
+        if (message) {
+          message.textContent = "Item submitted. Waiting for admin approval.";
+          message.style.color = "green";
+        }
+      }
 
       setTimeout(() => {
         window.location.href = "found-dashboard.html";
@@ -1089,7 +1611,10 @@ async function loadItemForEdit(itemId, user) {
   document.getElementById("longitude").value = item.longitude || "";
   document.getElementById("mapsLink").value = item.maps_link || "";
 
-  if (item.image_url) document.getElementById("imagePreview").src = item.image_url;
+  const preview = document.getElementById("imagePreview");
+  if (preview && item.image_url) {
+    preview.src = item.image_url;
+  }
 
   applyLanguage();
 }
@@ -1112,11 +1637,13 @@ function getCurrentLocation() {
 
       alert("Location captured successfully.");
     },
-    () => alert("Location permission denied or unavailable.")
+    () => {
+      alert("Location permission denied or unavailable.");
+    }
   );
 }
 
-/* ITEM DETAILS */
+/* ---------------- ITEM DETAILS ---------------- */
 
 async function initItemDetails() {
   const user = requireLogin();
@@ -1134,7 +1661,7 @@ async function initItemDetails() {
 
   if (error || !item) {
     detailsBox.innerHTML = `<div class="empty">Item not found.</div>`;
-    claimSection.style.display = "none";
+    if (claimSection) claimSection.style.display = "none";
     return;
   }
 
@@ -1143,28 +1670,43 @@ async function initItemDetails() {
 
   detailsBox.innerHTML = `
     <img src="${escapeHTML(item.image_url)}" alt="${escapeHTML(item.title)}">
+
     <div class="details-info">
       <span class="badge">${escapeHTML(item.item_type || "found")}</span>
       <span class="badge">${escapeHTML(item.category)}</span>
       <span class="badge ${statusClass}">${escapeHTML(item.status)}</span>
+
       <h2>${escapeHTML(item.title)}</h2>
+
       <p><b>Description:</b> ${escapeHTML(item.description)}</p>
       <p><b>Location:</b> ${escapeHTML(item.location_name)}</p>
       <p><b>Date:</b> ${escapeHTML(item.found_date)}</p>
       <p><b>Reporter Name:</b> ${escapeHTML(item.reporter_name)}</p>
       <p><b>Reporter ID:</b> ${escapeHTML(item.reporter_id)}</p>
       <p><b>Contact:</b> ${escapeHTML(item.contact_number)}</p>
-      ${item.maps_link ? `<p><a class="btn secondary" target="_blank" href="${escapeHTML(item.maps_link)}">Open Google Maps Location</a></p>` : ""}
-      ${isOwner ? `<p><a class="btn primary" href="upload.html?edit=${encodeURIComponent(item.id)}">${t("editRequest")}</a></p>` : ""}
+
+      ${
+        item.maps_link
+        ? `<p><a class="btn secondary" target="_blank" href="${escapeHTML(item.maps_link)}">Open Google Maps Location</a></p>`
+        : ""
+      }
+
+      ${
+        isOwner
+        ? `<p><a class="btn primary" href="upload.html?edit=${encodeURIComponent(item.id)}">${t("editRequest")}</a></p>`
+        : ""
+      }
     </div>
   `;
 
   if (item.status === "Returned" || isOwner) {
-    claimSection.style.display = "none";
+    if (claimSection) claimSection.style.display = "none";
     return;
   }
 
   const claimForm = document.getElementById("claimForm");
+
+  if (!claimForm) return;
 
   claimForm.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -1185,35 +1727,45 @@ async function initItemDetails() {
       return;
     }
 
-    const { error: claimError } = await supabaseClient.from("claims").insert({
-      item_id: item.id,
-      claimant_id: user.user_id,
-      claimant_name: user.full_name,
-      proof,
-      status: "Pending"
-    });
+    const { error: claimError } = await supabaseClient
+      .from("claims")
+      .insert({
+        item_id: item.id,
+        claimant_id: user.user_id,
+        claimant_name: user.full_name,
+        proof,
+        status: "Pending"
+      });
 
     if (claimError) {
       alert("Request failed: " + claimError.message);
       return;
     }
 
-    await supabaseClient.from("items").update({ status: "Claim Pending" }).eq("id", item.id);
+    await supabaseClient
+      .from("items")
+      .update({ status: "Claim Pending" })
+      .eq("id", item.id);
 
-    document.getElementById("claimMessage").textContent = "Request sent successfully.";
+    document.getElementById("claimMessage").textContent =
+      "Request sent successfully.";
     document.getElementById("claimMessage").style.color = "green";
+
     claimForm.reset();
   });
 }
 
-/* COMPLAINTS */
+/* ---------------- COMPLAINTS ---------------- */
 
 async function initComplaints() {
   const user = requireLogin();
   if (!user) return;
 
-  document.getElementById("complaintForm").addEventListener("submit", createComplaint);
-  document.getElementById("replyForm").addEventListener("submit", sendUserReply);
+  const complaintForm = document.getElementById("complaintForm");
+  const replyForm = document.getElementById("replyForm");
+
+  if (complaintForm) complaintForm.addEventListener("submit", createComplaint);
+  if (replyForm) replyForm.addEventListener("submit", sendUserReply);
 
   await renderUserComplaints();
 }
@@ -1241,13 +1793,15 @@ async function createComplaint(e) {
     return;
   }
 
-  await supabaseClient.from("complaint_messages").insert({
-    complaint_id: complaint.id,
-    sender_id: user.user_id,
-    sender_name: user.full_name,
-    sender_role: user.user_type,
-    message
-  });
+  await supabaseClient
+    .from("complaint_messages")
+    .insert({
+      complaint_id: complaint.id,
+      sender_id: user.user_id,
+      sender_name: user.full_name,
+      sender_role: user.user_type,
+      message
+    });
 
   e.target.reset();
   await renderUserComplaints();
@@ -1256,6 +1810,8 @@ async function createComplaint(e) {
 async function renderUserComplaints() {
   const user = getCurrentUser();
   const list = document.getElementById("complaintsList");
+
+  if (!list) return;
 
   const { data } = await supabaseClient
     .from("complaints")
@@ -1285,7 +1841,11 @@ async function openComplaint(id) {
     .eq("complaint_id", id)
     .order("created_at", { ascending: true });
 
-  document.getElementById("chatMessages").innerHTML = data.map(m => `
+  const box = document.getElementById("chatMessages");
+
+  if (!box) return;
+
+  box.innerHTML = data.map(m => `
     <div class="chat-message ${m.sender_role === "admin" ? "chat-admin" : "chat-user"}">
       <b>${escapeHTML(m.sender_name)}:</b>
       <p>${escapeHTML(m.message)}</p>
@@ -1306,19 +1866,21 @@ async function sendUserReply(e) {
 
   if (!text) return;
 
-  await supabaseClient.from("complaint_messages").insert({
-    complaint_id: selectedComplaintId,
-    sender_id: user.user_id,
-    sender_name: user.full_name,
-    sender_role: user.user_type,
-    message: text
-  });
+  await supabaseClient
+    .from("complaint_messages")
+    .insert({
+      complaint_id: selectedComplaintId,
+      sender_id: user.user_id,
+      sender_name: user.full_name,
+      sender_role: user.user_type,
+      message: text
+    });
 
   document.getElementById("replyText").value = "";
   await openComplaint(selectedComplaintId);
 }
 
-/* ADMIN */
+/* ---------------- ADMIN ---------------- */
 
 async function initAdminDashboard() {
   const admin = requireAdmin();
@@ -1331,10 +1893,13 @@ async function initAdminDashboard() {
 
   document.getElementById("totalUsers").textContent = users.length;
   document.getElementById("totalItems").textContent = items.length;
-  document.getElementById("pendingItems").textContent = items.filter(i => i.admin_status === "Pending").length;
+  document.getElementById("pendingItems").textContent =
+    items.filter(i => i.admin_status === "Pending").length;
   document.getElementById("totalClaims").textContent = claims.length;
-  document.getElementById("openComplaints").textContent = complaints.filter(c => c.status === "Open").length;
-  document.getElementById("returnedItems").textContent = items.filter(i => i.status === "Returned").length;
+  document.getElementById("openComplaints").textContent =
+    complaints.filter(c => c.status === "Open").length;
+  document.getElementById("returnedItems").textContent =
+    items.filter(i => i.status === "Returned").length;
 }
 
 async function initAdminUsers() {
@@ -1343,6 +1908,8 @@ async function initAdminUsers() {
 
   const users = await fetchUsers();
   const list = document.getElementById("adminUsersList");
+
+  if (!list) return;
 
   list.innerHTML = users.map(u => `
     <div class="admin-row">
@@ -1361,6 +1928,8 @@ async function initAdminItems() {
   const items = await fetchItems();
   const grid = document.getElementById("adminItemsGrid");
 
+  if (!grid) return;
+
   if (items.length === 0) {
     grid.innerHTML = `<div class="empty">No uploaded items yet.</div>`;
     return;
@@ -1369,18 +1938,22 @@ async function initAdminItems() {
   grid.innerHTML = items.map(item => `
     <div class="item-card">
       <img src="${escapeHTML(item.image_url)}" alt="${escapeHTML(item.title)}">
+
       <div class="item-content">
         <span class="badge">${escapeHTML(item.item_type || "found")}</span>
         <span class="badge">${escapeHTML(item.category)}</span>
         <span class="badge ${getStatusClass(item.status)}">${escapeHTML(item.status)}</span>
+
         <h3>${escapeHTML(item.title)}</h3>
         <p><b>Reporter:</b> ${escapeHTML(item.reporter_name)}</p>
         <p><b>Location:</b> ${escapeHTML(item.location_name)}</p>
         <p><b>Admin Status:</b> ${escapeHTML(item.admin_status)}</p>
+
         <div class="card-actions">
           <button class="btn accept" onclick="approveItem(${item.id})">Approve</button>
           <button class="btn reject" onclick="rejectItem(${item.id})">Reject</button>
         </div>
+
         <button class="btn secondary full" onclick="deleteItem(${item.id})">Delete</button>
       </div>
     </div>
@@ -1388,18 +1961,38 @@ async function initAdminItems() {
 }
 
 async function approveItem(id) {
-  await supabaseClient.from("items").update({ admin_status: "Approved", status: "Available" }).eq("id", id);
+  await supabaseClient
+    .from("items")
+    .update({
+      admin_status: "Approved",
+      status: "Available"
+    })
+    .eq("id", id);
+
   location.reload();
 }
 
 async function rejectItem(id) {
-  await supabaseClient.from("items").update({ admin_status: "Rejected", status: "Rejected" }).eq("id", id);
+  await supabaseClient
+    .from("items")
+    .update({
+      admin_status: "Rejected",
+      status: "Rejected"
+    })
+    .eq("id", id);
+
   location.reload();
 }
 
 async function deleteItem(id) {
-  if (!confirm("Delete this item permanently?")) return;
-  await supabaseClient.from("items").delete().eq("id", id);
+  const confirmDelete = confirm("Delete this item permanently?");
+  if (!confirmDelete) return;
+
+  await supabaseClient
+    .from("items")
+    .delete()
+    .eq("id", id);
+
   location.reload();
 }
 
@@ -1407,13 +2000,19 @@ async function initAdminComplaints() {
   const admin = requireAdmin();
   if (!admin) return;
 
-  document.getElementById("adminReplyForm").addEventListener("submit", sendAdminReply);
+  const adminReplyForm = document.getElementById("adminReplyForm");
+  if (adminReplyForm) {
+    adminReplyForm.addEventListener("submit", sendAdminReply);
+  }
+
   await renderAdminComplaints();
 }
 
 async function renderAdminComplaints() {
   const complaints = await fetchComplaints();
   const list = document.getElementById("adminComplaintsList");
+
+  if (!list) return;
 
   if (complaints.length === 0) {
     list.innerHTML = `<div class="empty">No complaints.</div>`;
@@ -1439,7 +2038,11 @@ async function openAdminComplaint(id) {
     .eq("complaint_id", id)
     .order("created_at", { ascending: true });
 
-  document.getElementById("adminChatMessages").innerHTML = data.map(m => `
+  const box = document.getElementById("adminChatMessages");
+
+  if (!box) return;
+
+  box.innerHTML = data.map(m => `
     <div class="chat-message ${m.sender_role === "admin" ? "chat-admin" : "chat-user"}">
       <b>${escapeHTML(m.sender_name)}:</b>
       <p>${escapeHTML(m.message)}</p>
@@ -1460,13 +2063,15 @@ async function sendAdminReply(e) {
 
   if (!text) return;
 
-  await supabaseClient.from("complaint_messages").insert({
-    complaint_id: selectedAdminComplaintId,
-    sender_id: admin.user_id,
-    sender_name: admin.full_name,
-    sender_role: "admin",
-    message: text
-  });
+  await supabaseClient
+    .from("complaint_messages")
+    .insert({
+      complaint_id: selectedAdminComplaintId,
+      sender_id: admin.user_id,
+      sender_name: admin.full_name,
+      sender_role: "admin",
+      message: text
+    });
 
   document.getElementById("adminReplyText").value = "";
   await openAdminComplaint(selectedAdminComplaintId);
@@ -1474,11 +2079,16 @@ async function sendAdminReply(e) {
 
 async function closeComplaint(event, id) {
   event.stopPropagation();
-  await supabaseClient.from("complaints").update({ status: "Closed" }).eq("id", id);
+
+  await supabaseClient
+    .from("complaints")
+    .update({ status: "Closed" })
+    .eq("id", id);
+
   location.reload();
 }
 
-/* CARD */
+/* ---------------- CARD ---------------- */
 
 function createItemCard(item, showClaimButton) {
   const statusClass = getStatusClass(item.status);
@@ -1488,16 +2098,20 @@ function createItemCard(item, showClaimButton) {
   return `
     <div class="item-card">
       <img src="${escapeHTML(item.image_url)}" alt="${escapeHTML(item.title)}">
+
       <div class="item-content">
         <span class="badge">${escapeHTML(item.item_type || "found")}</span>
         <span class="badge">${escapeHTML(item.category)}</span>
         <span class="badge ${statusClass}">${escapeHTML(item.status)}</span>
+
         <h3>${escapeHTML(item.title)}</h3>
         <p><b>Location:</b> ${escapeHTML(item.location_name)}</p>
         <p><b>Date:</b> ${escapeHTML(item.found_date || "Not given")}</p>
         <p>${escapeHTML(shortText(item.description, 80))}</p>
+
         <div class="card-actions">
           <a class="btn primary" href="item-details.html?id=${encodeURIComponent(item.id)}">View Details</a>
+
           ${
             isOwner
               ? `<a class="btn secondary" href="upload.html?edit=${encodeURIComponent(item.id)}">${t("editRequest")}</a>`
