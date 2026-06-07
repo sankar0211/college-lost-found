@@ -1030,3 +1030,58 @@ textarea:focus {
     padding: 15px;
   }
 }
+.toast {
+  position: fixed;
+  top: 22px;
+  right: 22px;
+  background: var(--primary);
+  color: white;
+  padding: 14px 20px;
+  border-radius: 14px;
+  box-shadow: 0 12px 30px var(--shadow);
+  opacity: 0;
+  transform: translateY(-20px);
+  pointer-events: none;
+  z-index: 99999;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+body:not(.dark) .hero {
+  background: linear-gradient(135deg, #dbeafe, #60a5fa);
+  color: #0f172a;
+}
+
+body:not(.dark) .hero p {
+  color: #1e3a8a;
+}
+
+body:not(.dark) .tag {
+  background: rgba(37, 99, 235, 0.15);
+  color: #1e3a8a;
+}
+
+@media (max-width: 520px) {
+  .navbar .nav-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .navbar .theme-switch {
+    justify-self: end;
+    order: -2;
+  }
+
+  .navbar .custom-language {
+    order: -1;
+    width: 100%;
+  }
+
+  .navbar #languageBtn {
+    width: 100%;
+  }
+}

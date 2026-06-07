@@ -109,6 +109,12 @@ const translations = {
     uploadedItems: "Uploaded Items",
     allComplaints: "All Complaints",
     chatWithUser: "Chat With User",
+    deleteUser: "Delete User",
+    currentAdmin: "Current admin account",
+    userDeleted: "User deleted successfully.",
+    loginSuccess: "Login successful.",
+    logoutSuccess: "Logout successful.",
+    registerSuccess: "Registered successfully.",
     userIdPlaceholder: "Example: 24I355",
     passwordPlaceholder: "Enter password",
     namePlaceholder: "Enter your name",
@@ -226,6 +232,12 @@ const translations = {
     uploadedItems: "பதிவேற்றப்பட்ட பொருட்கள்",
     allComplaints: "அனைத்து புகார்கள்",
     chatWithUser: "பயனருடன் உரையாடு",
+    deleteUser: "பயனரை நீக்கு",
+    currentAdmin: "தற்போதைய நிர்வாக கணக்கு",
+    userDeleted: "பயனர் வெற்றிகரமாக நீக்கப்பட்டார்.",
+    loginSuccess: "உள்நுழைவு வெற்றிகரமாக முடிந்தது.",
+    logoutSuccess: "வெளியேற்றம் வெற்றிகரமாக முடிந்தது.",
+    registerSuccess: "பதிவு வெற்றிகரமாக முடிந்தது.",
     userIdPlaceholder: "உதாரணம்: 24I355",
     passwordPlaceholder: "கடவுச்சொல் உள்ளிடுக",
     namePlaceholder: "உங்கள் பெயரை உள்ளிடுக",
@@ -343,6 +355,12 @@ const translations = {
     uploadedItems: "अपलोड की गई वस्तुएं",
     allComplaints: "सभी शिकायतें",
     chatWithUser: "यूज़र से चैट करें",
+    deleteUser: "यूज़र हटाएं",
+    currentAdmin: "वर्तमान एडमिन अकाउंट",
+    userDeleted: "यूज़र सफलतापूर्वक हटाया गया।",
+    loginSuccess: "लॉगिन सफल हुआ।",
+    logoutSuccess: "लॉगआउट सफल हुआ।",
+    registerSuccess: "रजिस्ट्रेशन सफल हुआ।",
     userIdPlaceholder: "उदाहरण: 24I355",
     passwordPlaceholder: "पासवर्ड दर्ज करें",
     namePlaceholder: "अपना नाम दर्ज करें",
@@ -419,63 +437,12 @@ const translations = {
     proofText: "ఈ వస్తువు మీదేనని ఆధారం ఇవ్వండి.",
     sendClaim: "క్లెయిమ్ పంపు",
     editRequest: "సవరించు",
-    fullName: "పూర్తి పేరు",
-    userId: "యూజర్ ID / రిజిస్టర్ నంబర్ / స్టాఫ్ ID / విజిటర్ ID",
-    phone: "ఫోన్ నంబర్",
-    password: "పాస్‌వర్డ్",
-    userType: "యూజర్ రకం",
-    selectUserType: "యూజర్ రకం ఎంచుకోండి",
-    student: "విద్యార్థి",
-    faculty: "ఫ్యాకల్టీ",
-    assistantProfessor: "అసిస్టెంట్ ప్రొఫెసర్",
-    professor: "ప్రొఫెసర్",
-    parent: "తల్లిదండ్రులు",
-    visitor: "సందర్శకుడు",
-    staff: "సెక్యూరిటీ / స్టాఫ్",
-    publicUser: "సాధారణ ప్రజలు",
-    createPassword: "పాస్‌వర్డ్ సృష్టించు",
-    confirmPassword: "పాస్‌వర్డ్ నిర్ధారించు",
-    createAccount: "ఖాతా సృష్టించు",
-    selectCategory: "వర్గం ఎంచుకోండి",
-    allCategories: "అన్ని వర్గాలు",
-    loadingItem: "వస్తువు వివరాలు లోడ్ అవుతున్నాయి...",
-    raiseComplaint: "ఫిర్యాదు చేయండి",
-    subject: "విషయం",
-    message: "సందేశం",
-    sendComplaint: "ఫిర్యాదు పంపు",
-    myComplaints: "నా ఫిర్యాదులు",
-    chatWithAdmin: "అడ్మిన్‌తో చాట్",
-    sendReply: "ప్రత్యుత్తరం పంపు",
-    adminDashboard: "అడ్మిన్ డ్యాష్‌బోర్డ్",
-    manageUsers: "యూజర్లు",
-    manageItems: "వస్తువులు",
-    complaints: "ఫిర్యాదులు",
-    totalUsers: "మొత్తం యూజర్లు",
-    totalItems: "మొత్తం వస్తువులు",
-    pendingItems: "పెండింగ్ వస్తువులు",
-    totalClaims: "మొత్తం క్లెయిమ్స్",
-    openComplaints: "ఓపెన్ ఫిర్యాదులు",
-    returnedItems: "తిరిగి ఇచ్చిన వస్తువులు",
-    allUsers: "అన్ని నమోదిత యూజర్లు",
-    uploadedItems: "అప్లోడ్ చేసిన వస్తువులు",
-    allComplaints: "అన్ని ఫిర్యాదులు",
-    chatWithUser: "యూజర్‌తో చాట్",
-    userIdPlaceholder: "ఉదాహరణ: 24I355",
-    passwordPlaceholder: "పాస్‌వర్డ్ నమోదు చేయండి",
-    namePlaceholder: "మీ పేరు నమోదు చేయండి",
-    phonePlaceholder: "ఉదాహరణ: 9876543210",
-    createPasswordPlaceholder: "కనీసం 8 అక్షరాలు",
-    confirmPasswordPlaceholder: "పాస్‌వర్డ్ మళ్లీ నమోదు చేయండి",
-    searchPlaceholder: "వస్తువు పేరుతో వెతకండి...",
-    locationPlaceholder: "స్థానం",
-    itemNamePlaceholder: "ఉదాహరణ: బ్లాక్ వాలెట్",
-    descriptionPlaceholder: "రంగు, బ్రాండ్, ప్రత్యేక గుర్తులు నమోదు చేయండి...",
-    locationNamePlaceholder: "ఉదాహరణ: లైబ్రరీ ప్రవేశం",
-    mapsPlaceholder: "Google Maps లింక్ పేస్ట్ చేయండి",
-    proofPlaceholder: "ఉదాహరణ: నా వస్తువులో ప్రత్యేక గుర్తు ఉంది.",
-    subjectPlaceholder: "ఉదాహరణ: తప్పు వస్తువు ఆమోదం",
-    messagePlaceholder: "మీ సమస్యను వివరించండి...",
-    replyPlaceholder: "మీ ప్రత్యుత్తరం టైప్ చేయండి..."
+    deleteUser: "యూజర్‌ను తొలగించు",
+    currentAdmin: "ప్రస్తుత అడ్మిన్ ఖాతా",
+    userDeleted: "యూజర్ విజయవంతంగా తొలగించబడ్డాడు.",
+    loginSuccess: "లాగిన్ విజయవంతం.",
+    logoutSuccess: "లాగౌట్ విజయవంతం.",
+    registerSuccess: "రిజిస్ట్రేషన్ విజయవంతం."
   },
 
   ml: {
@@ -495,13 +462,7 @@ const translations = {
     getStarted: "തുടങ്ങുക",
     reportNow: "റിപ്പോർട്ട് / തിരയുക",
     searchItems: "വസ്തുക്കൾ തിരയുക",
-    searchText: "പേര്, വിഭാഗം, സ്ഥലം, തീയതി ഉപയോഗിച്ച് തിരയുക.",
-    uploadImages: "ചിത്രങ്ങൾ അപ്ലോഡ് ചെയ്യുക",
-    uploadText: "ഫയലിൽ നിന്നോ മൊബൈൽ ക്യാമറ ഉപയോഗിച്ചോ അപ്ലോഡ് ചെയ്യുക.",
-    claimRequests: "ക്ലെയിം അഭ്യർത്ഥനകൾ",
-    claimText: "തെളിവ് അയച്ച് അംഗീകാരം കാത്തിരിക്കുക.",
     userDashboard: "ഉപയോക്തൃ ഡാഷ്ബോർഡ്",
-    lostDashboard: "ഉപയോക്തൃ ഡാഷ്ബോർഡ്",
     foundDashboard: "എന്റെ റിപ്പോർട്ടുകൾ",
     dashboard: "ഡാഷ്ബോർഡ്",
     logout: "ലോഗൗട്ട്",
@@ -520,79 +481,20 @@ const translations = {
     mapsLink: "Google Maps ലിങ്ക്",
     date: "തീയതി",
     contact: "ബന്ധപ്പെടേണ്ട നമ്പർ",
-    imageUpload: "ചിത്രം അപ്ലോഡ് / ക്യാമറ ഉപയോഗിക്കുക",
     submitItem: "വസ്തു സമർപ്പിക്കുക",
     updateItem: "അപേക്ഷ പുതുക്കുക",
-    imagePreview: "ചിത്രം പ്രിവ്യൂ",
-    cameraNote: "മൊബൈൽ ഉപയോക്താക്കൾക്ക് നേരിട്ട് ക്യാമറ ഉപയോഗിച്ച് ഫോട്ടോ എടുക്കാം.",
-    uploadFoundItem: "വസ്തു റിപ്പോർട്ട് ചെയ്യുക",
-    uploadFoundText: "ചിത്രം, സ്ഥലം, മാപ്പ് ലിങ്ക്, ബന്ധപ്പെടേണ്ട വിവരങ്ങൾ ചേർക്കുക.",
-    uploadItem: "അപ്ലോഡ്",
-    availableItems: "ലഭ്യമായ വസ്തുക്കൾ",
     myUploads: "എന്റെ അപ്ലോഡുകൾ",
-    totalUploads: "മൊത്തം അപ്ലോഡുകൾ",
-    pendingRequests: "ബാക്കിയുള്ള അഭ്യർത്ഥനകൾ",
+    claimRequests: "ക്ലെയിം അഭ്യർത്ഥനകൾ",
+    availableItems: "ലഭ്യമായ വസ്തുക്കൾ",
     claimThisItem: "ഈ വസ്തു ക്ലെയിം ചെയ്യുക",
-    proofText: "ഈ വസ്തു നിങ്ങളുടേതാണ് എന്ന് തെളിയിക്കുന്ന വിവരങ്ങൾ നൽകുക.",
     sendClaim: "ക്ലെയിം അയക്കുക",
     editRequest: "തിരുത്തുക",
-    fullName: "പൂർണ്ണ പേര്",
-    userId: "യൂസർ ID / രജിസ്റ്റർ നമ്പർ / സ്റ്റാഫ് ID / വിസിറ്റർ ID",
-    phone: "ഫോൺ നമ്പർ",
-    password: "പാസ്‌വേഡ്",
-    userType: "ഉപയോക്തൃ തരം",
-    selectUserType: "ഉപയോക്തൃ തരം തിരഞ്ഞെടുക്കുക",
-    student: "വിദ്യാർത്ഥി",
-    faculty: "ഫാക്കൽറ്റി",
-    assistantProfessor: "അസിസ്റ്റന്റ് പ്രൊഫസർ",
-    professor: "പ്രൊഫസർ",
-    parent: "രക്ഷിതാവ്",
-    visitor: "സന്ദർശകൻ",
-    staff: "സെക്യൂരിറ്റി / സ്റ്റാഫ്",
-    publicUser: "പൊതു ഉപയോക്താവ്",
-    createPassword: "പാസ്‌വേഡ് സൃഷ്ടിക്കുക",
-    confirmPassword: "പാസ്‌വേഡ് സ്ഥിരീകരിക്കുക",
-    createAccount: "അക്കൗണ്ട് സൃഷ്ടിക്കുക",
-    selectCategory: "വിഭാഗം തിരഞ്ഞെടുക്കുക",
-    allCategories: "എല്ലാ വിഭാഗങ്ങളും",
-    loadingItem: "വസ്തു വിവരങ്ങൾ ലോഡ് ചെയ്യുന്നു...",
-    raiseComplaint: "പരാതി നൽകുക",
-    subject: "വിഷയം",
-    message: "സന്ദേശം",
-    sendComplaint: "പരാതി അയക്കുക",
-    myComplaints: "എന്റെ പരാതികൾ",
-    chatWithAdmin: "അഡ്മിനുമായി ചാറ്റ് ചെയ്യുക",
-    sendReply: "മറുപടി അയക്കുക",
-    adminDashboard: "അഡ്മിൻ ഡാഷ്ബോർഡ്",
-    manageUsers: "ഉപയോക്താക്കൾ",
-    manageItems: "വസ്തുക്കൾ",
-    complaints: "പരാതികൾ",
-    totalUsers: "മൊത്തം ഉപയോക്താക്കൾ",
-    totalItems: "മൊത്തം വസ്തുക്കൾ",
-    pendingItems: "ബാക്കിയുള്ള വസ്തുക്കൾ",
-    totalClaims: "മൊത്തം ക്ലെയിമുകൾ",
-    openComplaints: "തുറന്ന പരാതികൾ",
-    returnedItems: "തിരികെ നൽകിയ വസ്തുക്കൾ",
-    allUsers: "എല്ലാ രജിസ്റ്റർ ചെയ്ത ഉപയോക്താക്കൾ",
-    uploadedItems: "അപ്ലോഡ് ചെയ്ത വസ്തുക്കൾ",
-    allComplaints: "എല്ലാ പരാതികളും",
-    chatWithUser: "ഉപയോക്താവുമായി ചാറ്റ് ചെയ്യുക",
-    userIdPlaceholder: "ഉദാഹരണം: 24I355",
-    passwordPlaceholder: "പാസ്‌വേഡ് നൽകുക",
-    namePlaceholder: "നിങ്ങളുടെ പേര് നൽകുക",
-    phonePlaceholder: "ഉദാഹരണം: 9876543210",
-    createPasswordPlaceholder: "കുറഞ്ഞത് 8 അക്ഷരങ്ങൾ",
-    confirmPasswordPlaceholder: "പാസ്‌വേഡ് വീണ്ടും നൽകുക",
-    searchPlaceholder: "വസ്തു പേരിൽ തിരയുക...",
-    locationPlaceholder: "സ്ഥലം",
-    itemNamePlaceholder: "ഉദാഹരണം: കറുത്ത വാലറ്റ്",
-    descriptionPlaceholder: "നിറം, ബ്രാൻഡ്, പ്രത്യേക അടയാളങ്ങൾ നൽകുക...",
-    locationNamePlaceholder: "ഉദാഹരണം: ലൈബ്രറി പ്രവേശനം",
-    mapsPlaceholder: "Google Maps ലിങ്ക് പേസ്റ്റ് ചെയ്യുക",
-    proofPlaceholder: "ഉദാഹരണം: എന്റെ വസ്തുവിൽ പ്രത്യേക അടയാളം ഉണ്ട്.",
-    subjectPlaceholder: "ഉദാഹരണം: തെറ്റായ വസ്തു അംഗീകാരം",
-    messagePlaceholder: "നിങ്ങളുടെ പ്രശ്നം വിശദീകരിക്കുക...",
-    replyPlaceholder: "മറുപടി ടൈപ്പ് ചെയ്യുക..."
+    deleteUser: "ഉപയോക്താവിനെ നീക്കം ചെയ്യുക",
+    currentAdmin: "നിലവിലെ അഡ്മിൻ അക്കൗണ്ട്",
+    userDeleted: "ഉപയോക്താവ് വിജയകരമായി നീക്കം ചെയ്തു.",
+    loginSuccess: "ലോഗിൻ വിജയകരമായി.",
+    logoutSuccess: "ലോഗൗട്ട് വിജയകരമായി.",
+    registerSuccess: "രജിസ്ട്രേഷൻ വിജയകരമായി."
   },
 
   kn: {
@@ -612,13 +514,7 @@ const translations = {
     getStarted: "ಪ್ರಾರಂಭಿಸಿ",
     reportNow: "ವರದಿ / ಹುಡುಕಿ",
     searchItems: "ವಸ್ತುಗಳನ್ನು ಹುಡುಕಿ",
-    searchText: "ಹೆಸರು, ವರ್ಗ, ಸ್ಥಳ, ದಿನಾಂಕದಿಂದ ಹುಡುಕಿ.",
-    uploadImages: "ಚಿತ್ರಗಳನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿ",
-    uploadText: "ಫೈಲ್‌ನಿಂದ ಅಥವಾ ಮೊಬೈಲ್ ಕ್ಯಾಮೆರಾ ಮೂಲಕ ಅಪ್ಲೋಡ್ ಮಾಡಿ.",
-    claimRequests: "ಹಕ್ಕು ವಿನಂತಿಗಳು",
-    claimText: "ಸಾಕ್ಷಿ ಕಳುಹಿಸಿ ಅನುಮೋದನೆಗಾಗಿ ಕಾಯಿರಿ.",
     userDashboard: "ಬಳಕೆದಾರ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
-    lostDashboard: "ಬಳಕೆದಾರ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
     foundDashboard: "ನನ್ನ ವರದಿಗಳು",
     dashboard: "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
     logout: "ಲಾಗೌಟ್",
@@ -637,81 +533,26 @@ const translations = {
     mapsLink: "Google Maps ಲಿಂಕ್",
     date: "ದಿನಾಂಕ",
     contact: "ಸಂಪರ್ಕ ಸಂಖ್ಯೆ",
-    imageUpload: "ಚಿತ್ರ ಅಪ್ಲೋಡ್ / ಕ್ಯಾಮೆರಾ ಬಳಸಿ",
     submitItem: "ವಸ್ತು ಸಲ್ಲಿಸಿ",
     updateItem: "ವಿನಂತಿ ನವೀಕರಿಸಿ",
-    imagePreview: "ಚಿತ್ರ ಪೂರ್ವವೀಕ್ಷಣೆ",
-    cameraNote: "ಮೊಬೈಲ್ ಬಳಕೆದಾರರು ನೇರವಾಗಿ ಕ್ಯಾಮೆರಾದಿಂದ ಫೋಟೋ ತೆಗೆದುಕೊಳ್ಳಬಹುದು.",
-    uploadFoundItem: "ವಸ್ತು ವರದಿ ಮಾಡಿ",
-    uploadFoundText: "ಚಿತ್ರ, ಸ್ಥಳ, ಮ್ಯಾಪ್ ಲಿಂಕ್ ಮತ್ತು ಸಂಪರ್ಕ ವಿವರಗಳನ್ನು ಸೇರಿಸಿ.",
-    uploadItem: "ಅಪ್ಲೋಡ್",
-    availableItems: "ಲಭ್ಯವಿರುವ ವಸ್ತುಗಳು",
     myUploads: "ನನ್ನ ಅಪ್ಲೋಡ್‌ಗಳು",
-    totalUploads: "ಒಟ್ಟು ಅಪ್ಲೋಡ್‌ಗಳು",
-    pendingRequests: "ಬಾಕಿ ವಿನಂತಿಗಳು",
+    claimRequests: "ಹಕ್ಕು ವಿನಂತಿಗಳು",
+    availableItems: "ಲಭ್ಯವಿರುವ ವಸ್ತುಗಳು",
     claimThisItem: "ಈ ವಸ್ತು ಕ್ಲೇಮ್ ಮಾಡಿ",
-    proofText: "ಈ ವಸ್ತು ನಿಮ್ಮದು ಎಂದು ಸಾಬೀತುಪಡಿಸಿ.",
     sendClaim: "ಕ್ಲೇಮ್ ಕಳುಹಿಸಿ",
     editRequest: "ತಿದ್ದು",
-    fullName: "ಪೂರ್ಣ ಹೆಸರು",
-    userId: "ಯೂಸರ್ ID / ರಿಜಿಸ್ಟರ್ ನಂ / ಸ್ಟಾಫ್ ID / ವಿಸಿಟರ್ ID",
-    phone: "ಫೋನ್ ಸಂಖ್ಯೆ",
-    password: "ಪಾಸ್‌ವರ್ಡ್",
-    userType: "ಬಳಕೆದಾರ ಪ್ರಕಾರ",
-    selectUserType: "ಬಳಕೆದಾರ ಪ್ರಕಾರ ಆಯ್ಕೆಮಾಡಿ",
-    student: "ವಿದ್ಯಾರ್ಥಿ",
-    faculty: "ಫ್ಯಾಕಲ್ಟಿ",
-    assistantProfessor: "ಅಸಿಸ್ಟೆಂಟ್ ಪ್ರೊಫೆಸರ್",
-    professor: "ಪ್ರೊಫೆಸರ್",
-    parent: "ಪೋಷಕರು",
-    visitor: "ಭೇಟಿದಾರ",
-    staff: "ಸಿಕ್ಯುರಿಟಿ / ಸ್ಟಾಫ್",
-    publicUser: "ಸಾಮಾನ್ಯ ಬಳಕೆದಾರ",
-    createPassword: "ಪಾಸ್‌ವರ್ಡ್ ರಚಿಸಿ",
-    confirmPassword: "ಪಾಸ್‌ವರ್ಡ್ ದೃಢೀಕರಿಸಿ",
-    createAccount: "ಖಾತೆ ರಚಿಸಿ",
-    selectCategory: "ವರ್ಗ ಆಯ್ಕೆಮಾಡಿ",
-    allCategories: "ಎಲ್ಲಾ ವರ್ಗಗಳು",
-    loadingItem: "ವಸ್ತು ವಿವರಗಳು ಲೋಡ್ ಆಗುತ್ತಿವೆ...",
-    raiseComplaint: "ದೂರು ನೀಡಿ",
-    subject: "ವಿಷಯ",
-    message: "ಸಂದೇಶ",
-    sendComplaint: "ದೂರು ಕಳುಹಿಸಿ",
-    myComplaints: "ನನ್ನ ದೂರುಗಳು",
-    chatWithAdmin: "ಅಡ್ಮಿನ್ ಜೊತೆ ಚಾಟ್",
-    sendReply: "ಪ್ರತ್ಯುತ್ತರ ಕಳುಹಿಸಿ",
-    adminDashboard: "ಅಡ್ಮಿನ್ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
-    manageUsers: "ಬಳಕೆದಾರರು",
-    manageItems: "ವಸ್ತುಗಳು",
-    complaints: "ದೂರುಗಳು",
-    totalUsers: "ಒಟ್ಟು ಬಳಕೆದಾರರು",
-    totalItems: "ಒಟ್ಟು ವಸ್ತುಗಳು",
-    pendingItems: "ಬಾಕಿ ವಸ್ತುಗಳು",
-    totalClaims: "ಒಟ್ಟು ಕ್ಲೇಮ್‌ಗಳು",
-    openComplaints: "ತೆರೆದ ದೂರುಗಳು",
-    returnedItems: "ಹಿಂತಿರುಗಿಸಿದ ವಸ್ತುಗಳು",
-    allUsers: "ಎಲ್ಲಾ ನೋಂದಾಯಿತ ಬಳಕೆದಾರರು",
-    uploadedItems: "ಅಪ್ಲೋಡ್ ಮಾಡಿದ ವಸ್ತುಗಳು",
-    allComplaints: "ಎಲ್ಲಾ ದೂರುಗಳು",
-    chatWithUser: "ಬಳಕೆದಾರರ ಜೊತೆ ಚಾಟ್",
-    userIdPlaceholder: "ಉದಾಹರಣೆ: 24I355",
-    passwordPlaceholder: "ಪಾಸ್‌ವರ್ಡ್ ನಮೂದಿಸಿ",
-    namePlaceholder: "ನಿಮ್ಮ ಹೆಸರು ನಮೂದಿಸಿ",
-    phonePlaceholder: "ಉದಾಹರಣೆ: 9876543210",
-    createPasswordPlaceholder: "ಕನಿಷ್ಠ 8 ಅಕ್ಷರಗಳು",
-    confirmPasswordPlaceholder: "ಪಾಸ್‌ವರ್ಡ್ ಮತ್ತೆ ನಮೂದಿಸಿ",
-    searchPlaceholder: "ವಸ್ತು ಹೆಸರಿನಿಂದ ಹುಡುಕಿ...",
-    locationPlaceholder: "ಸ್ಥಳ",
-    itemNamePlaceholder: "ಉದಾಹರಣೆ: ಕಪ್ಪು ವಾಲೆಟ್",
-    descriptionPlaceholder: "ಬಣ್ಣ, ಬ್ರ್ಯಾಂಡ್, ವಿಶೇಷ ಗುರುತುಗಳನ್ನು ನಮೂದಿಸಿ...",
-    locationNamePlaceholder: "ಉದಾಹರಣೆ: ಲೈಬ್ರರಿ ಪ್ರವೇಶ",
-    mapsPlaceholder: "Google Maps ಲಿಂಕ್ ಪೇಸ್ಟ್ ಮಾಡಿ",
-    proofPlaceholder: "ಉದಾಹರಣೆ: ನನ್ನ ವಸ್ತುವಿನಲ್ಲಿ ವಿಶೇಷ ಗುರುತು ಇದೆ.",
-    subjectPlaceholder: "ಉದಾಹರಣೆ: ತಪ್ಪಾದ ವಸ್ತು ಅನುಮೋದನೆ",
-    messagePlaceholder: "ನಿಮ್ಮ ಸಮಸ್ಯೆಯನ್ನು ವಿವರಿಸಿ...",
-    replyPlaceholder: "ನಿಮ್ಮ ಉತ್ತರವನ್ನು ಟೈಪ್ ಮಾಡಿ..."
+    deleteUser: "ಬಳಕೆದಾರರನ್ನು ಅಳಿಸಿ",
+    currentAdmin: "ಪ್ರಸ್ತುತ ಅಡ್ಮಿನ್ ಖಾತೆ",
+    userDeleted: "ಬಳಕೆದಾರರನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಅಳಿಸಲಾಗಿದೆ.",
+    loginSuccess: "ಲಾಗಿನ್ ಯಶಸ್ವಿಯಾಗಿದೆ.",
+    logoutSuccess: "ಲಾಗೌಟ್ ಯಶಸ್ವಿಯಾಗಿದೆ.",
+    registerSuccess: "ರಿಜಿಸ್ಟರ್ ಯಶಸ್ವಿಯಾಗಿದೆ."
   }
 };
+
+["te", "ml", "kn"].forEach((lang) => {
+  translations[lang] = { ...translations.en, ...translations[lang] };
+});
 
 /* ---------------- PAGE START ---------------- */
 
@@ -871,6 +712,25 @@ function translateDynamicPageText() {
   }
 }
 
+/* ---------------- TOAST ---------------- */
+
+function showToast(message) {
+  let toast = document.getElementById("toast");
+
+  if (!toast) {
+    toast = document.createElement("div");
+    toast.id = "toast";
+    document.body.appendChild(toast);
+  }
+
+  toast.textContent = message;
+  toast.className = "toast show";
+
+  setTimeout(() => {
+    toast.className = "toast";
+  }, 2200);
+}
+
 /* ---------------- DARK MODE ---------------- */
 
 function toggleDarkMode() {
@@ -919,7 +779,11 @@ function setCurrentUser(user) {
 
 function logoutUser() {
   localStorage.removeItem(CURRENT_USER_KEY);
-  window.location.href = "index.html";
+  showToast(t("logoutSuccess"));
+
+  setTimeout(() => {
+    window.location.href = "index.html";
+  }, 900);
 }
 
 function setupLogout() {
@@ -1015,7 +879,6 @@ function setButtonLoading(button, loading, text) {
     button.textContent = text;
   }
 }
-
 function createPlaceholderImage(text) {
   const safeText = escapeHTML(text || "Item");
 
@@ -1045,13 +908,18 @@ function initAuthPage() {
   const registerForm = document.getElementById("registerForm");
   const authTitle = document.getElementById("authTitle");
 
+  if (!loginTab || !registerTab || !loginForm || !registerForm) return;
+
   loginTab.addEventListener("click", () => {
     loginTab.classList.add("active");
     registerTab.classList.remove("active");
     loginForm.classList.remove("hidden");
     registerForm.classList.add("hidden");
+
     if (authTitle) authTitle.textContent = t("login");
+
     clearMessage();
+    applyLanguage();
   });
 
   registerTab.addEventListener("click", () => {
@@ -1059,8 +927,11 @@ function initAuthPage() {
     loginTab.classList.remove("active");
     registerForm.classList.remove("hidden");
     loginForm.classList.add("hidden");
+
     if (authTitle) authTitle.textContent = t("register");
+
     clearMessage();
+    applyLanguage();
   });
 
   loginForm.addEventListener("submit", loginUser);
@@ -1069,6 +940,7 @@ function initAuthPage() {
 
 function clearMessage() {
   const msg = document.getElementById("authMessage");
+
   if (msg) {
     msg.textContent = "";
     msg.style.color = "";
@@ -1077,7 +949,9 @@ function clearMessage() {
 
 function showAuthMessage(text, color = "red") {
   const msg = document.getElementById("authMessage");
+
   if (!msg) return;
+
   msg.textContent = text;
   msg.style.color = color;
 }
@@ -1094,6 +968,8 @@ async function registerUser(e) {
   const password = document.getElementById("regPassword").value.trim();
   const confirmPassword = document.getElementById("confirmPassword").value.trim();
   const userType = document.getElementById("regUserType").value;
+  const selectedLanguage = localStorage.getItem(LANG_KEY) || "en";
+  const darkMode = localStorage.getItem(DARK_KEY) === "true";
 
   try {
     if (!fullName || !userId || !phone || !password || !confirmPassword || !userType) {
@@ -1123,7 +999,10 @@ async function registerUser(e) {
       .maybeSingle();
 
     if (checkError) throw checkError;
-    if (existingUser) throw new Error("This User ID already exists. Please login.");
+
+    if (existingUser) {
+      throw new Error("This User ID already exists. Please login.");
+    }
 
     const newUser = {
       user_id: userId,
@@ -1131,8 +1010,8 @@ async function registerUser(e) {
       phone,
       password,
       user_type: userType,
-      preferred_language: localStorage.getItem(LANG_KEY) || "en",
-      dark_mode: localStorage.getItem(DARK_KEY) === "true"
+      preferred_language: selectedLanguage,
+      dark_mode: darkMode
     };
 
     const { data: createdUser, error } = await supabaseClient
@@ -1144,7 +1023,9 @@ async function registerUser(e) {
     if (error) throw error;
 
     setCurrentUser(createdUser);
-    showAuthMessage("Account created successfully. Redirecting...", "green");
+
+    showToast(t("registerSuccess"));
+    showAuthMessage(t("registerSuccess"), "green");
 
     setTimeout(() => {
       window.location.href =
@@ -1180,20 +1061,38 @@ async function loginUser(e) {
       .maybeSingle();
 
     if (error) throw error;
-    if (!user) throw new Error("Account not found. Please register first.");
-    if (user.password !== password) throw new Error("Wrong password.");
 
-    setCurrentUser(user);
-
-    if (user.preferred_language) {
-      localStorage.setItem(LANG_KEY, user.preferred_language);
+    if (!user) {
+      throw new Error("Account not found. Please register first.");
     }
+
+    if (user.password !== password) {
+      throw new Error("Wrong password.");
+    }
+
+    const selectedBeforeLogin = localStorage.getItem(LANG_KEY) || "en";
+
+    if (!user.preferred_language) {
+      user.preferred_language = selectedBeforeLogin;
+
+      await supabaseClient
+        .from("profiles")
+        .update({ preferred_language: selectedBeforeLogin })
+        .eq("user_id", user.user_id);
+    }
+
+    localStorage.setItem(LANG_KEY, user.preferred_language || selectedBeforeLogin);
 
     if (typeof user.dark_mode === "boolean") {
       localStorage.setItem(DARK_KEY, String(user.dark_mode));
     }
 
-    showAuthMessage("Login successful. Redirecting...", "green");
+    setCurrentUser(user);
+    applyLanguage();
+    applyDarkMode();
+
+    showToast(t("loginSuccess"));
+    showAuthMessage(t("loginSuccess"), "green");
 
     setTimeout(() => {
       window.location.href =
@@ -1274,6 +1173,7 @@ async function initLostDashboard() {
 
   ["searchInput", "categoryFilter", "locationFilter", "dateFilter"].forEach((id) => {
     const el = document.getElementById(id);
+
     if (el) {
       el.addEventListener("input", renderLostItems);
       el.addEventListener("change", renderLostItems);
@@ -1285,6 +1185,7 @@ async function initLostDashboard() {
 
 async function renderLostItems() {
   const grid = document.getElementById("itemsGrid");
+
   if (!grid) return;
 
   grid.innerHTML = `<div class="empty">Loading items...</div>`;
@@ -1335,17 +1236,13 @@ async function renderFoundDashboard(user) {
   const myClaims = claims.filter(claim => myItemIds.includes(claim.item_id));
   const pendingClaims = myClaims.filter(claim => claim.status === "Pending");
 
-  if (document.getElementById("uploadCount")) {
-    document.getElementById("uploadCount").textContent = myItems.length;
-  }
+  const uploadCount = document.getElementById("uploadCount");
+  const claimCount = document.getElementById("claimCount");
+  const pendingCount = document.getElementById("pendingCount");
 
-  if (document.getElementById("claimCount")) {
-    document.getElementById("claimCount").textContent = myClaims.length;
-  }
-
-  if (document.getElementById("pendingCount")) {
-    document.getElementById("pendingCount").textContent = pendingClaims.length;
-  }
+  if (uploadCount) uploadCount.textContent = myItems.length;
+  if (claimCount) claimCount.textContent = myClaims.length;
+  if (pendingCount) pendingCount.textContent = pendingClaims.length;
 
   renderClaimsList(myClaims, items);
   renderMyUploadedItems(myItems);
@@ -1353,6 +1250,7 @@ async function renderFoundDashboard(user) {
 
 function renderClaimsList(claims, items) {
   const claimsList = document.getElementById("claimsList");
+
   if (!claimsList) return;
 
   if (claims.length === 0) {
@@ -1387,12 +1285,14 @@ function renderClaimsList(claims, items) {
 
 function renderMyUploadedItems(items) {
   const grid = document.getElementById("myItemsGrid");
+
   if (!grid) return;
 
   grid.innerHTML = items.length
     ? items.map(item => createItemCard(item, false)).join("")
     : `<div class="empty">You have not uploaded any item yet.</div>`;
 }
+
 async function updateClaimStatus(claimId, status) {
   const claims = await fetchClaims();
   const claim = claims.find(c => c.id === claimId);
@@ -1426,10 +1326,9 @@ async function updateClaimStatus(claimId, status) {
       .neq("id", claimId);
   }
 
-  alert(`Claim ${status}`);
+  showToast(`Claim ${status}`);
   location.reload();
 }
-
 /* ---------------- UPLOAD + EDIT ---------------- */
 
 async function initUploadPage() {
@@ -1480,6 +1379,8 @@ async function initUploadPage() {
       }
     });
   }
+
+  if (!uploadForm) return;
 
   uploadForm.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -1554,6 +1455,8 @@ async function initUploadPage() {
           message.textContent = "Request updated. Waiting for admin approval again.";
           message.style.color = "green";
         }
+
+        showToast("Request updated successfully.");
       } else {
         const { error } = await supabaseClient
           .from("items")
@@ -1565,6 +1468,8 @@ async function initUploadPage() {
           message.textContent = "Item submitted. Waiting for admin approval.";
           message.style.color = "green";
         }
+
+        showToast("Item submitted successfully.");
       }
 
       setTimeout(() => {
@@ -1612,6 +1517,7 @@ async function loadItemForEdit(itemId, user) {
   document.getElementById("mapsLink").value = item.maps_link || "";
 
   const preview = document.getElementById("imagePreview");
+
   if (preview && item.image_url) {
     preview.src = item.image_url;
   }
@@ -1635,7 +1541,7 @@ function getCurrentLocation() {
       document.getElementById("longitude").value = lon;
       document.getElementById("mapsLink").value = link;
 
-      alert("Location captured successfully.");
+      showToast("Location captured successfully.");
     },
     () => {
       alert("Location permission denied or unavailable.");
@@ -1687,14 +1593,14 @@ async function initItemDetails() {
 
       ${
         item.maps_link
-        ? `<p><a class="btn secondary" target="_blank" href="${escapeHTML(item.maps_link)}">Open Google Maps Location</a></p>`
-        : ""
+          ? `<p><a class="btn secondary" target="_blank" href="${escapeHTML(item.maps_link)}">Open Google Maps Location</a></p>`
+          : ""
       }
 
       ${
         isOwner
-        ? `<p><a class="btn primary" href="upload.html?edit=${encodeURIComponent(item.id)}">${t("editRequest")}</a></p>`
-        : ""
+          ? `<p><a class="btn primary" href="upload.html?edit=${encodeURIComponent(item.id)}">${t("editRequest")}</a></p>`
+          : ""
       }
     </div>
   `;
@@ -1715,9 +1621,10 @@ async function initItemDetails() {
     const claims = await fetchClaims();
 
     const alreadyClaimed = claims.some(
-      c => c.item_id == item.id &&
-           c.claimant_id === user.user_id &&
-           c.status === "Pending"
+      c =>
+        c.item_id == item.id &&
+        c.claimant_id === user.user_id &&
+        c.status === "Pending"
     );
 
     if (alreadyClaimed) {
@@ -1751,6 +1658,7 @@ async function initItemDetails() {
       "Request sent successfully.";
     document.getElementById("claimMessage").style.color = "green";
 
+    showToast("Claim request sent successfully.");
     claimForm.reset();
   });
 }
@@ -1804,6 +1712,7 @@ async function createComplaint(e) {
     });
 
   e.target.reset();
+  showToast("Complaint sent successfully.");
   await renderUserComplaints();
 }
 
@@ -1878,6 +1787,7 @@ async function sendUserReply(e) {
 
   document.getElementById("replyText").value = "";
   await openComplaint(selectedComplaintId);
+  showToast("Reply sent successfully.");
 }
 
 /* ---------------- ADMIN ---------------- */
@@ -1917,8 +1827,44 @@ async function initAdminUsers() {
       <p><b>ID:</b> ${escapeHTML(u.user_id)}</p>
       <p><b>Type:</b> ${escapeHTML(u.user_type)}</p>
       <p><b>Phone:</b> ${escapeHTML(u.phone)}</p>
+
+      ${
+        u.user_id !== admin.user_id
+          ? `<button class="btn reject" onclick="deleteUser('${escapeHTML(u.user_id)}')">${t("deleteUser")}</button>`
+          : `<p class="muted">${t("currentAdmin")}</p>`
+      }
     </div>
   `).join("");
+}
+
+async function deleteUser(userId) {
+  const currentUser = getCurrentUser();
+
+  if (!currentUser || currentUser.user_type !== "admin") {
+    alert("Admin only.");
+    return;
+  }
+
+  if (currentUser.user_id === userId) {
+    alert("You cannot delete your own admin account.");
+    return;
+  }
+
+  const ok = confirm("Are you sure you want to delete this user?");
+  if (!ok) return;
+
+  const { error } = await supabaseClient
+    .from("profiles")
+    .delete()
+    .eq("user_id", userId);
+
+  if (error) {
+    alert("Delete failed: " + error.message);
+    return;
+  }
+
+  showToast(t("userDeleted"));
+  location.reload();
 }
 
 async function initAdminItems() {
@@ -1969,6 +1915,7 @@ async function approveItem(id) {
     })
     .eq("id", id);
 
+  showToast("Item approved successfully.");
   location.reload();
 }
 
@@ -1981,6 +1928,7 @@ async function rejectItem(id) {
     })
     .eq("id", id);
 
+  showToast("Item rejected successfully.");
   location.reload();
 }
 
@@ -1993,6 +1941,7 @@ async function deleteItem(id) {
     .delete()
     .eq("id", id);
 
+  showToast("Item deleted successfully.");
   location.reload();
 }
 
@@ -2001,6 +1950,7 @@ async function initAdminComplaints() {
   if (!admin) return;
 
   const adminReplyForm = document.getElementById("adminReplyForm");
+
   if (adminReplyForm) {
     adminReplyForm.addEventListener("submit", sendAdminReply);
   }
@@ -2075,6 +2025,7 @@ async function sendAdminReply(e) {
 
   document.getElementById("adminReplyText").value = "";
   await openAdminComplaint(selectedAdminComplaintId);
+  showToast("Reply sent successfully.");
 }
 
 async function closeComplaint(event, id) {
@@ -2085,6 +2036,7 @@ async function closeComplaint(event, id) {
     .update({ status: "Closed" })
     .eq("id", id);
 
+  showToast("Complaint closed successfully.");
   location.reload();
 }
 
