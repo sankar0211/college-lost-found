@@ -11,98 +11,140 @@
 <div class="auth-page">
   <div class="auth-card animated-card">
 
-    <a href="index.html" class="back-link">← Back to Home</a>
+    <a href="index.html" class="back-link" data-i18n="backHome">← Back to Home</a>
 
     <div class="top-row">
       <div>
-        <h2 id="authTitle">Login</h2>
-        <p class="muted">Use your User ID and password.</p>
+        <h2 id="authTitle" data-i18n="login">Login</h2>
+        <p class="muted" data-i18n="loginNote">Use your User ID and password.</p>
       </div>
 
       <label class="theme-switch">
-        <input type="checkbox" id="themeToggle">
+        <input type="checkbox" id="themeToggle" />
         <span class="theme-slider"></span>
       </label>
     </div>
 
     <div class="action-choice">
-      <p class="muted">What do you want to do?</p>
+      <p class="muted" data-i18n="whatDo">What do you want to do?</p>
 
       <div class="choice-grid">
         <label>
-          <input type="radio" name="nextAction" value="browse" checked>
-          <span>Search Items</span>
+          <input type="radio" name="nextAction" value="browse" checked />
+          <span data-i18n="searchAction">Search Items</span>
         </label>
 
         <label>
-          <input type="radio" name="nextAction" value="lost">
-          <span>Report Lost Item</span>
+          <input type="radio" name="nextAction" value="lost" />
+          <span data-i18n="reportLost">Report Lost Item</span>
         </label>
 
         <label>
-          <input type="radio" name="nextAction" value="found">
-          <span>Report Found Item</span>
+          <input type="radio" name="nextAction" value="found" />
+          <span data-i18n="reportFound">Report Found Item</span>
         </label>
       </div>
     </div>
 
     <div class="auth-tabs">
-      <button id="loginTab" class="active" type="button">Login</button>
-      <button id="registerTab" type="button">Register</button>
+      <button id="loginTab" class="active" type="button" data-i18n="login">Login</button>
+      <button id="registerTab" type="button" data-i18n="register">Register</button>
     </div>
 
     <form id="loginForm">
-      <label>User ID / Register No / Staff ID / Visitor ID</label>
-      <input type="text" id="loginUserId" placeholder="Example: 24I355" required />
+      <label data-i18n="userId">User ID / Register No / Staff ID / Visitor ID</label>
+      <input
+        type="text"
+        id="loginUserId"
+        placeholder="Example: 24I355"
+        data-i18n-placeholder="userIdPlaceholder"
+        required
+      />
 
-      <label>Password</label>
+      <label data-i18n="password">Password</label>
       <div class="password-wrapper">
-        <input type="password" id="loginPassword" placeholder="Enter password" required />
+        <input
+          type="password"
+          id="loginPassword"
+          placeholder="Enter password"
+          data-i18n-placeholder="passwordPlaceholder"
+          required
+        />
         <button type="button" onclick="togglePassword('loginPassword')">👁</button>
       </div>
 
       <button type="submit" class="btn primary full">
-        <span class="btn-text">Login</span>
+        <span class="btn-text" data-i18n="login">Login</span>
       </button>
     </form>
 
     <form id="registerForm" class="hidden">
-      <label>Full Name</label>
-      <input type="text" id="regName" placeholder="Enter your name" required />
+      <label data-i18n="fullName">Full Name</label>
+      <input
+        type="text"
+        id="regName"
+        placeholder="Enter your name"
+        data-i18n-placeholder="namePlaceholder"
+        required
+      />
 
-      <label>User ID / Register No / Staff ID / Visitor ID</label>
-      <input type="text" id="regUserId" placeholder="Example: 24I355" required />
+      <label data-i18n="userId">User ID / Register No / Staff ID / Visitor ID</label>
+      <input
+        type="text"
+        id="regUserId"
+        placeholder="Example: 24I355"
+        data-i18n-placeholder="userIdPlaceholder"
+        required
+      />
 
-      <label>Phone Number</label>
-      <input type="tel" id="regPhone" placeholder="Example: 9876543210" required />
+      <label data-i18n="phone">Phone Number</label>
+      <input
+        type="tel"
+        id="regPhone"
+        placeholder="Example: 9876543210"
+        data-i18n-placeholder="phonePlaceholder"
+        required
+      />
 
-      <label>User Type</label>
+      <label data-i18n="userType">User Type</label>
       <select id="regUserType" required>
-        <option value="">Select User Type</option>
-        <option value="student">Student</option>
-        <option value="faculty">Faculty</option>
-        <option value="assistant_professor">Assistant Professor</option>
-        <option value="professor">Professor</option>
-        <option value="parent">Parent</option>
-        <option value="visitor">Visitor</option>
-        <option value="staff">Security / Staff</option>
-        <option value="public">General Public</option>
+        <option value="" data-i18n="selectUserType">Select User Type</option>
+        <option value="student" data-i18n="student">Student</option>
+        <option value="faculty" data-i18n="faculty">Faculty</option>
+        <option value="assistant_professor" data-i18n="assistantProfessor">Assistant Professor</option>
+        <option value="professor" data-i18n="professor">Professor</option>
+        <option value="parent" data-i18n="parent">Parent</option>
+        <option value="visitor" data-i18n="visitor">Visitor</option>
+        <option value="staff" data-i18n="staff">Security / Staff</option>
+        <option value="public" data-i18n="publicUser">General Public</option>
       </select>
 
-      <label>Create Password</label>
+      <label data-i18n="createPassword">Create Password</label>
       <div class="password-wrapper">
-        <input type="password" id="regPassword" placeholder="Minimum 8 characters" required />
+        <input
+          type="password"
+          id="regPassword"
+          placeholder="Minimum 8 characters"
+          data-i18n-placeholder="createPasswordPlaceholder"
+          required
+        />
         <button type="button" onclick="togglePassword('regPassword')">👁</button>
       </div>
 
-      <label>Confirm Password</label>
+      <label data-i18n="confirmPassword">Confirm Password</label>
       <div class="password-wrapper">
-        <input type="password" id="confirmPassword" placeholder="Re-enter password" required />
+        <input
+          type="password"
+          id="confirmPassword"
+          placeholder="Re-enter password"
+          data-i18n-placeholder="confirmPasswordPlaceholder"
+          required
+        />
         <button type="button" onclick="togglePassword('confirmPassword')">👁</button>
       </div>
 
       <button type="submit" class="btn primary full">
-        <span class="btn-text">Create Account</span>
+        <span class="btn-text" data-i18n="createAccount">Create Account</span>
       </button>
     </form>
 

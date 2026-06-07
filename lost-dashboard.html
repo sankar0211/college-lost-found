@@ -3,53 +3,137 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lost Dashboard</title>
+  <title>Lost & Found Dashboard</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body data-page="lostDashboard">
 
 <nav class="dashboard-nav">
+
   <div>
-    <h2 data-i18n="lostDashboard">Lost User Dashboard</h2>
+    <h2 data-i18n="userDashboard">User Dashboard</h2>
     <p id="userInfo"></p>
   </div>
+
   <div class="nav-actions">
-    <a href="complaints.html" class="nav-btn">Messages</a>
-    <button onclick="toggleDarkMode()" class="nav-btn">🌙</button>
-    <button id="logoutBtn" class="logout-btn">Logout</button>
+
+    <button onclick="goDashboard()" class="nav-btn" data-i18n="dashboard">
+      Dashboard
+    </button>
+
+    <a href="complaints.html" class="nav-btn" data-i18n="messages">
+      Messages
+    </a>
+
+    <label class="theme-switch">
+      <input type="checkbox" id="themeToggle">
+      <span class="theme-slider"></span>
+    </label>
+
+    <button id="logoutBtn" class="logout-btn" data-i18n="logout">
+      Logout
+    </button>
+
   </div>
+
 </nav>
 
 <main class="container">
-  <section class="panel">
-    <h3>Search Found Items</h3>
 
-    <div class="filters">
-      <input type="text" id="searchInput" placeholder="Search item, description or location..." />
+  <section class="search-panel">
+
+    <h3 data-i18n="searchItems">
+      Search Items
+    </h3>
+
+    <div class="search-grid">
+
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search by item name..."
+        data-i18n-placeholder="searchPlaceholder"
+      />
 
       <select id="categoryFilter">
-        <option value="">All Categories</option>
-        <option value="ID Card">ID Card</option>
-        <option value="Wallet">Wallet</option>
-        <option value="Bag">Bag</option>
-        <option value="Electronics">Electronics</option>
-        <option value="Books">Books</option>
-        <option value="Keys">Keys</option>
-        <option value="Documents">Documents</option>
-        <option value="Mobile Phone">Mobile Phone</option>
-        <option value="Laptop Accessories">Laptop Accessories</option>
-        <option value="Others">Others</option>
+        <option value="" data-i18n="allCategories">
+          All Categories
+        </option>
+
+        <option value="ID Card">
+          ID Card
+        </option>
+
+        <option value="Wallet">
+          Wallet
+        </option>
+
+        <option value="Bag">
+          Bag
+        </option>
+
+        <option value="Electronics">
+          Electronics
+        </option>
+
+        <option value="Books">
+          Books
+        </option>
+
+        <option value="Keys">
+          Keys
+        </option>
+
+        <option value="Documents">
+          Documents
+        </option>
+
+        <option value="Mobile Phone">
+          Mobile Phone
+        </option>
+
+        <option value="Laptop Accessories">
+          Laptop Accessories
+        </option>
+
+        <option value="Others">
+          Others
+        </option>
       </select>
 
-      <input type="text" id="locationFilter" placeholder="Location" />
-      <input type="date" id="dateFilter" />
+      <input
+        type="text"
+        id="locationFilter"
+        placeholder="Location"
+        data-i18n-placeholder="locationPlaceholder"
+      />
+
+      <input
+        type="date"
+        id="dateFilter"
+      />
+
     </div>
+
   </section>
 
   <section>
-    <h3>Available Found Items</h3>
-    <div id="itemsGrid" class="items-grid"></div>
+
+    <h3 data-i18n="availableItems">
+      Available Found Items
+    </h3>
+
+    <div id="itemsGrid" class="items-grid">
+
+      <div class="empty">
+        Loading items...
+      </div>
+
+    </div>
+
   </section>
+
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

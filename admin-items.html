@@ -3,27 +3,66 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin Items</title>
+  <title>Manage Items</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body data-page="adminItems">
 
 <nav class="dashboard-nav">
+
   <div>
-    <h2>Manage Items</h2>
+    <h2 data-i18n="manageItems">Manage Items</h2>
     <p id="userInfo"></p>
   </div>
+
   <div class="nav-actions">
-    <a href="admin-dashboard.html" class="nav-btn">Admin Home</a>
-    <button id="logoutBtn" class="logout-btn">Logout</button>
+
+    <a href="admin-dashboard.html" class="nav-btn" data-i18n="adminDashboard">
+      Dashboard
+    </a>
+
+    <a href="admin-users.html" class="nav-btn" data-i18n="manageUsers">
+      Users
+    </a>
+
+    <a href="admin-complaints.html" class="nav-btn" data-i18n="complaints">
+      Complaints
+    </a>
+
+    <label class="theme-switch">
+      <input type="checkbox" id="themeToggle">
+      <span class="theme-slider"></span>
+    </label>
+
+    <button id="logoutBtn" class="logout-btn" data-i18n="logout">
+      Logout
+    </button>
+
   </div>
+
 </nav>
 
 <main class="container">
+
   <section class="panel">
-    <h3>All Uploaded Items</h3>
-    <div id="adminItemsGrid" class="items-grid"></div>
+
+    <div class="panel-header">
+      <h3 data-i18n="uploadedItems">
+        Uploaded Items
+      </h3>
+    </div>
+
+    <div id="adminItemsGrid" class="items-grid">
+
+      <div class="empty">
+        Loading items...
+      </div>
+
+    </div>
+
   </section>
+
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

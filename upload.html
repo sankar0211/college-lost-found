@@ -6,38 +6,65 @@
   <title>Upload Item</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body data-page="upload">
 
 <nav class="dashboard-nav">
+
   <div>
     <h2 data-i18n="uploadTitle">Upload Item</h2>
     <p id="userInfo"></p>
   </div>
+
   <div class="nav-actions">
-    <a href="lost-dashboard.html" class="nav-btn" data-i18n="dashboard">Dashboard</a>
-    <button onclick="toggleDarkMode()" class="nav-btn">🌙</button>
-    <button id="logoutBtn" class="logout-btn" data-i18n="logout">Logout</button>
+
+    <a href="lost-dashboard.html" class="nav-btn" data-i18n="dashboard">
+      Dashboard
+    </a>
+
+    <a href="found-dashboard.html" class="nav-btn" data-i18n="myUploads">
+      My Uploads
+    </a>
+
+    <label class="theme-switch">
+      <input type="checkbox" id="themeToggle">
+      <span class="theme-slider"></span>
+    </label>
+
+    <button id="logoutBtn" class="logout-btn" data-i18n="logout">
+      Logout
+    </button>
+
   </div>
+
 </nav>
 
 <main class="container">
+
   <section class="form-layout">
 
     <form id="uploadForm" class="panel">
+
       <h3 data-i18n="itemDetails">Item Details</h3>
 
       <label data-i18n="itemType">Item Type</label>
       <select id="itemType" required>
-        <option value="found">Found Item</option>
-        <option value="lost">Lost Item</option>
+        <option value="found" data-i18n="foundItem">Found Item</option>
+        <option value="lost" data-i18n="lostItem">Lost Item</option>
       </select>
 
       <label data-i18n="itemName">Item Name</label>
-      <input type="text" id="itemName" placeholder="Example: Black Wallet" required />
+      <input
+        type="text"
+        id="itemName"
+        placeholder="Example: Black Wallet"
+        data-i18n-placeholder="itemNamePlaceholder"
+        required
+      />
 
       <label data-i18n="category">Category</label>
       <select id="category" required>
-        <option value="">Select Category</option>
+        <option value="" data-i18n="selectCategory">Select Category</option>
         <option value="ID Card">ID Card</option>
         <option value="Wallet">Wallet</option>
         <option value="Bag">Bag</option>
@@ -51,17 +78,38 @@
       </select>
 
       <label data-i18n="description">Description</label>
-      <textarea id="description" rows="4" placeholder="Mention color, brand, unique marks..." required></textarea>
+      <textarea
+        id="description"
+        rows="4"
+        placeholder="Mention color, brand, unique marks..."
+        data-i18n-placeholder="descriptionPlaceholder"
+        required
+      ></textarea>
 
       <label data-i18n="locationName">Location Name</label>
-      <input type="text" id="locationName" placeholder="Example: Library entrance" required />
+      <input
+        type="text"
+        id="locationName"
+        placeholder="Example: Library entrance"
+        data-i18n-placeholder="locationNamePlaceholder"
+        required
+      />
 
-      <button type="button" class="btn secondary full" onclick="getCurrentLocation()" data-i18n="useLocation">
+      <button
+        type="button"
+        class="btn secondary full"
+        onclick="getCurrentLocation()"
+        data-i18n="useLocation">
         Use My Current Location
       </button>
 
       <label data-i18n="mapsLink">Google Maps Link</label>
-      <input type="text" id="mapsLink" placeholder="Paste Google Maps link or use current location" />
+      <input
+        type="text"
+        id="mapsLink"
+        placeholder="Paste Google Maps link or use current location"
+        data-i18n-placeholder="mapsPlaceholder"
+      />
 
       <input type="hidden" id="latitude" />
       <input type="hidden" id="longitude" />
@@ -70,27 +118,52 @@
       <input type="date" id="date" required />
 
       <label data-i18n="contact">Contact Number</label>
-      <input type="tel" id="contact" placeholder="Example: 9876543210" required />
+      <input
+        type="tel"
+        id="contact"
+        placeholder="Example: 9876543210"
+        data-i18n-placeholder="phonePlaceholder"
+        required
+      />
 
       <label data-i18n="imageUpload">Upload Image / Capture Using Camera</label>
-      <input type="file" id="imageInput" accept="image/*" capture="environment" />
+      <input
+        type="file"
+        id="imageInput"
+        accept="image/*"
+        capture="environment"
+      />
 
-      <button type="submit" class="btn primary full" id="submitItemBtn" data-i18n="submitItem">
+      <button
+        type="submit"
+        class="btn primary full"
+        id="submitItemBtn"
+        data-i18n="submitItem">
         Submit Item
       </button>
 
       <p id="uploadMessage" class="message"></p>
+
     </form>
 
     <div class="panel preview-box">
+
       <h3 data-i18n="imagePreview">Image Preview</h3>
-      <img id="imagePreview" src="" alt="Preview will appear here" />
+
+      <img
+        id="imagePreview"
+        src=""
+        alt="Preview will appear here"
+      />
+
       <p class="muted" data-i18n="cameraNote">
         Mobile users can capture item photo directly using camera.
       </p>
+
     </div>
 
   </section>
+
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

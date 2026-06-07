@@ -6,36 +6,103 @@
   <title>Admin Complaints</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body data-page="adminComplaints">
 
 <nav class="dashboard-nav">
+
   <div>
-    <h2>Admin Complaint Center</h2>
+    <h2 data-i18n="complaints">Complaints & Support</h2>
     <p id="userInfo"></p>
   </div>
+
   <div class="nav-actions">
-    <a href="admin-dashboard.html" class="nav-btn">Admin Home</a>
-    <button id="logoutBtn" class="logout-btn">Logout</button>
+
+    <a href="admin-dashboard.html" class="nav-btn" data-i18n="adminDashboard">
+      Dashboard
+    </a>
+
+    <a href="admin-users.html" class="nav-btn" data-i18n="manageUsers">
+      Users
+    </a>
+
+    <a href="admin-items.html" class="nav-btn" data-i18n="manageItems">
+      Items
+    </a>
+
+    <label class="theme-switch">
+      <input type="checkbox" id="themeToggle">
+      <span class="theme-slider"></span>
+    </label>
+
+    <button id="logoutBtn" class="logout-btn" data-i18n="logout">
+      Logout
+    </button>
+
   </div>
+
 </nav>
 
 <main class="container">
-  <section class="form-layout">
+
+  <div class="complaints-layout">
+
+    <!-- LEFT SIDE -->
+
     <section class="panel">
-      <h3>All Complaints</h3>
-      <div id="adminComplaintsList"></div>
+
+      <h3 data-i18n="allComplaints">
+        All Complaints
+      </h3>
+
+      <div id="adminComplaintsList">
+
+        <div class="empty">
+          Loading complaints...
+        </div>
+
+      </div>
+
     </section>
 
-    <section class="panel chat-panel">
-      <h3>Conversation</h3>
-      <div id="adminChatMessages" class="chat-box"></div>
+    <!-- RIGHT SIDE -->
 
-      <form id="adminReplyForm" class="reply-form">
-        <input type="text" id="adminReplyText" placeholder="Reply to user..." />
-        <button class="btn primary">Send</button>
+    <section class="panel">
+
+      <h3 data-i18n="chatWithUser">
+        Chat With User
+      </h3>
+
+      <div id="adminChatMessages" class="chat-box">
+
+        <div class="empty">
+          Select a complaint to view messages.
+        </div>
+
+      </div>
+
+      <form id="adminReplyForm">
+
+        <textarea
+          id="adminReplyText"
+          rows="3"
+          placeholder="Type reply..."
+          data-i18n-placeholder="replyPlaceholder"
+        ></textarea>
+
+        <button
+          type="submit"
+          class="btn primary full"
+          data-i18n="sendReply">
+          Send Reply
+        </button>
+
       </form>
+
     </section>
-  </section>
+
+  </div>
+
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

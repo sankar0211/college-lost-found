@@ -7,24 +7,34 @@ let selectedAdminComplaintId = null;
 let editingItemId = null;
 let editingOldImageUrl = "";
 
-/* ---------------- TRANSLATIONS ---------------- */
-
 const translations = {
   en: {
     appName: "Campus Lost & Found",
+    language: "Language",
     login: "Login",
+    register: "Register",
+    backHome: "← Back to Home",
+    loginNote: "Use your User ID and password.",
+    whatDo: "What do you want to do?",
+    searchAction: "Search Items",
+    reportLost: "Report Lost Item",
+    reportFound: "Report Found Item",
     tag: "College Utility Website",
     heroTitle: "Find Lost Items. Report Found Items.",
     heroText: "A campus portal for students, faculty, parents, visitors and public users to report, search and claim lost items.",
+    getStarted: "Get Started",
+    reportNow: "Report / Search Item",
     lostBtn: "I Lost an Item",
     foundBtn: "I Found an Item",
     searchItems: "Search Items",
-    searchText: "Search found items by name, category, location and date.",
+    searchText: "Search lost and found items by name, category, location and date.",
     uploadImages: "Upload Images",
     uploadText: "Upload from files or capture directly using mobile camera.",
     claimRequests: "Claim Requests",
-    claimText: "Send proof and wait for reporter/admin approval.",
-    lostDashboard: "Lost User Dashboard",
+    claimText: "Send proof and wait for reporter or admin approval.",
+    userDashboard: "User Dashboard",
+    lostDashboard: "User Dashboard",
+    foundDashboard: "My Reports Dashboard",
     dashboard: "Dashboard",
     logout: "Logout",
     messages: "Messages",
@@ -32,6 +42,8 @@ const translations = {
     editTitle: "Edit Uploaded Request",
     itemDetails: "Item Details",
     itemType: "Item Type",
+    foundItem: "Found Item",
+    lostItem: "Lost Item",
     itemName: "Item Name",
     category: "Category",
     description: "Description",
@@ -45,23 +57,92 @@ const translations = {
     updateItem: "Update Request",
     imagePreview: "Image Preview",
     cameraNote: "Mobile users can capture item photo directly using camera.",
-    foundDashboard: "Found Reporter Dashboard",
-    uploadFoundItem: "Report a Found Item",
+    uploadFoundItem: "Report an Item",
     uploadFoundText: "Upload image, location, map link and contact details.",
     uploadItem: "Upload Item",
-    availableItems: "Available Found Items",
+    availableItems: "Available Items",
+    myUploads: "My Uploads",
+    totalUploads: "Total Uploads",
+    pendingRequests: "Pending Requests",
     claimThisItem: "Claim This Item",
     proofText: "Enter proof to show that this item belongs to you.",
     sendClaim: "Send Claim Request",
-    editRequest: "Edit Request"
+    editRequest: "Edit Request",
+    fullName: "Full Name",
+    userId: "User ID / Register No / Staff ID / Visitor ID",
+    phone: "Phone Number",
+    password: "Password",
+    userType: "User Type",
+    selectUserType: "Select User Type",
+    student: "Student",
+    faculty: "Faculty",
+    assistantProfessor: "Assistant Professor",
+    professor: "Professor",
+    parent: "Parent",
+    visitor: "Visitor",
+    staff: "Security / Staff",
+    publicUser: "General Public",
+    createPassword: "Create Password",
+    confirmPassword: "Confirm Password",
+    createAccount: "Create Account",
+    selectCategory: "Select Category",
+    allCategories: "All Categories",
+    loadingItem: "Loading item details...",
+    raiseComplaint: "Raise Complaint",
+    subject: "Subject",
+    message: "Message",
+    sendComplaint: "Send Complaint",
+    myComplaints: "My Complaints",
+    chatWithAdmin: "Chat With Admin",
+    sendReply: "Send Reply",
+    adminDashboard: "Admin Dashboard",
+    manageUsers: "Users",
+    manageItems: "Items",
+    complaints: "Complaints",
+    totalUsers: "Total Users",
+    totalItems: "Total Items",
+    pendingItems: "Pending Items",
+    totalClaims: "Total Claims",
+    openComplaints: "Open Complaints",
+    returnedItems: "Returned Items",
+    allUsers: "All Registered Users",
+    uploadedItems: "Uploaded Items",
+    allComplaints: "All Complaints",
+    chatWithUser: "Chat With User",
+    userIdPlaceholder: "Example: 24I355",
+    passwordPlaceholder: "Enter password",
+    namePlaceholder: "Enter your name",
+    phonePlaceholder: "Example: 9876543210",
+    createPasswordPlaceholder: "Minimum 8 characters",
+    confirmPasswordPlaceholder: "Re-enter password",
+    searchPlaceholder: "Search by item name...",
+    locationPlaceholder: "Location",
+    itemNamePlaceholder: "Example: Black Wallet",
+    descriptionPlaceholder: "Mention color, brand, unique marks...",
+    locationNamePlaceholder: "Example: Library entrance",
+    mapsPlaceholder: "Paste Google Maps link or use current location",
+    proofPlaceholder: "Example: My calculator has a blue sticker on the back.",
+    subjectPlaceholder: "Example: Wrong item approval",
+    messagePlaceholder: "Describe your issue...",
+    replyPlaceholder: "Type your reply..."
   },
 
   ta: {
     appName: "வளாக இழந்தது & கண்டது",
+    language: "மொழி",
     login: "உள்நுழை",
+    register: "பதிவு",
+    backHome: "← முகப்பிற்கு செல்",
+    loginNote: "உங்கள் பயனர் ID மற்றும் கடவுச்சொல்லை பயன்படுத்தவும்.",
+    whatDo: "நீங்கள் என்ன செய்ய விரும்புகிறீர்கள்?",
+    searchAction: "பொருட்களை தேடு",
+    reportLost: "இழந்த பொருளை பதிவு செய்",
+    reportFound: "கண்ட பொருளை பதிவு செய்",
     tag: "கல்லூரி பயன்பாட்டு இணையதளம்",
     heroTitle: "இழந்த பொருட்களை கண்டுபிடிக்கவும். கண்ட பொருட்களை பதிவிடவும்.",
     heroText: "மாணவர்கள், ஆசிரியர்கள், பெற்றோர், வருகையாளர்கள் மற்றும் பொதுமக்கள் பயன்படுத்தும் வளாக பொருள் தேடல் தளம்.",
+    getStarted: "தொடங்கு",
+    reportNow: "பதிவு / தேடல்",
     lostBtn: "நான் பொருள் இழந்தேன்",
     foundBtn: "நான் பொருள் கண்டேன்",
     searchItems: "பொருட்களை தேடு",
@@ -70,7 +151,9 @@ const translations = {
     uploadText: "கோப்பிலிருந்து அல்லது மொபைல் கேமராவால் பதிவேற்றலாம்.",
     claimRequests: "உரிமை கோரிக்கை",
     claimText: "ஆதாரம் அனுப்பி அனுமதி பெறவும்.",
-    lostDashboard: "இழந்த பயனர் பலகை",
+    userDashboard: "பயனர் பலகை",
+    lostDashboard: "பயனர் பலகை",
+    foundDashboard: "என் பதிவுகள்",
     dashboard: "பலகை",
     logout: "வெளியேறு",
     messages: "செய்திகள்",
@@ -78,6 +161,8 @@ const translations = {
     editTitle: "பதிவை திருத்து",
     itemDetails: "பொருள் விவரங்கள்",
     itemType: "பொருள் வகை",
+    foundItem: "கண்ட பொருள்",
+    lostItem: "இழந்த பொருள்",
     itemName: "பொருள் பெயர்",
     category: "வகை",
     description: "விளக்கம்",
@@ -91,210 +176,88 @@ const translations = {
     updateItem: "பதிவை புதுப்பி",
     imagePreview: "பட முன்னோட்டம்",
     cameraNote: "மொபைல் பயனர்கள் கேமரா மூலம் நேரடியாக படம் எடுக்கலாம்.",
-    foundDashboard: "கண்ட பொருள் பலகை",
-    uploadFoundItem: "கண்ட பொருளை பதிவு செய்",
+    uploadFoundItem: "பொருளை பதிவு செய்",
     uploadFoundText: "படம், இடம், வரைபட இணைப்பு மற்றும் தொடர்பு விவரங்களை சேர்க்கவும்.",
     uploadItem: "பதிவேற்று",
     availableItems: "கிடைக்கும் பொருட்கள்",
+    myUploads: "என் பதிவுகள்",
+    totalUploads: "மொத்த பதிவுகள்",
+    pendingRequests: "நிலுவையில் உள்ள கோரிக்கைகள்",
     claimThisItem: "இந்த பொருளை கோரு",
     proofText: "இந்த பொருள் உங்களுடையது என்பதை நிரூபிக்கும் ஆதாரம் எழுதவும்.",
     sendClaim: "கோரிக்கை அனுப்பு",
-    editRequest: "திருத்து"
-  },
-
-  hi: {
-    appName: "Campus Lost & Found",
-    login: "लॉगिन",
-    tag: "कॉलेज उपयोगिता वेबसाइट",
-    heroTitle: "खोई वस्तु खोजें। मिली वस्तु रिपोर्ट करें।",
-    heroText: "छात्रों, शिक्षकों, अभिभावकों, आगंतुकों और सार्वजनिक उपयोगकर्ताओं के लिए पोर्टल।",
-    lostBtn: "मेरी वस्तु खो गई",
-    foundBtn: "मुझे वस्तु मिली",
-    searchItems: "वस्तु खोजें",
-    searchText: "नाम, श्रेणी, स्थान और तारीख से खोजें।",
-    uploadImages: "चित्र अपलोड करें",
-    uploadText: "फाइल से अपलोड करें या मोबाइल कैमरा से कैप्चर करें।",
-    claimRequests: "क्लेम अनुरोध",
-    claimText: "प्रमाण भेजें और अनुमति की प्रतीक्षा करें।",
-    lostDashboard: "खोई वस्तु डैशबोर्ड",
-    dashboard: "डैशबोर्ड",
-    logout: "लॉगआउट",
-    messages: "संदेश",
-    uploadTitle: "वस्तु अपलोड करें",
-    editTitle: "अपलोड अनुरोध संपादित करें",
-    itemDetails: "वस्तु विवरण",
-    itemType: "वस्तु प्रकार",
-    itemName: "वस्तु नाम",
-    category: "श्रेणी",
-    description: "विवरण",
-    locationName: "स्थान नाम",
-    useLocation: "मेरी वर्तमान लोकेशन उपयोग करें",
-    mapsLink: "Google Maps लिंक",
-    date: "तारीख",
-    contact: "संपर्क नंबर",
-    imageUpload: "चित्र अपलोड / कैमरा से कैप्चर करें",
-    submitItem: "वस्तु सबमिट करें",
-    updateItem: "अनुरोध अपडेट करें",
-    imagePreview: "चित्र पूर्वावलोकन",
-    cameraNote: "मोबाइल यूज़र सीधे कैमरा से फोटो ले सकते हैं।",
-    foundDashboard: "Found Reporter Dashboard",
-    uploadFoundItem: "मिली वस्तु रिपोर्ट करें",
-    uploadFoundText: "चित्र, स्थान, मैप लिंक और संपर्क जानकारी अपलोड करें।",
-    uploadItem: "अपलोड करें",
-    availableItems: "उपलब्ध वस्तुएं",
-    claimThisItem: "इस वस्तु पर दावा करें",
-    proofText: "यह वस्तु आपकी है, इसका प्रमाण लिखें।",
-    sendClaim: "दावा भेजें",
-    editRequest: "संपादित करें"
-  },
-
-  te: {
-    appName: "క్యాంపస్ లాస్ట్ & ఫౌండ్",
-    login: "లాగిన్",
-    tag: "కాలేజ్ యుటిలిటీ వెబ్‌సైట్",
-    heroTitle: "పోయిన వస్తువులను కనుగొనండి. దొరికిన వస్తువులను నివేదించండి.",
-    heroText: "విద్యార్థులు, ఉపాధ్యాయులు, తల్లిదండ్రులు, సందర్శకుల కోసం క్యాంపస్ పోర్టల్.",
-    lostBtn: "నేను వస్తువు కోల్పోయాను",
-    foundBtn: "నాకు వస్తువు దొరికింది",
-    searchItems: "వస్తువులు వెతకండి",
-    searchText: "పేరు, వర్గం, స్థలం, తేదీ ద్వారా వెతకండి.",
-    uploadImages: "చిత్రాలు అప్లోడ్ చేయండి",
-    uploadText: "ఫైల్ నుండి లేదా మొబైల్ కెమెరాతో అప్లోడ్ చేయండి.",
-    claimRequests: "క్లెయిమ్ అభ్యర్థనలు",
-    claimText: "ఆధారం పంపి ఆమోదం కోసం వేచి ఉండండి.",
-    lostDashboard: "లాస్ట్ యూజర్ డ్యాష్‌బోర్డ్",
-    dashboard: "డ్యాష్‌బోర్డ్",
-    logout: "లాగౌట్",
-    messages: "సందేశాలు",
-    uploadTitle: "వస్తువు అప్లోడ్ చేయండి",
-    editTitle: "అప్లోడ్ చేసిన అభ్యర్థనను మార్చండి",
-    itemDetails: "వస్తువు వివరాలు",
-    itemType: "వస్తువు రకం",
-    itemName: "వస్తువు పేరు",
-    category: "వర్గం",
-    description: "వివరణ",
-    locationName: "స్థానం పేరు",
-    useLocation: "నా ప్రస్తుత స్థానాన్ని ఉపయోగించు",
-    mapsLink: "Google Maps లింక్",
-    date: "తేదీ",
-    contact: "సంప్రదింపు నంబర్",
-    imageUpload: "చిత్రం అప్లోడ్ / కెమెరాతో తీసుకోండి",
-    submitItem: "వస్తువును సమర్పించు",
-    updateItem: "అభ్యర్థనను నవీకరించు",
-    imagePreview: "చిత్రం ప్రివ్యూ",
-    cameraNote: "మొబైల్ వినియోగదారులు కెమెరాతో నేరుగా ఫోటో తీసుకోవచ్చు.",
-    foundDashboard: "దొరికిన వస్తువు డ్యాష్‌బోర్డ్",
-    uploadFoundItem: "దొరికిన వస్తువును నివేదించండి",
-    uploadFoundText: "చిత్రం, స్థానం, మ్యాప్ లింక్ మరియు సంప్రదింపు వివరాలు అప్లోడ్ చేయండి.",
-    uploadItem: "అప్లోడ్",
-    availableItems: "అందుబాటులో ఉన్న వస్తువులు",
-    claimThisItem: "ఈ వస్తువును క్లెయిమ్ చేయండి",
-    proofText: "ఈ వస్తువు మీదేనని ఆధారం ఇవ్వండి.",
-    sendClaim: "క్లెయిమ్ పంపు",
-    editRequest: "సవరించు"
-  },
-
-  ml: {
-    appName: "ക്യാമ്പസ് Lost & Found",
-    login: "ലോഗിൻ",
-    tag: "കോളേജ് യൂട്ടിലിറ്റി വെബ്സൈറ്റ്",
-    heroTitle: "നഷ്ടപ്പെട്ട വസ്തുക്കൾ കണ്ടെത്തുക. കണ്ടെത്തിയ വസ്തുക്കൾ റിപ്പോർട്ട് ചെയ്യുക.",
-    heroText: "വിദ്യാർത്ഥികൾ, അധ്യാപകർ, രക്ഷിതാക്കൾ, സന്ദർശകർ എന്നിവർക്ക് ഉപയോഗിക്കാവുന്ന പോർട്ടൽ.",
-    lostBtn: "എനിക്ക് വസ്തു നഷ്ടപ്പെട്ടു",
-    foundBtn: "എനിക്ക് വസ്തു കിട്ടി",
-    searchItems: "വസ്തുക്കൾ തിരയുക",
-    searchText: "പേര്, വിഭാഗം, സ്ഥലം, തീയതി ഉപയോഗിച്ച് തിരയുക.",
-    uploadImages: "ചിത്രങ്ങൾ അപ്ലോഡ് ചെയ്യുക",
-    uploadText: "ഫയലിൽ നിന്നോ മൊബൈൽ ക്യാമറ ഉപയോഗിച്ചോ അപ്ലോഡ് ചെയ്യുക.",
-    claimRequests: "ക്ലെയിം അഭ്യർത്ഥനകൾ",
-    claimText: "തെളിവ് അയച്ച് അംഗീകാരം കാത്തിരിക്കുക.",
-    lostDashboard: "നഷ്ടപ്പെട്ട ഉപയോക്തൃ ഡാഷ്ബോർഡ്",
-    dashboard: "ഡാഷ്ബോർഡ്",
-    logout: "ലോഗൗട്ട്",
-    messages: "സന്ദേശങ്ങൾ",
-    uploadTitle: "വസ്തു അപ്ലോഡ് ചെയ്യുക",
-    editTitle: "അപ്ലോഡ് ചെയ്ത അപേക്ഷ തിരുത്തുക",
-    itemDetails: "വസ്തു വിവരങ്ങൾ",
-    itemType: "വസ്തു തരം",
-    itemName: "വസ്തു പേര്",
-    category: "വിഭാഗം",
-    description: "വിവരണം",
-    locationName: "സ്ഥലത്തിന്റെ പേര്",
-    useLocation: "എന്റെ നിലവിലെ സ്ഥാനം ഉപയോഗിക്കുക",
-    mapsLink: "Google Maps ലിങ്ക്",
-    date: "തീയതി",
-    contact: "ബന്ധപ്പെടേണ്ട നമ്പർ",
-    imageUpload: "ചിത്രം അപ്ലോഡ് / ക്യാമറ ഉപയോഗിക്കുക",
-    submitItem: "വസ്തു സമർപ്പിക്കുക",
-    updateItem: "അപേക്ഷ പുതുക്കുക",
-    imagePreview: "ചിത്രം പ്രിവ്യൂ",
-    cameraNote: "മൊബൈൽ ഉപയോക്താക്കൾക്ക് നേരിട്ട് ക്യാമറ ഉപയോഗിച്ച് ഫോട്ടോ എടുക്കാം.",
-    foundDashboard: "കണ്ടെത്തിയ വസ്തു ഡാഷ്ബോർഡ്",
-    uploadFoundItem: "കണ്ടെത്തിയ വസ്തു റിപ്പോർട്ട് ചെയ്യുക",
-    uploadFoundText: "ചിത്രം, സ്ഥലം, മാപ്പ് ലിങ്ക്, ബന്ധപ്പെടേണ്ട വിവരങ്ങൾ ചേർക്കുക.",
-    uploadItem: "അപ്ലോഡ്",
-    availableItems: "ലഭ്യമായ വസ്തുക്കൾ",
-    claimThisItem: "ഈ വസ്തു ക്ലെയിം ചെയ്യുക",
-    proofText: "ഈ വസ്തു നിങ്ങളുടേതാണ് എന്ന് തെളിയിക്കുന്ന വിവരങ്ങൾ നൽകുക.",
-    sendClaim: "ക്ലെയിം അയക്കുക",
-    editRequest: "തിരുത്തുക"
-  },
-
-  kn: {
-    appName: "ಕ್ಯಾಂಪಸ್ Lost & Found",
-    login: "ಲಾಗಿನ್",
-    tag: "ಕಾಲೇಜು ಉಪಯೋಗಿ ವೆಬ್‌ಸೈಟ್",
-    heroTitle: "ಕಳೆದುಹೋದ ವಸ್ತುಗಳನ್ನು ಹುಡುಕಿ. ಸಿಕ್ಕ ವಸ್ತುಗಳನ್ನು ವರದಿ ಮಾಡಿ.",
-    heroText: "ವಿದ್ಯಾರ್ಥಿಗಳು, ಶಿಕ್ಷಕರು, ಪೋಷಕರು, ಭೇಟಿ ದಾರರು ಬಳಸಬಹುದಾದ ಕ್ಯಾಂಪಸ್ ಪೋರ್ಟಲ್.",
-    lostBtn: "ನಾನು ವಸ್ತು ಕಳೆದುಕೊಂಡೆ",
-    foundBtn: "ನನಗೆ ವಸ್ತು ಸಿಕ್ಕಿತು",
-    searchItems: "ವಸ್ತುಗಳನ್ನು ಹುಡುಕಿ",
-    searchText: "ಹೆಸರು, ವರ್ಗ, ಸ್ಥಳ, ದಿನಾಂಕದಿಂದ ಹುಡುಕಿ.",
-    uploadImages: "ಚಿತ್ರಗಳನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿ",
-    uploadText: "ಫೈಲ್‌ನಿಂದ ಅಥವಾ ಮೊಬೈಲ್ ಕ್ಯಾಮೆರಾ ಮೂಲಕ ಅಪ್ಲೋಡ್ ಮಾಡಿ.",
-    claimRequests: "ಹಕ್ಕು ವಿನಂತಿಗಳು",
-    claimText: "ಸಾಕ್ಷಿ ಕಳುಹಿಸಿ ಅನುಮೋದನೆಗಾಗಿ ಕಾಯಿರಿ.",
-    lostDashboard: "ಕಳೆದುಹೋದ ಬಳಕೆದಾರ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
-    dashboard: "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
-    logout: "ಲಾಗೌಟ್",
-    messages: "ಸಂದೇಶಗಳು",
-    uploadTitle: "ವಸ್ತು ಅಪ್ಲೋಡ್ ಮಾಡಿ",
-    editTitle: "ಅಪ್ಲೋಡ್ ವಿನಂತಿ ತಿದ್ದು",
-    itemDetails: "ವಸ್ತು ವಿವರಗಳು",
-    itemType: "ವಸ್ತು ಪ್ರಕಾರ",
-    itemName: "ವಸ್ತು ಹೆಸರು",
-    category: "ವರ್ಗ",
-    description: "ವಿವರಣೆ",
-    locationName: "ಸ್ಥಳದ ಹೆಸರು",
-    useLocation: "ನನ್ನ ಪ್ರಸ್ತುತ ಸ್ಥಳ ಬಳಸಿ",
-    mapsLink: "Google Maps ಲಿಂಕ್",
-    date: "ದಿನಾಂಕ",
-    contact: "ಸಂಪರ್ಕ ಸಂಖ್ಯೆ",
-    imageUpload: "ಚಿತ್ರ ಅಪ್ಲೋಡ್ / ಕ್ಯಾಮೆರಾ ಬಳಸಿ",
-    submitItem: "ವಸ್ತು ಸಲ್ಲಿಸಿ",
-    updateItem: "ವಿನಂತಿ ನವೀಕರಿಸಿ",
-    imagePreview: "ಚಿತ್ರ ಪೂರ್ವವೀಕ್ಷಣೆ",
-    cameraNote: "ಮೊಬೈಲ್ ಬಳಕೆದಾರರು ನೇರವಾಗಿ ಕ್ಯಾಮೆರಾದಿಂದ ಫೋಟೋ ತೆಗೆದುಕೊಳ್ಳಬಹುದು.",
-    foundDashboard: "ಸಿಕ್ಕ ವಸ್ತು ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
-    uploadFoundItem: "ಸಿಕ್ಕ ವಸ್ತು ವರದಿ ಮಾಡಿ",
-    uploadFoundText: "ಚಿತ್ರ, ಸ್ಥಳ, ಮ್ಯಾಪ್ ಲಿಂಕ್ ಮತ್ತು ಸಂಪರ್ಕ ವಿವರಗಳನ್ನು ಸೇರಿಸಿ.",
-    uploadItem: "ಅಪ್ಲೋಡ್",
-    availableItems: "ಲಭ್ಯವಿರುವ ವಸ್ತುಗಳು",
-    claimThisItem: "ಈ ವಸ್ತು ಕ್ಲೇಮ್ ಮಾಡಿ",
-    proofText: "ಈ ವಸ್ತು ನಿಮ್ಮದು ಎಂದು ಸಾಬೀತುಪಡಿಸಿ.",
-    sendClaim: "ಕ್ಲೇಮ್ ಕಳುಹಿಸಿ",
-    editRequest: "ತಿದ್ದು"
+    editRequest: "திருத்து",
+    fullName: "முழுப் பெயர்",
+    userId: "பயனர் ID / பதிவு எண் / பணியாளர் ID / பார்வையாளர் ID",
+    phone: "தொலைபேசி எண்",
+    password: "கடவுச்சொல்",
+    userType: "பயனர் வகை",
+    selectUserType: "பயனர் வகையை தேர்வு செய்க",
+    student: "மாணவர்",
+    faculty: "ஆசிரியர்",
+    assistantProfessor: "உதவி பேராசிரியர்",
+    professor: "பேராசிரியர்",
+    parent: "பெற்றோர்",
+    visitor: "பார்வையாளர்",
+    staff: "பாதுகாப்பு / பணியாளர்",
+    publicUser: "பொது பயனர்",
+    createPassword: "கடவுச்சொல் உருவாக்கு",
+    confirmPassword: "கடவுச்சொல் உறுதி செய்",
+    createAccount: "கணக்கு உருவாக்கு",
+    selectCategory: "வகையை தேர்வு செய்க",
+    allCategories: "அனைத்து வகைகள்",
+    loadingItem: "பொருள் விவரங்கள் ஏற்றப்படுகிறது...",
+    raiseComplaint: "புகார் அளி",
+    subject: "தலைப்பு",
+    message: "செய்தி",
+    sendComplaint: "புகார் அனுப்பு",
+    myComplaints: "என் புகார்கள்",
+    chatWithAdmin: "நிர்வாகியுடன் உரையாடு",
+    sendReply: "பதில் அனுப்பு",
+    adminDashboard: "நிர்வாக பலகை",
+    manageUsers: "பயனர்கள்",
+    manageItems: "பொருட்கள்",
+    complaints: "புகார்கள்",
+    totalUsers: "மொத்த பயனர்கள்",
+    totalItems: "மொத்த பொருட்கள்",
+    pendingItems: "நிலுவை பொருட்கள்",
+    totalClaims: "மொத்த கோரிக்கைகள்",
+    openComplaints: "திறந்த புகார்கள்",
+    returnedItems: "திருப்பி கொடுக்கப்பட்டவை",
+    allUsers: "அனைத்து பயனர்கள்",
+    uploadedItems: "பதிவேற்றப்பட்ட பொருட்கள்",
+    allComplaints: "அனைத்து புகார்கள்",
+    chatWithUser: "பயனருடன் உரையாடு",
+    userIdPlaceholder: "உதாரணம்: 24I355",
+    passwordPlaceholder: "கடவுச்சொல் உள்ளிடுக",
+    namePlaceholder: "உங்கள் பெயரை உள்ளிடுக",
+    phonePlaceholder: "உதாரணம்: 9876543210",
+    createPasswordPlaceholder: "குறைந்தது 8 எழுத்துகள்",
+    confirmPasswordPlaceholder: "மீண்டும் கடவுச்சொல் உள்ளிடுக",
+    searchPlaceholder: "பொருள் பெயரைத் தேடு...",
+    locationPlaceholder: "இடம்",
+    itemNamePlaceholder: "உதாரணம்: கருப்பு பணப்பை",
+    descriptionPlaceholder: "நிறம், பிராண்ட், தனிப்பட்ட அடையாளங்களை குறிப்பிடவும்...",
+    locationNamePlaceholder: "உதாரணம்: நூலக நுழைவாயில்",
+    mapsPlaceholder: "Google Maps இணைப்பை ஒட்டவும்",
+    proofPlaceholder: "உதாரணம்: என் கால்குலேட்டரின் பின்புறம் நீல ஸ்டிக்கர் உள்ளது.",
+    subjectPlaceholder: "உதாரணம்: தவறான பொருள் அனுமதி",
+    messagePlaceholder: "உங்கள் பிரச்சனையை விவரிக்கவும்...",
+    replyPlaceholder: "உங்கள் பதிலை தட்டச்சு செய்யவும்..."
   }
 };
 
-/* ---------------- PAGE START ---------------- */
+["hi", "te", "ml", "kn"].forEach((lang) => {
+  translations[lang] = { ...translations.en, ...translations[lang] };
+});
 
 document.addEventListener("DOMContentLoaded", async () => {
   applyDarkMode();
   setupThemeToggle();
+  removeDuplicateLanguageControls();
   injectLanguageSwitcher();
-  applyLanguage();
   setupLanguageMenu();
+  applyLanguage();
   setupLogout();
   showUserInfo();
 
@@ -313,35 +276,41 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (page === "adminComplaints") await initAdminComplaints();
 });
 
-/* ---------------- LANGUAGE ---------------- */
+/* LANGUAGE */
 
 function initHome() {
   const lang = localStorage.getItem(LANG_KEY);
   const screen = document.getElementById("languageScreen");
+  if (!lang && screen) screen.style.display = "flex";
+}
 
-  if (!lang && screen) {
-    screen.style.display = "flex";
-  }
+function removeDuplicateLanguageControls() {
+  const oldSelect = document.getElementById("languageSelect");
+  if (oldSelect) oldSelect.remove();
+
+  document.querySelectorAll(".custom-language").forEach((el, index) => {
+    if (index > 0) el.remove();
+  });
 }
 
 function injectLanguageSwitcher() {
   const navActions = document.querySelector(".nav-actions");
-
   if (!navActions) return;
+
   if (document.getElementById("languageBtn")) return;
 
   const wrapper = document.createElement("div");
   wrapper.className = "custom-language";
 
   wrapper.innerHTML = `
-    <button type="button" id="languageBtn">🌐 Language</button>
+    <button type="button" id="languageBtn">🌐 <span data-i18n="language">Language</span></button>
     <div id="languageMenu" class="language-menu">
-      <button type="button" onclick="setLanguage('en')">English</button>
-      <button type="button" onclick="setLanguage('ta')">தமிழ்</button>
-      <button type="button" onclick="setLanguage('hi')">हिन्दी</button>
-      <button type="button" onclick="setLanguage('te')">తెలుగు</button>
-      <button type="button" onclick="setLanguage('ml')">മലയാളം</button>
-      <button type="button" onclick="setLanguage('kn')">ಕನ್ನಡ</button>
+      <button type="button" data-lang="en">English</button>
+      <button type="button" data-lang="ta">தமிழ்</button>
+      <button type="button" data-lang="hi">हिन्दी</button>
+      <button type="button" data-lang="te">తెలుగు</button>
+      <button type="button" data-lang="ml">മലയാളം</button>
+      <button type="button" data-lang="kn">ಕನ್ನಡ</button>
     </div>
   `;
 
@@ -354,13 +323,16 @@ function setupLanguageMenu() {
 
   if (!btn || !menu) return;
 
-  btn.addEventListener("click", (e) => {
+  btn.onclick = (e) => {
     e.stopPropagation();
     menu.classList.toggle("open");
-  });
+  };
 
-  menu.addEventListener("click", (e) => {
-    e.stopPropagation();
+  menu.querySelectorAll("[data-lang]").forEach((button) => {
+    button.onclick = (e) => {
+      e.stopPropagation();
+      setLanguage(button.dataset.lang);
+    };
   });
 
   document.addEventListener("click", () => {
@@ -371,6 +343,16 @@ function setupLanguageMenu() {
 function setLanguage(lang) {
   localStorage.setItem(LANG_KEY, lang);
 
+  const user = getCurrentUser();
+  if (user) {
+    user.preferred_language = lang;
+    setCurrentUser(user);
+    supabaseClient
+      .from("profiles")
+      .update({ preferred_language: lang })
+      .eq("user_id", user.user_id);
+  }
+
   const screen = document.getElementById("languageScreen");
   if (screen) screen.style.display = "none";
 
@@ -380,58 +362,36 @@ function setLanguage(lang) {
   applyLanguage();
 }
 
-function applyLanguage() {
+function t(key) {
   const lang = localStorage.getItem(LANG_KEY) || "en";
-  const dict = translations[lang] || translations.en;
+  return translations[lang]?.[key] || translations.en[key] || key;
+}
 
-  const select = document.getElementById("languageSelect");
-  if (select) select.value = lang;
-
+function applyLanguage() {
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     const key = el.getAttribute("data-i18n");
-    if (dict[key]) el.textContent = dict[key];
+    el.textContent = t(key);
   });
 
-  translateStaticPageText(dict);
+  document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+    const key = el.getAttribute("data-i18n-placeholder");
+    el.placeholder = t(key);
+  });
+
+  translateDynamicPageText();
 }
 
-function translateStaticPageText(dict) {
-  const page = document.body.dataset.page;
+function translateDynamicPageText() {
+  if (document.body.dataset.page === "upload") {
+    const title = document.querySelector("h2");
+    const submit = document.getElementById("submitItemBtn");
 
-  if (page === "foundDashboard") {
-    setText("h2", dict.foundDashboard);
-    setText(".action-panel h3", dict.uploadFoundItem);
-    setText(".action-panel p", dict.uploadFoundText);
-    setText(".action-panel .btn", dict.uploadItem);
-    setText("section:last-of-type h3", "My Uploaded Items");
-  }
-
-  if (page === "lostDashboard") {
-    setText("h2", dict.lostDashboard);
-    setText("section h3", dict.searchItems);
-  }
-
-  if (page === "itemDetails") {
-    setText("h2", "Item Details");
-    setText("#claimSection h3", dict.claimThisItem);
-    setText("#claimSection .muted", dict.proofText);
-    setText("#claimForm button", dict.sendClaim);
-  }
-
-  if (page === "upload") {
-    if (!editingItemId) {
-      setText("h2", dict.uploadTitle);
-      setText("#submitItemBtn", dict.submitItem);
-    }
+    if (title) title.textContent = editingItemId ? t("editTitle") : t("uploadTitle");
+    if (submit) submit.textContent = editingItemId ? t("updateItem") : t("submitItem");
   }
 }
 
-function setText(selector, value) {
-  const el = document.querySelector(selector);
-  if (el && value) el.textContent = value;
-}
-
-/* ---------------- DARK MODE ---------------- */
+/* DARK MODE */
 
 function toggleDarkMode() {
   const current = localStorage.getItem(DARK_KEY) === "true";
@@ -441,24 +401,32 @@ function toggleDarkMode() {
 }
 
 function applyDarkMode() {
-  const enabled = localStorage.getItem(DARK_KEY) === "true";
-  document.body.classList.toggle("dark", enabled);
+  document.body.classList.toggle("dark", localStorage.getItem(DARK_KEY) === "true");
 }
 
 function setupThemeToggle() {
   const toggle = document.getElementById("themeToggle");
+  if (!toggle) return;
 
-  if (toggle) {
-    toggle.checked = localStorage.getItem(DARK_KEY) === "true";
+  toggle.checked = localStorage.getItem(DARK_KEY) === "true";
 
-    toggle.onchange = () => {
-      localStorage.setItem(DARK_KEY, String(toggle.checked));
-      applyDarkMode();
-    };
-  }
+  toggle.onchange = () => {
+    localStorage.setItem(DARK_KEY, String(toggle.checked));
+    applyDarkMode();
+
+    const user = getCurrentUser();
+    if (user) {
+      user.dark_mode = toggle.checked;
+      setCurrentUser(user);
+      supabaseClient
+        .from("profiles")
+        .update({ dark_mode: toggle.checked })
+        .eq("user_id", user.user_id);
+    }
+  };
 }
 
-/* ---------------- COMMON ---------------- */
+/* COMMON */
 
 function getCurrentUser() {
   return JSON.parse(localStorage.getItem(CURRENT_USER_KEY));
@@ -483,8 +451,7 @@ function showUserInfo() {
   const user = getCurrentUser();
 
   if (userInfo && user) {
-    userInfo.textContent =
-      `${user.full_name} | ID: ${user.user_id} | Type: ${user.user_type}`;
+    userInfo.textContent = `${user.full_name} | ID: ${user.user_id} | Type: ${user.user_type}`;
   }
 }
 
@@ -513,17 +480,14 @@ function requireAdmin() {
 
 function goDashboard() {
   const user = getCurrentUser();
-
   if (!user) {
     window.location.href = "login.html";
     return;
   }
 
-  if (user.user_type === "admin") {
-    window.location.href = "admin-dashboard.html";
-  } else {
-    window.location.href = "lost-dashboard.html";
-  }
+  window.location.href = user.user_type === "admin"
+    ? "admin-dashboard.html"
+    : "lost-dashboard.html";
 }
 
 function getNextActionUrl() {
@@ -532,13 +496,11 @@ function getNextActionUrl() {
 
   if (action === "lost") return "upload.html?type=lost";
   if (action === "found") return "upload.html?type=found";
-
   return "lost-dashboard.html";
 }
 
 function escapeHTML(value) {
   if (value === null || value === undefined) return "";
-
   return String(value)
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
@@ -571,7 +533,6 @@ function setButtonLoading(button, loading, text) {
 
 function createPlaceholderImage(text) {
   const safeText = escapeHTML(text || "Item");
-
   const svg = `
     <svg xmlns="http://www.w3.org/2000/svg" width="600" height="400">
       <rect width="100%" height="100%" fill="#dbeafe"/>
@@ -579,7 +540,6 @@ function createPlaceholderImage(text) {
       font-size="42" font-family="Arial" fill="#1d4ed8">${safeText}</text>
     </svg>
   `;
-
   return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
 }
 
@@ -589,7 +549,7 @@ function getStatusClass(status) {
   return "status";
 }
 
-/* ---------------- AUTH ---------------- */
+/* AUTH */
 
 function initAuthPage() {
   const loginTab = document.getElementById("loginTab");
@@ -603,7 +563,7 @@ function initAuthPage() {
     registerTab.classList.remove("active");
     loginForm.classList.remove("hidden");
     registerForm.classList.add("hidden");
-    authTitle.textContent = "Login";
+    if (authTitle) authTitle.textContent = t("login");
     clearMessage();
   });
 
@@ -612,7 +572,7 @@ function initAuthPage() {
     loginTab.classList.remove("active");
     registerForm.classList.remove("hidden");
     loginForm.classList.add("hidden");
-    authTitle.textContent = "Register";
+    if (authTitle) authTitle.textContent = t("register");
     clearMessage();
   });
 
@@ -638,7 +598,7 @@ async function registerUser(e) {
   e.preventDefault();
 
   const button = e.target.querySelector("button[type='submit']");
-  setButtonLoading(button, true, "Create Account");
+  setButtonLoading(button, true, t("createAccount"));
 
   const fullName = document.getElementById("regName").value.trim();
   const userId = document.getElementById("regUserId").value.trim().toUpperCase();
@@ -675,10 +635,7 @@ async function registerUser(e) {
       .maybeSingle();
 
     if (checkError) throw checkError;
-
-    if (existingUser) {
-      throw new Error("This User ID already exists. Please login.");
-    }
+    if (existingUser) throw new Error("This User ID already exists. Please login.");
 
     const newUser = {
       user_id: userId,
@@ -702,16 +659,13 @@ async function registerUser(e) {
     showAuthMessage("Account created successfully. Redirecting...", "green");
 
     setTimeout(() => {
-      if (createdUser.user_type === "admin") {
-        window.location.href = "admin-dashboard.html";
-      } else {
-        window.location.href = getNextActionUrl();
-      }
+      window.location.href = createdUser.user_type === "admin"
+        ? "admin-dashboard.html"
+        : getNextActionUrl();
     }, 900);
-
   } catch (error) {
     showAuthMessage(error.message, "red");
-    setButtonLoading(button, false, "Create Account");
+    setButtonLoading(button, false, t("createAccount"));
   }
 }
 
@@ -719,15 +673,13 @@ async function loginUser(e) {
   e.preventDefault();
 
   const button = e.target.querySelector("button[type='submit']");
-  setButtonLoading(button, true, "Login");
+  setButtonLoading(button, true, t("login"));
 
   const userId = document.getElementById("loginUserId").value.trim().toUpperCase();
   const password = document.getElementById("loginPassword").value.trim();
 
   try {
-    if (!userId || !password) {
-      throw new Error("Please enter User ID and password.");
-    }
+    if (!userId || !password) throw new Error("Please enter User ID and password.");
 
     const { data: user, error } = await supabaseClient
       .from("profiles")
@@ -736,33 +688,28 @@ async function loginUser(e) {
       .maybeSingle();
 
     if (error) throw error;
-
-    if (!user) {
-      throw new Error("Account not found. Please register first.");
-    }
-
-    if (user.password !== password) {
-      throw new Error("Wrong password.");
-    }
+    if (!user) throw new Error("Account not found. Please register first.");
+    if (user.password !== password) throw new Error("Wrong password.");
 
     setCurrentUser(user);
+
+    if (user.preferred_language) localStorage.setItem(LANG_KEY, user.preferred_language);
+    if (typeof user.dark_mode === "boolean") localStorage.setItem(DARK_KEY, String(user.dark_mode));
+
     showAuthMessage("Login successful. Redirecting...", "green");
 
     setTimeout(() => {
-      if (user.user_type === "admin") {
-        window.location.href = "admin-dashboard.html";
-      } else {
-        window.location.href = getNextActionUrl();
-      }
+      window.location.href = user.user_type === "admin"
+        ? "admin-dashboard.html"
+        : getNextActionUrl();
     }, 700);
-
   } catch (error) {
     showAuthMessage(error.message, "red");
-    setButtonLoading(button, false, "Login");
+    setButtonLoading(button, false, t("login"));
   }
 }
 
-/* ---------------- FETCH ---------------- */
+/* FETCH */
 
 async function fetchItems() {
   const { data, error } = await supabaseClient
@@ -820,28 +767,33 @@ async function fetchComplaints() {
   return data || [];
 }
 
-/* ---------------- LOST DASHBOARD ---------------- */
+/* LOST DASHBOARD */
 
 async function initLostDashboard() {
   const user = requireLogin();
   if (!user) return;
 
-  document.getElementById("searchInput").addEventListener("input", renderLostItems);
-  document.getElementById("categoryFilter").addEventListener("change", renderLostItems);
-  document.getElementById("locationFilter").addEventListener("input", renderLostItems);
-  document.getElementById("dateFilter").addEventListener("change", renderLostItems);
+  ["searchInput", "categoryFilter", "locationFilter", "dateFilter"].forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.addEventListener("input", renderLostItems);
+      el.addEventListener("change", renderLostItems);
+    }
+  });
 
   await renderLostItems();
 }
 
 async function renderLostItems() {
   const grid = document.getElementById("itemsGrid");
+  if (!grid) return;
+
   grid.innerHTML = `<div class="empty">Loading items...</div>`;
 
-  const search = document.getElementById("searchInput").value.toLowerCase();
-  const category = document.getElementById("categoryFilter").value;
-  const location = document.getElementById("locationFilter").value.toLowerCase();
-  const date = document.getElementById("dateFilter").value;
+  const search = (document.getElementById("searchInput")?.value || "").toLowerCase();
+  const category = document.getElementById("categoryFilter")?.value || "";
+  const location = (document.getElementById("locationFilter")?.value || "").toLowerCase();
+  const date = document.getElementById("dateFilter")?.value || "";
 
   let items = await fetchItems();
 
@@ -861,20 +813,16 @@ async function renderLostItems() {
     );
   });
 
-  if (items.length === 0) {
-    grid.innerHTML = `<div class="empty">No matching items available.</div>`;
-    return;
-  }
-
-  grid.innerHTML = items.map(item => createItemCard(item, true)).join("");
+  grid.innerHTML = items.length
+    ? items.map(item => createItemCard(item, true)).join("")
+    : `<div class="empty">No matching items available.</div>`;
 }
 
-/* ---------------- FOUND DASHBOARD ---------------- */
+/* FOUND DASHBOARD */
 
 async function initFoundDashboard() {
   const user = requireLogin();
   if (!user) return;
-
   await renderFoundDashboard(user);
 }
 
@@ -887,9 +835,9 @@ async function renderFoundDashboard(user) {
   const myClaims = claims.filter(claim => myItemIds.includes(claim.item_id));
   const pendingClaims = myClaims.filter(claim => claim.status === "Pending");
 
-  document.getElementById("uploadCount").textContent = myItems.length;
-  document.getElementById("claimCount").textContent = myClaims.length;
-  document.getElementById("pendingCount").textContent = pendingClaims.length;
+  if (document.getElementById("uploadCount")) document.getElementById("uploadCount").textContent = myItems.length;
+  if (document.getElementById("claimCount")) document.getElementById("claimCount").textContent = myClaims.length;
+  if (document.getElementById("pendingCount")) document.getElementById("pendingCount").textContent = pendingClaims.length;
 
   renderClaimsList(myClaims, items);
   renderMyUploadedItems(myItems);
@@ -897,6 +845,7 @@ async function renderFoundDashboard(user) {
 
 function renderClaimsList(claims, items) {
   const claimsList = document.getElementById("claimsList");
+  if (!claimsList) return;
 
   if (claims.length === 0) {
     claimsList.innerHTML = `<div class="empty">No claim requests received yet.</div>`;
@@ -912,16 +861,13 @@ function renderClaimsList(claims, items) {
         <p><b>Claimed By:</b> ${escapeHTML(claim.claimant_name)} (${escapeHTML(claim.claimant_id)})</p>
         <p><b>Proof:</b> ${escapeHTML(claim.proof)}</p>
         <p><b>Status:</b> ${escapeHTML(claim.status)}</p>
-
         ${
           claim.status === "Pending"
-          ? `
-            <div class="claim-actions">
-              <button class="btn accept" onclick="updateClaimStatus(${claim.id}, 'Accepted')">Accept</button>
-              <button class="btn reject" onclick="updateClaimStatus(${claim.id}, 'Rejected')">Reject</button>
-            </div>
-          `
-          : ""
+            ? `<div class="claim-actions">
+                <button class="btn accept" onclick="updateClaimStatus(${claim.id}, 'Accepted')">Accept</button>
+                <button class="btn reject" onclick="updateClaimStatus(${claim.id}, 'Rejected')">Reject</button>
+              </div>`
+            : ""
         }
       </div>
     `;
@@ -930,13 +876,11 @@ function renderClaimsList(claims, items) {
 
 function renderMyUploadedItems(items) {
   const grid = document.getElementById("myItemsGrid");
+  if (!grid) return;
 
-  if (items.length === 0) {
-    grid.innerHTML = `<div class="empty">You have not uploaded any item yet.</div>`;
-    return;
-  }
-
-  grid.innerHTML = items.map(item => createItemCard(item, false)).join("");
+  grid.innerHTML = items.length
+    ? items.map(item => createItemCard(item, false)).join("")
+    : `<div class="empty">You have not uploaded any item yet.</div>`;
 }
 
 async function updateClaimStatus(claimId, status) {
@@ -976,7 +920,7 @@ async function updateClaimStatus(claimId, status) {
   location.reload();
 }
 
-/* ---------------- UPLOAD + EDIT ---------------- */
+/* UPLOAD + EDIT */
 
 async function initUploadPage() {
   const user = requireLogin();
@@ -995,9 +939,7 @@ async function initUploadPage() {
     itemTypeElement.value = urlType;
   }
 
-  if (editId) {
-    await loadItemForEdit(editId, user);
-  }
+  if (editId) await loadItemForEdit(editId, user);
 
   let selectedFile = null;
 
@@ -1028,8 +970,8 @@ async function initUploadPage() {
 
     const submitBtn = document.getElementById("submitItemBtn");
     const message = document.getElementById("uploadMessage");
+    const buttonText = editingItemId ? t("updateItem") : t("submitItem");
 
-    const buttonText = editingItemId ? "Update Request" : "Submit Item";
     setButtonLoading(submitBtn, true, buttonText);
 
     try {
@@ -1060,11 +1002,9 @@ async function initUploadPage() {
 
         if (uploadError) throw uploadError;
 
-        const publicData = supabaseClient.storage
+        imageUrl = supabaseClient.storage
           .from("lost-found-images")
-          .getPublicUrl(filePath);
-
-        imageUrl = publicData.data.publicUrl;
+          .getPublicUrl(filePath).data.publicUrl;
       }
 
       const itemData = {
@@ -1093,7 +1033,6 @@ async function initUploadPage() {
           .eq("reporter_id", user.user_id);
 
         if (error) throw error;
-
         message.textContent = "Request updated. Waiting for admin approval again.";
       } else {
         const { error } = await supabaseClient
@@ -1101,7 +1040,6 @@ async function initUploadPage() {
           .insert(itemData);
 
         if (error) throw error;
-
         message.textContent = "Item submitted. Waiting for admin approval.";
       }
 
@@ -1140,10 +1078,6 @@ async function loadItemForEdit(itemId, user) {
   editingItemId = item.id;
   editingOldImageUrl = item.image_url || "";
 
-  document.querySelector("h2").textContent = translations[localStorage.getItem(LANG_KEY) || "en"].editTitle;
-  document.getElementById("submitItemBtn").textContent =
-    translations[localStorage.getItem(LANG_KEY) || "en"].updateItem;
-
   document.getElementById("itemType").value = item.item_type || "found";
   document.getElementById("itemName").value = item.title || "";
   document.getElementById("category").value = item.category || "";
@@ -1155,9 +1089,9 @@ async function loadItemForEdit(itemId, user) {
   document.getElementById("longitude").value = item.longitude || "";
   document.getElementById("mapsLink").value = item.maps_link || "";
 
-  if (item.image_url) {
-    document.getElementById("imagePreview").src = item.image_url;
-  }
+  if (item.image_url) document.getElementById("imagePreview").src = item.image_url;
+
+  applyLanguage();
 }
 
 function getCurrentLocation() {
@@ -1178,21 +1112,15 @@ function getCurrentLocation() {
 
       alert("Location captured successfully.");
     },
-    () => {
-      alert("Location permission denied or unavailable.");
-    }
+    () => alert("Location permission denied or unavailable.")
   );
 }
 
-/* ---------------- ITEM DETAILS ---------------- */
+/* ITEM DETAILS */
 
 async function initItemDetails() {
-  const user = getCurrentUser();
-
-  if (!user) {
-    window.location.href = "login.html";
-    return;
-  }
+  const user = requireLogin();
+  if (!user) return;
 
   const itemId = new URLSearchParams(window.location.search).get("id");
   const detailsBox = document.getElementById("detailsBox");
@@ -1215,32 +1143,19 @@ async function initItemDetails() {
 
   detailsBox.innerHTML = `
     <img src="${escapeHTML(item.image_url)}" alt="${escapeHTML(item.title)}">
-
     <div class="details-info">
       <span class="badge">${escapeHTML(item.item_type || "found")}</span>
       <span class="badge">${escapeHTML(item.category)}</span>
       <span class="badge ${statusClass}">${escapeHTML(item.status)}</span>
-
       <h2>${escapeHTML(item.title)}</h2>
-
       <p><b>Description:</b> ${escapeHTML(item.description)}</p>
       <p><b>Location:</b> ${escapeHTML(item.location_name)}</p>
       <p><b>Date:</b> ${escapeHTML(item.found_date)}</p>
       <p><b>Reporter Name:</b> ${escapeHTML(item.reporter_name)}</p>
       <p><b>Reporter ID:</b> ${escapeHTML(item.reporter_id)}</p>
       <p><b>Contact:</b> ${escapeHTML(item.contact_number)}</p>
-
-      ${
-        item.maps_link
-        ? `<p><a class="btn secondary" target="_blank" href="${escapeHTML(item.maps_link)}">Open Google Maps Location</a></p>`
-        : ""
-      }
-
-      ${
-        isOwner
-        ? `<p><a class="btn primary" href="upload.html?edit=${encodeURIComponent(item.id)}">Edit Request</a></p>`
-        : ""
-      }
+      ${item.maps_link ? `<p><a class="btn secondary" target="_blank" href="${escapeHTML(item.maps_link)}">Open Google Maps Location</a></p>` : ""}
+      ${isOwner ? `<p><a class="btn primary" href="upload.html?edit=${encodeURIComponent(item.id)}">${t("editRequest")}</a></p>` : ""}
     </div>
   `;
 
@@ -1270,37 +1185,28 @@ async function initItemDetails() {
       return;
     }
 
-    const newClaim = {
+    const { error: claimError } = await supabaseClient.from("claims").insert({
       item_id: item.id,
       claimant_id: user.user_id,
       claimant_name: user.full_name,
       proof,
       status: "Pending"
-    };
-
-    const { error: claimError } = await supabaseClient
-      .from("claims")
-      .insert(newClaim);
+    });
 
     if (claimError) {
       alert("Request failed: " + claimError.message);
       return;
     }
 
-    await supabaseClient
-      .from("items")
-      .update({ status: "Claim Pending" })
-      .eq("id", item.id);
+    await supabaseClient.from("items").update({ status: "Claim Pending" }).eq("id", item.id);
 
-    document.getElementById("claimMessage").textContent =
-      "Request sent successfully.";
+    document.getElementById("claimMessage").textContent = "Request sent successfully.";
     document.getElementById("claimMessage").style.color = "green";
-
     claimForm.reset();
   });
 }
 
-/* ---------------- COMPLAINTS ---------------- */
+/* COMPLAINTS */
 
 async function initComplaints() {
   const user = requireLogin();
@@ -1379,9 +1285,7 @@ async function openComplaint(id) {
     .eq("complaint_id", id)
     .order("created_at", { ascending: true });
 
-  const box = document.getElementById("chatMessages");
-
-  box.innerHTML = data.map(m => `
+  document.getElementById("chatMessages").innerHTML = data.map(m => `
     <div class="chat-message ${m.sender_role === "admin" ? "chat-admin" : "chat-user"}">
       <b>${escapeHTML(m.sender_name)}:</b>
       <p>${escapeHTML(m.message)}</p>
@@ -1414,7 +1318,7 @@ async function sendUserReply(e) {
   await openComplaint(selectedComplaintId);
 }
 
-/* ---------------- ADMIN ---------------- */
+/* ADMIN */
 
 async function initAdminDashboard() {
   const admin = requireAdmin();
@@ -1427,13 +1331,10 @@ async function initAdminDashboard() {
 
   document.getElementById("totalUsers").textContent = users.length;
   document.getElementById("totalItems").textContent = items.length;
-  document.getElementById("pendingItems").textContent =
-    items.filter(i => i.admin_status === "Pending").length;
+  document.getElementById("pendingItems").textContent = items.filter(i => i.admin_status === "Pending").length;
   document.getElementById("totalClaims").textContent = claims.length;
-  document.getElementById("openComplaints").textContent =
-    complaints.filter(c => c.status === "Open").length;
-  document.getElementById("returnedItems").textContent =
-    items.filter(i => i.status === "Returned").length;
+  document.getElementById("openComplaints").textContent = complaints.filter(c => c.status === "Open").length;
+  document.getElementById("returnedItems").textContent = items.filter(i => i.status === "Returned").length;
 }
 
 async function initAdminUsers() {
@@ -1472,17 +1373,14 @@ async function initAdminItems() {
         <span class="badge">${escapeHTML(item.item_type || "found")}</span>
         <span class="badge">${escapeHTML(item.category)}</span>
         <span class="badge ${getStatusClass(item.status)}">${escapeHTML(item.status)}</span>
-
         <h3>${escapeHTML(item.title)}</h3>
         <p><b>Reporter:</b> ${escapeHTML(item.reporter_name)}</p>
         <p><b>Location:</b> ${escapeHTML(item.location_name)}</p>
         <p><b>Admin Status:</b> ${escapeHTML(item.admin_status)}</p>
-
         <div class="card-actions">
           <button class="btn accept" onclick="approveItem(${item.id})">Approve</button>
           <button class="btn reject" onclick="rejectItem(${item.id})">Reject</button>
         </div>
-
         <button class="btn secondary full" onclick="deleteItem(${item.id})">Delete</button>
       </div>
     </div>
@@ -1490,38 +1388,18 @@ async function initAdminItems() {
 }
 
 async function approveItem(id) {
-  await supabaseClient
-    .from("items")
-    .update({
-      admin_status: "Approved",
-      status: "Available"
-    })
-    .eq("id", id);
-
+  await supabaseClient.from("items").update({ admin_status: "Approved", status: "Available" }).eq("id", id);
   location.reload();
 }
 
 async function rejectItem(id) {
-  await supabaseClient
-    .from("items")
-    .update({
-      admin_status: "Rejected",
-      status: "Rejected"
-    })
-    .eq("id", id);
-
+  await supabaseClient.from("items").update({ admin_status: "Rejected", status: "Rejected" }).eq("id", id);
   location.reload();
 }
 
 async function deleteItem(id) {
-  const confirmDelete = confirm("Delete this item permanently?");
-  if (!confirmDelete) return;
-
-  await supabaseClient
-    .from("items")
-    .delete()
-    .eq("id", id);
-
+  if (!confirm("Delete this item permanently?")) return;
+  await supabaseClient.from("items").delete().eq("id", id);
   location.reload();
 }
 
@@ -1530,7 +1408,6 @@ async function initAdminComplaints() {
   if (!admin) return;
 
   document.getElementById("adminReplyForm").addEventListener("submit", sendAdminReply);
-
   await renderAdminComplaints();
 }
 
@@ -1562,9 +1439,7 @@ async function openAdminComplaint(id) {
     .eq("complaint_id", id)
     .order("created_at", { ascending: true });
 
-  const box = document.getElementById("adminChatMessages");
-
-  box.innerHTML = data.map(m => `
+  document.getElementById("adminChatMessages").innerHTML = data.map(m => `
     <div class="chat-message ${m.sender_role === "admin" ? "chat-admin" : "chat-user"}">
       <b>${escapeHTML(m.sender_name)}:</b>
       <p>${escapeHTML(m.message)}</p>
@@ -1599,16 +1474,11 @@ async function sendAdminReply(e) {
 
 async function closeComplaint(event, id) {
   event.stopPropagation();
-
-  await supabaseClient
-    .from("complaints")
-    .update({ status: "Closed" })
-    .eq("id", id);
-
+  await supabaseClient.from("complaints").update({ status: "Closed" }).eq("id", id);
   location.reload();
 }
 
-/* ---------------- CARD ---------------- */
+/* CARD */
 
 function createItemCard(item, showClaimButton) {
   const statusClass = getStatusClass(item.status);
@@ -1618,25 +1488,22 @@ function createItemCard(item, showClaimButton) {
   return `
     <div class="item-card">
       <img src="${escapeHTML(item.image_url)}" alt="${escapeHTML(item.title)}">
-
       <div class="item-content">
         <span class="badge">${escapeHTML(item.item_type || "found")}</span>
         <span class="badge">${escapeHTML(item.category)}</span>
         <span class="badge ${statusClass}">${escapeHTML(item.status)}</span>
-
         <h3>${escapeHTML(item.title)}</h3>
         <p><b>Location:</b> ${escapeHTML(item.location_name)}</p>
         <p><b>Date:</b> ${escapeHTML(item.found_date || "Not given")}</p>
         <p>${escapeHTML(shortText(item.description, 80))}</p>
-
         <div class="card-actions">
           <a class="btn primary" href="item-details.html?id=${encodeURIComponent(item.id)}">View Details</a>
           ${
             isOwner
-            ? `<a class="btn secondary" href="upload.html?edit=${encodeURIComponent(item.id)}">Edit</a>`
-            : showClaimButton
-              ? `<a class="btn secondary" href="item-details.html?id=${encodeURIComponent(item.id)}">Claim</a>`
-              : ""
+              ? `<a class="btn secondary" href="upload.html?edit=${encodeURIComponent(item.id)}">${t("editRequest")}</a>`
+              : showClaimButton
+                ? `<a class="btn secondary" href="item-details.html?id=${encodeURIComponent(item.id)}">Claim</a>`
+                : ""
           }
         </div>
       </div>

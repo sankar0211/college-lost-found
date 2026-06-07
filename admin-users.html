@@ -6,24 +6,55 @@
   <title>Admin Users</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body data-page="adminUsers">
 
 <nav class="dashboard-nav">
+
   <div>
-    <h2>Manage Users</h2>
+    <h2 data-i18n="manageUsers">Manage Users</h2>
     <p id="userInfo"></p>
   </div>
+
   <div class="nav-actions">
-    <a href="admin-dashboard.html" class="nav-btn">Admin Home</a>
-    <button id="logoutBtn" class="logout-btn">Logout</button>
+
+    <a href="admin-dashboard.html" class="nav-btn" data-i18n="adminDashboard">
+      Admin Dashboard
+    </a>
+
+    <a href="admin-items.html" class="nav-btn" data-i18n="manageItems">
+      Items
+    </a>
+
+    <a href="admin-complaints.html" class="nav-btn" data-i18n="complaints">
+      Complaints
+    </a>
+
+    <label class="theme-switch">
+      <input type="checkbox" id="themeToggle">
+      <span class="theme-slider"></span>
+    </label>
+
+    <button id="logoutBtn" class="logout-btn" data-i18n="logout">
+      Logout
+    </button>
+
   </div>
+
 </nav>
 
 <main class="container">
+
   <section class="panel">
-    <h3>All Registered Users</h3>
-    <div id="adminUsersList"></div>
+
+    <h3 data-i18n="allUsers">All Registered Users</h3>
+
+    <div id="adminUsersList">
+      <div class="empty">Loading users...</div>
+    </div>
+
   </section>
+
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

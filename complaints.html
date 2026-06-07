@@ -1,54 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Messages / Complaints</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support & Complaints</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body data-page="complaints">
 
 <nav class="dashboard-nav">
+
   <div>
-    <h2>Messages / Complaints</h2>
+    <h2 data-i18n="messages">Messages & Support</h2>
     <p id="userInfo"></p>
   </div>
+
   <div class="nav-actions">
-    <button onclick="goDashboard()" class="nav-btn">Dashboard</button>
-    <button onclick="toggleDarkMode()" class="nav-btn">🌙</button>
-    <button id="logoutBtn" class="logout-btn">Logout</button>
+
+    <a href="lost-dashboard.html"
+       class="nav-btn"
+       data-i18n="dashboard">
+       Dashboard
+    </a>
+
+    <a href="found-dashboard.html"
+       class="nav-btn"
+       data-i18n="myUploads">
+       My Uploads
+    </a>
+
+    <label class="theme-switch">
+      <input type="checkbox" id="themeToggle">
+      <span class="theme-slider"></span>
+    </label>
+
+    <button id="logoutBtn"
+            class="logout-btn"
+            data-i18n="logout">
+      Logout
+    </button>
+
   </div>
+
 </nav>
 
 <main class="container">
-  <section class="form-layout">
-    <form id="complaintForm" class="panel">
-      <h3>Raise New Complaint</h3>
 
-      <label>Subject</label>
-      <input type="text" id="complaintSubject" placeholder="Example: Claim not updated" required />
+  <div class="complaints-layout">
 
-      <label>Message</label>
-      <textarea id="complaintMessageInput" rows="5" placeholder="Explain your issue..." required></textarea>
-
-      <button type="submit" class="btn primary full">Send to Admin</button>
-    </form>
+    <!-- LEFT SIDE -->
 
     <section class="panel">
-      <h3>My Complaints</h3>
-      <div id="complaintsList"></div>
+
+      <h3 data-i18n="raiseComplaint">
+        Raise Complaint
+      </h3>
+
+      <form id="complaintForm">
+
+        <label data-i18n="subject">
+          Subject
+        </label>
+
+        <input
+          type="text"
+          id="complaintSubject"
+          placeholder="Example: Wrong item approval"
+          data-i18n-placeholder="subjectPlaceholder"
+          required
+        >
+
+        <label data-i18n="message">
+          Message
+        </label>
+
+        <textarea
+          id="complaintMessageInput"
+          rows="5"
+          placeholder="Describe your issue..."
+          data-i18n-placeholder="messagePlaceholder"
+          required
+        ></textarea>
+
+        <button
+          type="submit"
+          class="btn primary full"
+          data-i18n="sendComplaint">
+          Send Complaint
+        </button>
+
+      </form>
+
     </section>
-  </section>
 
-  <section class="panel chat-panel">
-    <h3>Conversation</h3>
-    <div id="chatMessages" class="chat-box"></div>
+    <!-- MIDDLE -->
 
-    <form id="replyForm" class="reply-form">
-      <input type="text" id="replyText" placeholder="Type a reply..." />
-      <button class="btn primary">Send</button>
-    </form>
-  </section>
+    <section class="panel">
+
+      <h3 data-i18n="myComplaints">
+        My Complaints
+      </h3>
+
+      <div id="complaintsList">
+
+        <div class="empty">
+          Loading complaints...
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- RIGHT SIDE -->
+
+    <section class="panel">
+
+      <h3 data-i18n="chatWithAdmin">
+        Chat With Admin
+      </h3>
+
+      <div id="chatMessages"
+           class="chat-box">
+
+        <div class="empty">
+          Select a complaint to view messages.
+        </div>
+
+      </div>
+
+      <form id="replyForm">
+
+        <textarea
+          id="replyText"
+          rows="3"
+          placeholder="Type your reply..."
+          data-i18n-placeholder="replyPlaceholder"
+        ></textarea>
+
+        <button
+          type="submit"
+          class="btn primary full"
+          data-i18n="sendReply">
+          Send Reply
+        </button>
+
+      </form>
+
+    </section>
+
+  </div>
+
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

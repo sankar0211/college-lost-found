@@ -6,35 +6,73 @@
   <title>Item Details</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body data-page="itemDetails">
 
 <nav class="dashboard-nav">
+
   <div>
-    <h2>Item Details</h2>
+    <h2 data-i18n="itemDetails">Item Details</h2>
     <p id="userInfo"></p>
   </div>
+
   <div class="nav-actions">
-    <button onclick="toggleDarkMode()" class="nav-btn">🌙</button>
-    <button id="logoutBtn" class="logout-btn">Logout</button>
+
+    <a href="lost-dashboard.html" class="nav-btn" data-i18n="dashboard">
+      Dashboard
+    </a>
+
+    <a href="found-dashboard.html" class="nav-btn" data-i18n="myUploads">
+      My Uploads
+    </a>
+
+    <label class="theme-switch">
+      <input type="checkbox" id="themeToggle">
+      <span class="theme-slider"></span>
+    </label>
+
+    <button id="logoutBtn" class="logout-btn" data-i18n="logout">
+      Logout
+    </button>
+
   </div>
+
 </nav>
 
 <main class="container">
-  <a href="lost-dashboard.html" class="back-link">← Back to Dashboard</a>
 
-  <section id="detailsBox" class="details-box"></section>
+  <section id="detailsBox" class="details-box">
+    <div class="empty" data-i18n="loadingItem">Loading item details...</div>
+  </section>
 
   <section id="claimSection" class="panel claim-panel">
-    <h3>Claim This Item</h3>
-    <p class="muted">Enter proof to show that this item belongs to you.</p>
+
+    <h3 data-i18n="claimThisItem">Claim This Item</h3>
+
+    <p class="muted" data-i18n="proofText">
+      Enter proof to show that this item belongs to you.
+    </p>
 
     <form id="claimForm">
-      <textarea id="proof" rows="4" placeholder="Example: My calculator has a blue sticker on the back." required></textarea>
-      <button type="submit" class="btn primary">Send Claim Request</button>
+
+      <textarea
+        id="proof"
+        rows="4"
+        placeholder="Example: My calculator has a blue sticker on the back."
+        data-i18n-placeholder="proofPlaceholder"
+        required
+      ></textarea>
+
+      <button type="submit" class="btn primary" data-i18n="sendClaim">
+        Send Claim Request
+      </button>
+
     </form>
 
     <p id="claimMessage" class="message"></p>
+
   </section>
+
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

@@ -6,55 +6,116 @@
   <title>Found Reporter Dashboard</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body data-page="foundDashboard">
 
 <nav class="dashboard-nav">
+
   <div>
-    <h2>Found Reporter Dashboard</h2>
+    <h2 data-i18n="foundDashboard">Found Reporter Dashboard</h2>
     <p id="userInfo"></p>
   </div>
+
   <div class="nav-actions">
-    <a href="complaints.html" class="nav-btn">Messages</a>
-    <button onclick="toggleDarkMode()" class="nav-btn">🌙</button>
-    <button id="logoutBtn" class="logout-btn">Logout</button>
+
+    <a href="lost-dashboard.html" class="nav-btn" data-i18n="dashboard">
+      Dashboard
+    </a>
+
+    <a href="upload.html?type=found" class="nav-btn" data-i18n="uploadItem">
+      Upload Item
+    </a>
+
+    <a href="complaints.html" class="nav-btn" data-i18n="messages">
+      Messages
+    </a>
+
+    <label class="theme-switch">
+      <input type="checkbox" id="themeToggle">
+      <span class="theme-slider"></span>
+    </label>
+
+    <button id="logoutBtn" class="logout-btn" data-i18n="logout">
+      Logout
+    </button>
+
   </div>
+
 </nav>
 
 <main class="container">
 
-  <section class="stats">
+  <!-- Statistics -->
+  <section class="stats-grid">
+
     <div class="stat-card">
       <h3 id="uploadCount">0</h3>
-      <p>My Uploads</p>
+      <p data-i18n="totalUploads">Total Uploads</p>
     </div>
 
     <div class="stat-card">
       <h3 id="claimCount">0</h3>
-      <p>Claim Requests</p>
+      <p data-i18n="claimRequests">Claim Requests</p>
     </div>
 
     <div class="stat-card">
       <h3 id="pendingCount">0</h3>
-      <p>Pending Claims</p>
+      <p data-i18n="pendingRequests">Pending Requests</p>
     </div>
+
   </section>
 
-  <section class="panel action-panel">
-    <div>
-      <h3>Report a Found Item</h3>
-      <p>Upload image, location, map link and contact details.</p>
-    </div>
-    <a href="upload.html" class="btn primary">Upload Item</a>
+  <!-- Quick Upload -->
+  <section class="action-panel">
+
+    <h3 data-i18n="uploadFoundItem">
+      Report a Found Item
+    </h3>
+
+    <p data-i18n="uploadFoundText">
+      Upload image, location, map link and contact details.
+    </p>
+
+    <a href="upload.html?type=found"
+       class="btn primary"
+       data-i18n="uploadItem">
+       Upload Item
+    </a>
+
   </section>
 
-  <section class="panel">
-    <h3>Claim Requests Received</h3>
-    <div id="claimsList"></div>
-  </section>
-
+  <!-- Claim Requests -->
   <section>
-    <h3>My Uploaded Items</h3>
-    <div id="myItemsGrid" class="items-grid"></div>
+
+    <h3 data-i18n="claimRequests">
+      Claim Requests
+    </h3>
+
+    <div id="claimsList">
+
+      <div class="empty">
+        Loading claim requests...
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Uploaded Items -->
+  <section>
+
+    <h3 data-i18n="myUploads">
+      My Uploaded Items
+    </h3>
+
+    <div id="myItemsGrid" class="items-grid">
+
+      <div class="empty">
+        Loading uploaded items...
+      </div>
+
+    </div>
+
   </section>
 
 </main>

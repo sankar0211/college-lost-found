@@ -10,8 +10,8 @@
 
 <section id="languageScreen" class="language-screen">
   <div class="language-card">
-    <h1>Choose Your Language</h1>
-    <p>Select the language you are comfortable with.</p>
+    <h1>Which language are you comfortable with?</h1>
+    <p>Select your preferred language to continue.</p>
 
     <div class="language-grid">
       <button onclick="setLanguage('en')">English</button>
@@ -27,30 +27,43 @@
 <header class="hero">
   <nav class="navbar">
     <div class="logo" data-i18n="appName">Campus Lost & Found</div>
+
     <div class="nav-actions">
-      <select id="languageSelect" onchange="setLanguage(this.value)">
-        <option value="en">English</option>
-        <option value="ta">தமிழ்</option>
-        <option value="hi">हिन्दी</option>
-        <option value="te">తెలుగు</option>
-        <option value="ml">മലയാളം</option>
-        <option value="kn">ಕನ್ನಡ</option>
-      </select>
-      <button onclick="toggleDarkMode()" class="nav-btn">🌙</button>
+      <div class="custom-language">
+        <button type="button" id="languageBtn">🌐 Language</button>
+        <div id="languageMenu" class="language-menu">
+          <button type="button" onclick="setLanguage('en')">English</button>
+          <button type="button" onclick="setLanguage('ta')">தமிழ்</button>
+          <button type="button" onclick="setLanguage('hi')">हिन्दी</button>
+          <button type="button" onclick="setLanguage('te')">తెలుగు</button>
+          <button type="button" onclick="setLanguage('ml')">മലയാളം</button>
+          <button type="button" onclick="setLanguage('kn')">ಕನ್ನಡ</button>
+        </div>
+      </div>
+
+      <label class="theme-switch">
+        <input type="checkbox" id="themeToggle" />
+        <span class="theme-slider"></span>
+      </label>
+
       <a href="login.html" class="nav-btn" data-i18n="login">Login</a>
     </div>
   </nav>
 
   <div class="hero-content">
     <span class="tag" data-i18n="tag">College Utility Website</span>
-    <h1 data-i18n="heroTitle">Find Lost Items. Report Found Items.</h1>
+
+    <h1 data-i18n="heroTitle">
+      Find Lost Items. Report Found Items.
+    </h1>
+
     <p data-i18n="heroText">
       A campus portal for students, faculty, parents, visitors and public users to report, search and claim lost items.
     </p>
 
     <div class="hero-actions">
-      <a href="login.html?role=lost" class="btn primary" data-i18n="lostBtn">I Lost an Item</a>
-      <a href="login.html?role=found" class="btn secondary" data-i18n="foundBtn">I Found an Item</a>
+      <a href="login.html" class="btn primary" data-i18n="getStarted">Get Started</a>
+      <a href="login.html" class="btn secondary" data-i18n="reportNow">Report / Search Item</a>
     </div>
   </div>
 </header>
@@ -58,17 +71,23 @@
 <section class="features">
   <div class="feature-card">
     <h3 data-i18n="searchItems">Search Items</h3>
-    <p data-i18n="searchText">Search found items by name, category, location and date.</p>
+    <p data-i18n="searchText">
+      Search lost and found items by name, category, location and date.
+    </p>
   </div>
 
   <div class="feature-card">
     <h3 data-i18n="uploadImages">Upload Images</h3>
-    <p data-i18n="uploadText">Upload from files or capture directly using mobile camera.</p>
+    <p data-i18n="uploadText">
+      Upload from files or capture directly using mobile camera.
+    </p>
   </div>
 
   <div class="feature-card">
     <h3 data-i18n="claimRequests">Claim Requests</h3>
-    <p data-i18n="claimText">Send proof and wait for reporter/admin approval.</p>
+    <p data-i18n="claimText">
+      Send proof and wait for reporter or admin approval.
+    </p>
   </div>
 </section>
 
